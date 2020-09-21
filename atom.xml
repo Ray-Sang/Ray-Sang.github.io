@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-09-21T15:00:47.584Z</updated>
+    <updated>2020-09-21T15:02:28.162Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -17,16 +17,23 @@
         </link>
         <updated>2020-09-07T14:55:17.000Z</updated>
         <summary type="html"><![CDATA[<ul>
-<li>detrimental adj. 损害的，有害的</li>
+<li>detrimental adj. 损害的，有害的
+<ul>
+<li>be detrimental to sb's health</li>
+<li>have detrimental influence upon</li>
+</ul>
+</li>
 </ul>
 ]]></summary>
         <content type="html"><![CDATA[<ul>
-<li>detrimental adj. 损害的，有害的</li>
+<li>detrimental adj. 损害的，有害的
+<ul>
+<li>be detrimental to sb's health</li>
+<li>have detrimental influence upon</li>
+</ul>
+</li>
 </ul>
 <!-- more -->
-<pre><code>- be detrimental to sb's health
-- have detrimental influence upon
-</code></pre>
 <ul>
 <li>
 <p>enfranchise /ɪnˈfræntʃaɪz/ v. 给(某人)选举权</p>
