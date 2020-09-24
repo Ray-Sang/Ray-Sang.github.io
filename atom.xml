@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-09-23T23:53:50.060Z</updated>
+    <updated>2020-09-24T01:13:18.865Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,39 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[如何在typecho中插入图片，并使其居中]]></title>
+        <id>https://ray-sang.github.io/post/ru-he-zai-typecho-zhong-cha-ru-tu-pian-bing-shi-qi-ju-zhong/</id>
+        <link href="https://ray-sang.github.io/post/ru-he-zai-typecho-zhong-cha-ru-tu-pian-bing-shi-qi-ju-zhong/">
+        </link>
+        <updated>2020-09-24T00:37:58.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>在使用typecho的时候，我发现markdown语法插入的图片默认向左对齐，不甚美观。通过在编辑器中强制使用html语法，实现图片居中效果。代码如下：</p>
+<pre><code class="language-html">!!!
+&lt;center&gt;&lt;img src=&quot;https://www.sangrui.xyz:60001/usr/uploads/2020/09/4087492125.jpg&quot; title=&quot;test&quot;&gt;&lt;/center&gt;
+!!!
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第一台黑苹果]]></title>
+        <id>https://ray-sang.github.io/post/di-yi-tai-hei-ping-guo/</id>
+        <link href="https://ray-sang.github.io/post/di-yi-tai-hei-ping-guo/">
+        </link>
+        <updated>2020-09-24T00:35:38.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/TV3kHE.jpg" alt="主机大小" loading="lazy"></figure>
+<p>准系统：云轩h170,主板技嘉h170m，399<br>
+CPU：i3-8100散片，b0步进，670<br>
+散热：乔思伯hp-400,80<br>
+内存：玖合16g，2666,290<br>
+硬盘：三星pm871a，512G，850evo的oem版，399<br>
+网卡：DW1820A，算上天线一共85<br>
+电源：华硕二手90w，43</p>
+<p>总计：1950<br>
+系统：MacOS 10.15.2,有完美10.15.3efi，clover引导</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020/09/13 Sunday]]></title>
         <id>https://ray-sang.github.io/post/20200913-sunday/</id>
@@ -202,6 +235,22 @@
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[每日一图 2020/09/12]]></title>
+        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200912/</id>
+        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200912/">
+        </link>
+        <updated>2020-09-12T01:10:19.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>今天是大三的第一个周六，大多数时间都在图书馆度过。</p>
+<p>肥橘镇楼<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/2cRhCL.jpg" alt="2cRhCL" loading="lazy"></p>
+<p>出去吃了马玉涛麻辣烫，好热，出了好多汗<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/qW8l2i.jpg" alt="qW8l2i" loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/VqtoZB.jpg" alt="VqtoZB" loading="lazy"><br>
+晚上看乐夏，宋捷太帅了！</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[2020/09/12 Saturday]]></title>
         <id>https://ray-sang.github.io/post/20200912-saturday/</id>
         <link href="https://ray-sang.github.io/post/20200912-saturday/">
@@ -358,6 +407,46 @@
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[每日一图 2020/09/11]]></title>
+        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200911/</id>
+        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200911/">
+        </link>
+        <updated>2020-09-11T01:01:10.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>今天好多事情。</p>
+<p>看见了以前在包图喂猫的阿姨。<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/YTd7KU.jpg" alt="YTd7KU" loading="lazy"></p>
+<p>那只黑白的叫做警长，哈哈哈哈哈</p>
+<p>中饭普普通通，蛮油的。<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/hSTxq6.jpg" alt="hSTxq6" loading="lazy"></p>
+<p>晚饭吃了螺蛳粉，海京阁真的无数次少放料了。<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/5TYv04.jpg" alt="5TYv04" loading="lazy"></p>
+<p>看到了一只戴胜：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/mSTggx.jpg" alt="mSTggx" loading="lazy"></p>
+<p>打了网球，不是很开心。</p>
+<p>仔仔最后：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/mGz5NJ.jpg" alt="mGz5NJ" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[每日一图 2020/09/10]]></title>
+        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200910/</id>
+        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200910/">
+        </link>
+        <updated>2020-09-10T00:59:38.000Z</updated>
+        <summary type="html"><![CDATA[<p>普通的一天，没有早八，去二餐一起吃了早饭。吃的是吉祥馄饨！荠菜鲜笋，好吃！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>普通的一天，没有早八，去二餐一起吃了早饭。吃的是吉祥馄饨！荠菜鲜笋，好吃！</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/uiEtX2.jpg" alt="uiEtX2" loading="lazy"></figure>
+<p>早上的课热死了，老师没开空调。</p>
+<p>中饭吃素！每天下课就有饭吃的生活太幸福啦！</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/Ecwiir.jpg" alt="Ecwiir" loading="lazy"></figure>
+<p>晚上雨好大，为了吃个外卖跑来跑去的，椒麻鸡不爱我了。喝了乳酸菌味的元气森林，喝了牛奶，吃了迷你大福，开心了！</p>
+<p>希望明天能顺利打球！不要下雨啊！</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[2020/09/10 Thursday]]></title>
         <id>https://ray-sang.github.io/post/20200910-thursday/</id>
         <link href="https://ray-sang.github.io/post/20200910-thursday/">
@@ -446,6 +535,23 @@
 </ul>
 </li>
 </ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[每日一图 2020/09/09]]></title>
+        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200909/</id>
+        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200909/">
+        </link>
+        <updated>2020-09-09T00:57:43.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/Mj9SPQ.jpg" alt="Mj9SPQ" loading="lazy"></figure>
+<p>白天还是很普通。小笼包很嫩，但是没有非常灌汤的感觉。</p>
+<p>中午的椒麻鸡把他辣哭了哈哈哈<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/bGwUve.jpg" alt="bGwUve" loading="lazy"></p>
+<p>晚上吃了小红帽和糯米甜甜！大鸡腿没有入镜。<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/jN9XQ7.jpg" alt="jN9XQ7" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/id5kLd.jpg" alt="id5kLd" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/Y5muqv.jpg" alt="Y5muqv" loading="lazy"></p>
 ]]></content>
     </entry>
     <entry>
@@ -602,460 +708,6 @@
 </ul>
 </li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/09/08 Tuesday]]></title>
-        <id>https://ray-sang.github.io/post/20200908-tuesday/</id>
-        <link href="https://ray-sang.github.io/post/20200908-tuesday/">
-        </link>
-        <updated>2020-09-07T16:23:17.000Z</updated>
-        <summary type="html"><![CDATA[<ul>
-<li>schorching adj. 酷热的</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<ul>
-<li>schorching adj. 酷热的</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>rigorous adj. 严谨的，细致的</p>
-</li>
-<li>
-<p>decrepit adj. 破旧的，衰老的</p>
-<ul>
-<li>decrepitude n.</li>
-</ul>
-</li>
-<li>
-<p>mechanical adj. 机械的；行事呆板，不加思考的</p>
-</li>
-<li>
-<p>inhibit v. 妨碍，抑制</p>
-<ul>
-<li>prohibit</li>
-<li>refrain</li>
-</ul>
-</li>
-<li>
-<p>substantial adj. 大量的；相当程度的</p>
-<ul>
-<li>a substantial number of people</li>
-</ul>
-</li>
-<li>
-<p>toxin &lt;-&gt; antidote</p>
-</li>
-<li>
-<p>veterinary /ˈvetərəneri/ adj. 兽医的</p>
-<ul>
-<li>major in veterinary medicine</li>
-<li>veteran n. 老兵；经验丰富的人，老手</li>
-<li>vet 兽医</li>
-</ul>
-</li>
-<li>
-<p>dissemination n. 散布，传播</p>
-<ul>
-<li>seminate vt. 散布，传播；播种于</li>
-<li>The media plays an important role <strong>in the dissemination of information</strong>.</li>
-</ul>
-</li>
-<li>
-<p>congested adj. 拥塞的，拥挤不堪的；充血的</p>
-<ul>
-<li>congest 淤血</li>
-<li>congestion n. 拥挤（交通）；充血</li>
-<li>Roads are heavily congested during rush hours.</li>
-</ul>
-</li>
-<li>
-<p>stark adj. 赤裸的，明摆着的； adv. 完全地；极端地</p>
-<ul>
-<li>The room, only with a chair and a bed, looked stark.</li>
-<li>stark reality 赤裸裸的现实</li>
-<li>stark madness 彻底的疯狂</li>
-</ul>
-</li>
-<li>
-<p>grind v. 磨碎，碾碎 n. 磨碎；磨光；磨快；苦干；苦差事</p>
-<ul>
-<li>grind a pound of coffee 磨一磅咖啡</li>
-<li>Get up early, grind out early, gain on success. 更勤奋地努力</li>
-<li>和pulverise有什么区别？</li>
-</ul>
-</li>
-<li>
-<p>irrevocable adj. 无法取消的，不能改变的</p>
-<ul>
-<li>revoke vt. 撤回；废除</li>
-<li>an irrevocable move/step</li>
-</ul>
-</li>
-<li>
-<p>a stack/bulk/pile/heap of 一堆</p>
-</li>
-<li>
-<p>compulsive adj. 强制的；强迫的；难以控制的</p>
-<ul>
-<li>a compulsive game 令人欲罢不能的游戏</li>
-<li>compulsory</li>
-</ul>
-</li>
-<li>
-<p>Life is a shuttle. 人生短暂</p>
-</li>
-<li>
-<p>irritate v. 激怒，使发怒；刺激</p>
-<ul>
-<li>irritant n. 刺激物； adj. 刺激性的</li>
-<li>irritating adj. 烦人的，令人痛苦的</li>
-</ul>
-</li>
-<li>
-<p>slash v./n. 劈砍</p>
-<ul>
-<li>to slash the government's policy 猛烈抨击政府的政策</li>
-</ul>
-</li>
-<li>
-<p>recipient n. 接受者</p>
-<ul>
-<li>receipt n. 收据</li>
-<li>receptacle n. 容器，插座</li>
-</ul>
-</li>
-<li>
-<p>melatonin /ˌmeləˈtoʊnɪn/ n. 褪黑激素</p>
-</li>
-<li>
-<p>intent /ɪnˈtent/ adj. 热切的；专注的；决心做(尤指伤害他人的事)；专心；专注 n. 意图；意向；目的</p>
-<ul>
-<li>be intent on doing 热衷于做 fond of/passion/devotion/keen on</li>
-</ul>
-</li>
-<li>
-<p>dean n. （大学的）学院院长；系主任</p>
-</li>
-<li>
-<p>vibrate v. 震动；使颤动；使震动</p>
-<ul>
-<li>string vibrate/钟摆震动The pendulum/ˈpendʒələm/ vibrates</li>
-<li>区别shake/tremble/shiver/quiver/shudder</li>
-</ul>
-</li>
-<li>
-<p>entitle sb to do sth 授予权利</p>
-</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/09/07 Monday]]></title>
-        <id>https://ray-sang.github.io/post/20200907-monday/</id>
-        <link href="https://ray-sang.github.io/post/20200907-monday/">
-        </link>
-        <updated>2020-09-07T14:55:17.000Z</updated>
-        <summary type="html"><![CDATA[<ul>
-<li>detrimental adj. 损害的，有害的
-<ul>
-<li>be detrimental to sb's health</li>
-<li>have detrimental influence upon</li>
-</ul>
-</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<ul>
-<li>detrimental adj. 损害的，有害的
-<ul>
-<li>be detrimental to sb's health</li>
-<li>have detrimental influence upon</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>enfranchise /ɪnˈfræntʃaɪz/ v. 给(某人)选举权</p>
-</li>
-<li>
-<p>truce n. 讲和协议；休战协定</p>
-<ul>
-<li>declear a truce</li>
-</ul>
-</li>
-<li>
-<p>aeration n. 通风；充气</p>
-<ul>
-<li>aerial adj. 空气的</li>
-</ul>
-</li>
-<li>
-<p>avalanche n. 雪崩</p>
-<ul>
-<li>an avalanch of 大量的</li>
-</ul>
-</li>
-<li>
-<p>spiritual adj. 精神的，心灵的</p>
-<ul>
-<li>a spiritual experience</li>
-</ul>
-</li>
-<li>
-<p>deem v. 认为；视为；相信</p>
-<ul>
-<li>He deems it is his duty to help his needy friends.</li>
-</ul>
-</li>
-<li>
-<p>incur v. 招致，遭受</p>
-<ul>
-<li>The play that mocks the gay community incurred the anger of the audience.</li>
-</ul>
-</li>
-<li>
-<p>impede v. 妨碍，阻碍</p>
-<ul>
-<li>impede sb to do sth</li>
-<li>balk</li>
-<li>The rugged road impeded our progress.</li>
-</ul>
-</li>
-<li>
-<p>judicious adj. 明智的，审慎的</p>
-<ul>
-<li>judicature</li>
-<li>judicatory</li>
-<li>judicial</li>
-<li>make judicious use of the natural resources.</li>
-</ul>
-</li>
-<li>
-<p>trinket n. 小装饰品；廉价的珠宝</p>
-</li>
-<li>
-<p>acrobat n. 特技演员；杂技演员</p>
-</li>
-<li>
-<p>bulletin n. 公告，告示；新闻快报；简报</p>
-<ul>
-<li>bulletin board,公告栏</li>
-<li>BBS：bulletin board system</li>
-<li>a bulletin was issued yesterday</li>
-</ul>
-</li>
-<li>
-<p>sponge n. 海绵 v. 用湿布/海绵擦洗</p>
-</li>
-<li>
-<p>forfeit v. 丧失，被没收 n. 罚款；没收物</p>
-<ul>
-<li>I'm afraid you may forfeit your deposit if you cancel now.</li>
-<li>be forfeit to 被征用</li>
-<li>counterfeit n. 赝品 adj. 假冒的，伪造的 v. 伪造</li>
-</ul>
-</li>
-<li>
-<p>exacerbate v. 恶化，加剧</p>
-<ul>
-<li>aggravate, worsen, intensify, amplify</li>
-</ul>
-</li>
-<li>
-<p>deter v. 制止，吓住；（使）打消念头</p>
-<ul>
-<li>deter from doing</li>
-</ul>
-</li>
-<li>
-<p>formidable adj. 可怕的；令人敬畏的；难对付的</p>
-<ul>
-<li>dreadful</li>
-<li>insurmountable adj. 无法克服的；难以解决的；不可逾越的</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/09/04 Friday]]></title>
-        <id>https://ray-sang.github.io/post/20200904-friday/</id>
-        <link href="https://ray-sang.github.io/post/20200904-friday/">
-        </link>
-        <updated>2020-09-04T14:48:49.000Z</updated>
-        <summary type="html"><![CDATA[<p>It's easy to harden your heart. But to open it, that's the toughest thing you can do.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>It's easy to harden your heart. But to open it, that's the toughest thing you can do.</p>
-<!--more-->
-<hr>
-<ul>
-<li>
-<p>hierarchy  n. 等级制度；层次</p>
-<ul>
-<li>a sense of hierarchy 等级观念</li>
-<li>hierarchy of needs 需求层次理论</li>
-</ul>
-</li>
-<li>
-<p>depict  vt. 描述; 描绘; 描写; 描画</p>
-</li>
-<li>
-<p>arthritis   /ɑː'θraɪtɪs/  n. 关节炎</p>
-</li>
-<li>
-<p>ailment  /'eɪlmənt/  n. 小病，不适</p>
-<ul>
-<li>Your cold is just a minor ailment and you needn't go to hospital.</li>
-<li>感冒只是个小毛病，你不用去医院。</li>
-</ul>
-</li>
-<li>
-<p>refectory n. （学校等的）餐厅，食堂</p>
-</li>
-<li>
-<p>collate v. 校对；核对；整理</p>
-<ul>
-<li>Please have the copies of the report collated and stapled before the meeting.</li>
-<li>请在开会之前将报告的复印件整理好并装订好。<br>
-revise[ri'vaiz] n. 校订, 修正, 再校稿 v. 校订, 修正, 校正</li>
-</ul>
-</li>
-<li>
-<p>headquarters n. 总部，总店</p>
-<ul>
-<li>general headquarters n. 陆军总司令部</li>
-<li>police headquarters n. 警察总局</li>
-</ul>
-</li>
-<li>
-<p>specification n. 规格，规范，标准；明细单；详细说明书</p>
-<ul>
-<li>standard</li>
-<li>The house has been built exactly to our specifications.</li>
-</ul>
-</li>
-<li>
-<p>inflammable  adj. 易燃的；易怒的，性情暴躁的</p>
-<ul>
-<li>inflammation  发炎</li>
-</ul>
-</li>
-<li>
-<p>expel v. 排出；把…开除（或除名）；驱逐出境；喷出</p>
-<ul>
-<li>be deprive of</li>
-<li>propel   vt. 1. 推进; 推动2. 驱动3. 驱使；迫使；推搡</li>
-<li>be expelled from school</li>
-</ul>
-</li>
-<li>
-<p>skew v. 使偏颇，曲解；使歪斜 adj. 歪斜的；有偏差的</p>
-<ul>
-<li>This crucial factor will have the effect of skewing the figures.</li>
-<li>这个关键因素将影响数据的准确性。</li>
-</ul>
-</li>
-<li>
-<p>deviance n. 异常行为</p>
-<ul>
-<li>deviance n. 变态</li>
-<li>deviant adj.</li>
-</ul>
-</li>
-<li>
-<p>interdependent adj. 相互依赖的</p>
-<ul>
-<li>All creatures in the ecosystem are interdependent.</li>
-<li>生态系统中的所有生物都是相互依存的</li>
-<li>an interdependent world</li>
-<li>mutual</li>
-</ul>
-</li>
-<li>
-<p>cosset v. 宠爱，溺爱；纵容</p>
-</li>
-<li>
-<p>feeble adj. 虚弱的；无效的</p>
-<ul>
-<li>The patient is feeble and is not able to walk.</li>
-<li>weak, frail, faint</li>
-</ul>
-</li>
-<li>
-<p>consortium  n. 联合企业；财团</p>
-<ul>
-<li>consort（结交，陪伴）—&gt;consortium（联合会，财团）</li>
-</ul>
-</li>
-<li>
-<p>judicious    /dʒu'dɪʃəs/  adj. 明智的，审慎的</p>
-<ul>
-<li>We should make judicious use of the natural resources.</li>
-<li>judicature 司法；judicatory 司法的，司法系统；judicial 司法的，判断的</li>
-</ul>
-</li>
-<li>
-<p>afflict v. 使受痛苦，折磨</p>
-<ul>
-<li>be afflicted by (flood) 受折磨</li>
-<li>afflict humanity 困扰人类</li>
-</ul>
-</li>
-<li>
-<p>aeration n. 通风；充气</p>
-<ul>
-<li>Aeration is frequently referred to in works on the aquarium.</li>
-</ul>
-</li>
-<li>
-<p>extol v. 赞颂，赞美，颂扬</p>
-<ul>
-<li>applaud, glorify</li>
-</ul>
-</li>
-<li>
-<p>spectator n. （体育比赛的）观看者，观众</p>
-<ul>
-<li>This year's festival attracted 87,000 spectators.</li>
-<li>audience n. 听众，观众，读者；觐见，会见</li>
-<li>spectacle 奇观</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://ray-sang.github.io/post/hello-gridea/</id>
-        <link href="https://ray-sang.github.io/post/hello-gridea/">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>
