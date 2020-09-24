@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>2020/09/07 Monday | Ray&#39;s Space</title>
+<title>Lecture 2 | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -19,18 +19,23 @@
 
 
     <meta name="description" content="
-detrimental adj. 损害的，有害的
+Lecture 2
 
-be detrimental to sb's health
-have detrimental influence upon
+understading entity better
+data types:
+
+BIT
+BOOLEAN
+STD_LOGIC
 
 
 
+A few kay terms
 
 
-
-enfranchise /ɪnˈfræntʃaɪz..." />
-    <meta name="keywords" content="雅思单词" />
+Assigned
+x &lt;= y; -- x ..." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -101,128 +106,96 @@ enfranchise /ɪnˈfræntʃaɪz..." />
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">2020/09/07 Monday</h2>
-            <div class="post-date">2020-09-07</div>
+            <h2 class="post-title">Lecture 2</h2>
+            <div class="post-date">2020-09-24</div>
             
             <div class="post-content" v-pre>
-              <ul>
-<li>detrimental adj. 损害的，有害的
+              <!-- more -->
+<h1 id="lecture-2">Lecture 2</h1>
 <ul>
-<li>be detrimental to sb's health</li>
-<li>have detrimental influence upon</li>
+<li>understading entity better</li>
+<li>data types:
+<ul>
+<li>BIT</li>
+<li>BOOLEAN</li>
+<li>STD_LOGIC</li>
 </ul>
 </li>
 </ul>
-<!-- more -->
+<h2 id="a-few-kay-terms">A few kay terms</h2>
 <ul>
 <li>
-<p>enfranchise /ɪnˈfræntʃaɪz/ v. 给(某人)选举权</p>
+<p>Assigned<br>
+<code>x &lt;= y; -- x is assinged the value of y</code></p>
 </li>
 <li>
-<p>truce n. 讲和协议；休战协定</p>
+<p>Read/reading<br>
+<code>x &lt;= y; -- x is reading the value of y</code></p>
+</li>
+<li>
+<p>Drivers<br>
+Drivers give value to make signals in the following circuit.</p>
+</li>
+</ul>
+<h2 id="four-types-of-modes-are-used-in-vhdl">Four types of Modes are used in VHDL</h2>
 <ul>
-<li>declear a truce</li>
+<li><strong>Mode in</strong><br>
+Values can be read from port(outside of the entity) but not assigned.</li>
 </ul>
-</li>
-<li>
-<p>aeration n. 通风；充气</p>
+<pre><code class="language-vhdl">entity driver is
+port(A : in std_logic;
+	 B : out std_logic;
+	 Data : inout std_logic;
+	 Count : buffer std_logic);
+end driver;
+</code></pre>
 <ul>
-<li>aerial adj. 空气的</li>
+<li><strong>Mode out</strong><br>
+Can wirte the value into the output port.</li>
+<li>Mode inout<br>
+You can read the signal from the inside of the entity and also outside.<br>
+Bi-directional.</li>
+<li>Mode buffer</li>
 </ul>
-</li>
-<li>
-<p>avalanche n. 雪崩</p>
+<h2 id="few-data-types">Few Data Types</h2>
 <ul>
-<li>an avalanch of 大量的</li>
+<li>BIT data type<br>
+Supports the value of <strong>logic</strong> '0' &amp; '1', for example:</li>
 </ul>
-</li>
-<li>
-<p>spiritual adj. 精神的，心灵的</p>
+<pre><code class="language-vhdl">entity driver is
+port(A : in BIT;
+     B : out BIT;
+     Data : inout BIT);
+end driver
+</code></pre>
 <ul>
-<li>a spiritual experience</li>
-</ul>
+<li>
+<p>BOOLEAN<br>
+Supports literals FALSE &amp; TRUE, less frequently used.</p>
 </li>
 <li>
-<p>deem v. 认为；视为；相信</p>
-<ul>
-<li>He deems it is his duty to help his needy friends.</li>
-</ul>
-</li>
-<li>
-<p>incur v. 招致，遭受</p>
-<ul>
-<li>The play that mocks the gay community incurred the anger of the audience.</li>
-</ul>
-</li>
-<li>
-<p>impede v. 妨碍，阻碍</p>
-<ul>
-<li>impede sb to do sth</li>
-<li>balk</li>
-<li>The rugged road impeded our progress.</li>
-</ul>
-</li>
-<li>
-<p>judicious adj. 明智的，审慎的</p>
-<ul>
-<li>judicature</li>
-<li>judicatory</li>
-<li>judicial</li>
-<li>make judicious use of the natural resources.</li>
-</ul>
-</li>
-<li>
-<p>trinket n. 小装饰品；廉价的珠宝</p>
-</li>
-<li>
-<p>acrobat n. 特技演员；杂技演员</p>
-</li>
-<li>
-<p>bulletin n. 公告，告示；新闻快报；简报</p>
-<ul>
-<li>bulletin board,公告栏</li>
-<li>BBS：bulletin board system</li>
-<li>a bulletin was issued yesterday</li>
-</ul>
-</li>
-<li>
-<p>sponge n. 海绵 v. 用湿布/海绵擦洗</p>
-</li>
-<li>
-<p>forfeit v. 丧失，被没收 n. 罚款；没收物</p>
-<ul>
-<li>I'm afraid you may forfeit your deposit if you cancel now.</li>
-<li>be forfeit to 被征用</li>
-<li>counterfeit n. 赝品 adj. 假冒的，伪造的 v. 伪造</li>
-</ul>
-</li>
-<li>
-<p>exacerbate v. 恶化，加剧</p>
-<ul>
-<li>aggravate, worsen, intensify, amplify</li>
-</ul>
-</li>
-<li>
-<p>deter v. 制止，吓住；（使）打消念头</p>
-<ul>
-<li>deter from doing</li>
-</ul>
-</li>
-<li>
-<p>formidable adj. 可怕的；令人敬畏的；难对付的</p>
-<ul>
-<li>dreadful</li>
-<li>insurmountable adj. 无法克服的；难以解决的；不可逾越的</li>
-</ul>
+<p>STD_LOGIC<br>
+Most commonly used, which is defined in the std_logic_1164 package of IEEE library. It is defined as: ('U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-'), totally 9 states.</p>
 </li>
 </ul>
+<pre><code>TYPE std_logic IS ( 'U',  -- Uninitialized
+                    'X',  -- Forcing  Unknown
+                    '0',  -- Forcing  0
+                    '1',  -- Forcing  1
+                    'Z',  -- High Impedance, usually no current 
+                    'W',  -- Weak     Unknown
+                    'L',  -- Weak     0       
+                    'H',  -- Weak     1       
+                    '-'   -- Don't care
+                    );
+</code></pre>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/wmpvTqMUZ/" class="tag">
-                    雅思单词
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
                   </a>
                 
               </div>
@@ -230,9 +203,9 @@ enfranchise /ɪnˈfræntʃaɪz..." />
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200907/">
+                <a href="https://ray-sang.github.io/post/lecture-1-of-vhdl-entity-and-arch/">
                   <h3 class="post-title">
-                    每日一图 2020/09/07
+                    Lecture 1 of VHDL, entity and arch
                   </h3>
                 </a>
               </div>

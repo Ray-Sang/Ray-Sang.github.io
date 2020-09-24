@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>2020/09/07 Monday | Ray&#39;s Space</title>
+<title>Lecture 6, understand signals with select statement | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -19,18 +19,9 @@
 
 
     <meta name="description" content="
-detrimental adj. 损害的，有害的
-
-be detrimental to sb's health
-have detrimental influence upon
-
-
-
-
-
-
-enfranchise /ɪnˈfræntʃaɪz..." />
-    <meta name="keywords" content="雅思单词" />
+Lecture 6, understand signals with select statement
+In this lecture, we will discuss signals and concurrent statements:..." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -101,128 +92,75 @@ enfranchise /ɪnˈfræntʃaɪz..." />
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">2020/09/07 Monday</h2>
-            <div class="post-date">2020-09-07</div>
+            <h2 class="post-title">Lecture 6, understand signals with select statement</h2>
+            <div class="post-date">2020-09-24</div>
             
             <div class="post-content" v-pre>
-              <ul>
-<li>detrimental adj. 损害的，有害的
+              <!-- more -->
+<h1 id="lecture-6-understand-signals-with-select-statement">Lecture 6, understand signals with select statement</h1>
+<p>In this lecture, we will discuss signals and concurrent statements:</p>
 <ul>
-<li>be detrimental to sb's health</li>
-<li>have detrimental influence upon</li>
+<li>when-else statement</li>
+<li>with select statement</li>
 </ul>
-</li>
-</ul>
-<!-- more -->
+<h2 id="signals">signals</h2>
+<p>Signals represent wires within a circuit.</p>
+<pre><code class="language-vhdl">architecture and_gt of anding is
+	signal a, b, temp : std_logic;
+	
+	begin
+		temp &lt;= a and b;
+		C &lt;= temp and D
+end and_gt
+</code></pre>
+<p>The signals can be used :</p>
 <ul>
-<li>
-<p>enfranchise /ɪnˈfræntʃaɪz/ v. 给(某人)选举权</p>
-</li>
-<li>
-<p>truce n. 讲和协议；休战协定</p>
+<li>to connect design entities together &amp; communicate changes in values within a design</li>
+<li>instead of input ports</li>
+</ul>
+<h2 id="concurrent-statement">Concurrent statement</h2>
+<p>concurrent: at the same time, parallel<br>
+concurrent constructs:</p>
 <ul>
-<li>declear a truce</li>
+<li>when else statement</li>
+<li>with select statement</li>
 </ul>
-</li>
-<li>
-<p>aeration n. 通风；充气</p>
+<p>Take <strong>combinational feedback</strong> for example:<br>
+In VHDL, if you write <code>X &lt;= X + Y;</code> , you get a adder whose output feedbacks to its input. It is a very <strong>bad</strong> style of design, a <strong>sin</strong>!</p>
+<h2 id="drivers">Drivers</h2>
+<p>In <code>Z &lt;= A</code> , A becomes the driver of Z.<br>
+Avoid multiple drivers:</p>
+<pre><code class="language-vhdl">architecture CONCURRENT of MULTIPLE is
+	signal Z, A, B, C, D : std_logic;
+begin 
+	Z &lt;= A and B;
+	Z &lt;= C and D;
+end CONCURRENT
+</code></pre>
+<p>As shown, Z was assigned two times, hence has multiple drivers.</p>
+<p>That lead to <strong>conditional assignment</strong>.</p>
+<h2 id="when-statement">when statement</h2>
+<pre><code class="language-vhdl">Z &lt;= A when ASSIGN_A = '1' else
+	 B when ASSIGN_B = '1' else
+	 C；
+</code></pre>
 <ul>
-<li>aerial adj. 空气的</li>
+<li>modeling tri-state buffer</li>
 </ul>
-</li>
-<li>
-<p>avalanche n. 雪崩</p>
-<ul>
-<li>an avalanch of 大量的</li>
-</ul>
-</li>
-<li>
-<p>spiritual adj. 精神的，心灵的</p>
-<ul>
-<li>a spiritual experience</li>
-</ul>
-</li>
-<li>
-<p>deem v. 认为；视为；相信</p>
-<ul>
-<li>He deems it is his duty to help his needy friends.</li>
-</ul>
-</li>
-<li>
-<p>incur v. 招致，遭受</p>
-<ul>
-<li>The play that mocks the gay community incurred the anger of the audience.</li>
-</ul>
-</li>
-<li>
-<p>impede v. 妨碍，阻碍</p>
-<ul>
-<li>impede sb to do sth</li>
-<li>balk</li>
-<li>The rugged road impeded our progress.</li>
-</ul>
-</li>
-<li>
-<p>judicious adj. 明智的，审慎的</p>
-<ul>
-<li>judicature</li>
-<li>judicatory</li>
-<li>judicial</li>
-<li>make judicious use of the natural resources.</li>
-</ul>
-</li>
-<li>
-<p>trinket n. 小装饰品；廉价的珠宝</p>
-</li>
-<li>
-<p>acrobat n. 特技演员；杂技演员</p>
-</li>
-<li>
-<p>bulletin n. 公告，告示；新闻快报；简报</p>
-<ul>
-<li>bulletin board,公告栏</li>
-<li>BBS：bulletin board system</li>
-<li>a bulletin was issued yesterday</li>
-</ul>
-</li>
-<li>
-<p>sponge n. 海绵 v. 用湿布/海绵擦洗</p>
-</li>
-<li>
-<p>forfeit v. 丧失，被没收 n. 罚款；没收物</p>
-<ul>
-<li>I'm afraid you may forfeit your deposit if you cancel now.</li>
-<li>be forfeit to 被征用</li>
-<li>counterfeit n. 赝品 adj. 假冒的，伪造的 v. 伪造</li>
-</ul>
-</li>
-<li>
-<p>exacerbate v. 恶化，加剧</p>
-<ul>
-<li>aggravate, worsen, intensify, amplify</li>
-</ul>
-</li>
-<li>
-<p>deter v. 制止，吓住；（使）打消念头</p>
-<ul>
-<li>deter from doing</li>
-</ul>
-</li>
-<li>
-<p>formidable adj. 可怕的；令人敬畏的；难对付的</p>
-<ul>
-<li>dreadful</li>
-<li>insurmountable adj. 无法克服的；难以解决的；不可逾越的</li>
-</ul>
-</li>
-</ul>
+<pre><code class="language-vhdl">architecture tri_ex_a of tri_ex is
+	signal out1 : std_logic;
+begin
+	out1 &lt;= in1 when control = '1' else
+		'Z'; -- high impedence, no current flowing(current cannot flow at all)
+end tri_ex_a;
+</code></pre>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/wmpvTqMUZ/" class="tag">
-                    雅思单词
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
                   </a>
                 
               </div>
@@ -230,9 +168,9 @@ enfranchise /ɪnˈfræntʃaɪz..." />
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200907/">
+                <a href="https://ray-sang.github.io/post/lecture-5-understand-architecture-better/">
                   <h3 class="post-title">
-                    每日一图 2020/09/07
+                    Lecture 5, understand architecture better
                   </h3>
                 </a>
               </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>2020/09/07 Monday | Ray&#39;s Space</title>
+<title>Lecture 4, Switches Leds simulation using VHDL test bench | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -19,18 +19,10 @@
 
 
     <meta name="description" content="
-detrimental adj. 损害的，有害的
-
-be detrimental to sb's health
-have detrimental influence upon
-
-
-
-
-
-
-enfranchise /ɪnˈfræntʃaɪz..." />
-    <meta name="keywords" content="雅思单词" />
+Lecture 4, Switches LEDs simulation
+This is the simulation part of lab1.
+To test the module, we use test bench to test...." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -101,128 +93,113 @@ enfranchise /ɪnˈfræntʃaɪz..." />
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">2020/09/07 Monday</h2>
-            <div class="post-date">2020-09-07</div>
+            <h2 class="post-title">Lecture 4, Switches Leds simulation using VHDL test bench</h2>
+            <div class="post-date">2020-09-24</div>
             
             <div class="post-content" v-pre>
-              <ul>
-<li>detrimental adj. 损害的，有害的
-<ul>
-<li>be detrimental to sb's health</li>
-<li>have detrimental influence upon</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>enfranchise /ɪnˈfræntʃaɪz/ v. 给(某人)选举权</p>
-</li>
-<li>
-<p>truce n. 讲和协议；休战协定</p>
-<ul>
-<li>declear a truce</li>
-</ul>
-</li>
-<li>
-<p>aeration n. 通风；充气</p>
-<ul>
-<li>aerial adj. 空气的</li>
-</ul>
-</li>
-<li>
-<p>avalanche n. 雪崩</p>
-<ul>
-<li>an avalanch of 大量的</li>
-</ul>
-</li>
-<li>
-<p>spiritual adj. 精神的，心灵的</p>
-<ul>
-<li>a spiritual experience</li>
-</ul>
-</li>
-<li>
-<p>deem v. 认为；视为；相信</p>
-<ul>
-<li>He deems it is his duty to help his needy friends.</li>
-</ul>
-</li>
-<li>
-<p>incur v. 招致，遭受</p>
-<ul>
-<li>The play that mocks the gay community incurred the anger of the audience.</li>
-</ul>
-</li>
-<li>
-<p>impede v. 妨碍，阻碍</p>
-<ul>
-<li>impede sb to do sth</li>
-<li>balk</li>
-<li>The rugged road impeded our progress.</li>
-</ul>
-</li>
-<li>
-<p>judicious adj. 明智的，审慎的</p>
-<ul>
-<li>judicature</li>
-<li>judicatory</li>
-<li>judicial</li>
-<li>make judicious use of the natural resources.</li>
-</ul>
-</li>
-<li>
-<p>trinket n. 小装饰品；廉价的珠宝</p>
-</li>
-<li>
-<p>acrobat n. 特技演员；杂技演员</p>
-</li>
-<li>
-<p>bulletin n. 公告，告示；新闻快报；简报</p>
-<ul>
-<li>bulletin board,公告栏</li>
-<li>BBS：bulletin board system</li>
-<li>a bulletin was issued yesterday</li>
-</ul>
-</li>
-<li>
-<p>sponge n. 海绵 v. 用湿布/海绵擦洗</p>
-</li>
-<li>
-<p>forfeit v. 丧失，被没收 n. 罚款；没收物</p>
-<ul>
-<li>I'm afraid you may forfeit your deposit if you cancel now.</li>
-<li>be forfeit to 被征用</li>
-<li>counterfeit n. 赝品 adj. 假冒的，伪造的 v. 伪造</li>
-</ul>
-</li>
-<li>
-<p>exacerbate v. 恶化，加剧</p>
-<ul>
-<li>aggravate, worsen, intensify, amplify</li>
-</ul>
-</li>
-<li>
-<p>deter v. 制止，吓住；（使）打消念头</p>
-<ul>
-<li>deter from doing</li>
-</ul>
-</li>
-<li>
-<p>formidable adj. 可怕的；令人敬畏的；难对付的</p>
-<ul>
-<li>dreadful</li>
-<li>insurmountable adj. 无法克服的；难以解决的；不可逾越的</li>
-</ul>
-</li>
-</ul>
+              <!-- more -->
+<h1 id="lecture-4-switches-leds-simulation">Lecture 4, Switches LEDs simulation</h1>
+<p>This is the simulation part of lab1.</p>
+<p>To test the module, we use test bench to test.</p>
+<p>Click &quot;entity-new source-VHDL test bench-file name:xxxx_tb(name it right!)-next-next-finish&quot;</p>
+<p>The test code will generate automatically, as following.<br>
+Write our own test code in the last part of the code, begin with comment &quot;-- insert stimulus here&quot;:</p>
+<pre><code class="language-vhdl">LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--USE ieee.numeric_std.ALL;
+ 
+ENTITY Switches_LEDs_tb IS
+END Switches_LEDs_tb;
+ 
+ARCHITECTURE behavior OF Switches_LEDs_tb IS 
+ 
+    -- Component Declaration for the Unit Under Test (UUT)
+ 
+    COMPONENT Switches_LEDs
+    PORT(
+         switch1 : IN  std_logic;
+         switch2 : IN  std_logic;
+         led1 : OUT  std_logic;
+         led2 : OUT  std_logic
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal switch1 : std_logic := '0';
+   signal switch2 : std_logic := '0';
+
+ 	--Outputs
+   signal led1 : std_logic;
+   signal led2 : std_logic;
+   -- No clocks detected in port list. Replace &lt;clock&gt; below with 
+   -- appropriate port name 
+ 
+   --constant &lt;clock&gt;_period : time := 10 ns;
+   --remember to delete the clock because in this test we dont use clock
+ 
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: Switches_LEDs PORT MAP (
+          switch1 =&gt; switch1,
+          switch2 =&gt; switch2,
+          led1 =&gt; led1,
+          led2 =&gt; led2
+        );
+
+   -- Clock process definitions
+   --&lt;clock&gt;_process :process
+  -- begin
+	--	&lt;clock&gt; &lt;= '0';
+	--	wait for &lt;clock&gt;_period/2;
+	--	&lt;clock&gt; &lt;= '1';
+	--	wait for &lt;clock&gt;_period/2;
+ --  end process;
+ 
+
+   -- Stimulus process
+   stim_proc: process
+   begin		
+      -- hold reset state for 100 ns.
+      wait for 100 ns;	
+
+      --wait for &lt;clock&gt;_period*10;
+
+      -- insert stimulus here 
+		switch1 &lt;= '0'; -- initialise input
+		switch2 &lt;= '0';
+		wait for 10 ns;
+		
+		switch1 &lt;= '1';
+		switch2 &lt;= '0';
+		wait for 10 ns;
+		
+		switch1 &lt;= '0';
+		switch2 &lt;= '1';
+		wait for 10 ns;
+		
+		switch1 &lt;= '1';
+		switch2 &lt;= '1';
+		wait for 10 ns;
+		
+      wait;
+   end process;
+
+END;
+
+</code></pre>
+<p>Change to simulation view in the top left &quot;View&quot;. Double click down left &quot;Simulate Behavioral Model&quot; to see the simulation result.</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/wmpvTqMUZ/" class="tag">
-                    雅思单词
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
                   </a>
                 
               </div>
@@ -230,9 +207,9 @@ enfranchise /ɪnˈfræntʃaɪz..." />
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200907/">
+                <a href="https://ray-sang.github.io/post/lecture-3-switches-control-leds/">
                   <h3 class="post-title">
-                    每日一图 2020/09/07
+                    Lecture 3, switches control LEDs
                   </h3>
                 </a>
               </div>

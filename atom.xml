@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-09-24T01:13:44.896Z</updated>
+    <updated>2020-09-24T08:35:03.393Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,427 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[Lecture 6, understand signals with select statement]]></title>
+        <id>https://ray-sang.github.io/post/lecture-6-understand-signals-with-select-statement/</id>
+        <link href="https://ray-sang.github.io/post/lecture-6-understand-signals-with-select-statement/">
+        </link>
+        <updated>2020-09-24T08:34:07.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="lecture-6-understand-signals-with-select-statement">Lecture 6, understand signals with select statement</h1>
+<p>In this lecture, we will discuss signals and concurrent statements:</p>
+<ul>
+<li>when-else statement</li>
+<li>with select statement</li>
+</ul>
+<h2 id="signals">signals</h2>
+<p>Signals represent wires within a circuit.</p>
+<pre><code class="language-vhdl">architecture and_gt of anding is
+	signal a, b, temp : std_logic;
+	
+	begin
+		temp &lt;= a and b;
+		C &lt;= temp and D
+end and_gt
+</code></pre>
+<p>The signals can be used :</p>
+<ul>
+<li>to connect design entities together &amp; communicate changes in values within a design</li>
+<li>instead of input ports</li>
+</ul>
+<h2 id="concurrent-statement">Concurrent statement</h2>
+<p>concurrent: at the same time, parallel<br>
+concurrent constructs:</p>
+<ul>
+<li>when else statement</li>
+<li>with select statement</li>
+</ul>
+<p>Take <strong>combinational feedback</strong> for example:<br>
+In VHDL, if you write <code>X &lt;= X + Y;</code> , you get a adder whose output feedbacks to its input. It is a very <strong>bad</strong> style of design, a <strong>sin</strong>!</p>
+<h2 id="drivers">Drivers</h2>
+<p>In <code>Z &lt;= A</code> , A becomes the driver of Z.<br>
+Avoid multiple drivers:</p>
+<pre><code class="language-vhdl">architecture CONCURRENT of MULTIPLE is
+	signal Z, A, B, C, D : std_logic;
+begin 
+	Z &lt;= A and B;
+	Z &lt;= C and D;
+end CONCURRENT
+</code></pre>
+<p>As shown, Z was assigned two times, hence has multiple drivers.</p>
+<p>That lead to <strong>conditional assignment</strong>.</p>
+<h2 id="when-statement">when statement</h2>
+<pre><code class="language-vhdl">Z &lt;= A when ASSIGN_A = '1' else
+	 B when ASSIGN_B = '1' else
+	 C；
+</code></pre>
+<ul>
+<li>modeling tri-state buffer</li>
+</ul>
+<pre><code class="language-vhdl">architecture tri_ex_a of tri_ex is
+	signal out1 : std_logic;
+begin
+	out1 &lt;= in1 when control = '1' else
+		'Z'; -- high impedence, no current flowing(current cannot flow at all)
+end tri_ex_a;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 5, understand architecture better]]></title>
+        <id>https://ray-sang.github.io/post/lecture-5-understand-architecture-better/</id>
+        <link href="https://ray-sang.github.io/post/lecture-5-understand-architecture-better/">
+        </link>
+        <updated>2020-09-24T08:32:32.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="lecture-5-understand-architecture-better">Lecture 5, understand architecture better</h1>
+<h2 id="styles-of-architectural-modeling">Styles of architectural modeling</h2>
+<p>In lecture 1, we have discussed the 3 different architectural modeling:</p>
+<h3 id="dataflow">Dataflow</h3>
+<pre><code class="language-vhdl">-- the dataflow style
+architecture Dataflow_HA of Half_Adder is
+    begin
+        SUM &lt;= A xor B;
+        CARRY &lt;= A and B;
+    end Dataflow_HA;
+</code></pre>
+<h3 id="behavioral">Behavioral</h3>
+<p>No need to focus on the gate-level implementation of a design.<br>
+VHDL -&gt; compiler -&gt; systhesis tool -&gt; gates(circuits)</p>
+<pre><code class="language-vhdl">-- the behavioral style
+architecture Dataflow_HA of Half_Adder is
+    begin
+        if A='1' and B='1' then
+        	CARRY &lt;= '1';
+        else
+        	CARRY &lt;= '0';
+        end if
+    end Dataflow_HA;
+</code></pre>
+<h3 id="structural">Structural</h3>
+<pre><code class="language-vhdl">-- the structural style
+architecture Structure_HA of Half_Adder is
+    component XOR1
+        port(P, Q: in BIT; R : out BIT);
+    end component;
+        
+    component AND1
+        port(X, Y: in BIT; Z : out BIT);
+    end component;
+    
+    begin
+        X1 : XOR1 port map(A, B, SUM);
+        A1 : AND1 port map(A, B, CARRY);
+    end Structure_HA;
+</code></pre>
+<h2 id="the-utility-of-architecture">The utility of architecture</h2>
+<p>Architecture specifies:</p>
+<ul>
+<li>behavior: What the design will do</li>
+<li>function</li>
+<li>relations between inputs and outputs of an entity</li>
+</ul>
+<p>syntax:</p>
+<pre><code class="language-vhdl">architecture architecture_name of entity_name is
+declarations
+begin 
+	concurrent_statements -- the codes are executed at the same time!!
+	-- sequential statements have particular syntax/style, 
+	-- will be discussed later
+end architecture_name
+</code></pre>
+<p>Note that a design can be described in an Architecture using various <strong>levels of abstraction</strong>; An entity can have more than one architecture; There can be no architecture without an entity.</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 4, Switches Leds simulation using VHDL test bench]]></title>
+        <id>https://ray-sang.github.io/post/lecture-4-switches-leds-simulation-using-vhdl-test-bench/</id>
+        <link href="https://ray-sang.github.io/post/lecture-4-switches-leds-simulation-using-vhdl-test-bench/">
+        </link>
+        <updated>2020-09-24T08:31:46.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="lecture-4-switches-leds-simulation">Lecture 4, Switches LEDs simulation</h1>
+<p>This is the simulation part of lab1.</p>
+<p>To test the module, we use test bench to test.</p>
+<p>Click &quot;entity-new source-VHDL test bench-file name:xxxx_tb(name it right!)-next-next-finish&quot;</p>
+<p>The test code will generate automatically, as following.<br>
+Write our own test code in the last part of the code, begin with comment &quot;-- insert stimulus here&quot;:</p>
+<pre><code class="language-vhdl">LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--USE ieee.numeric_std.ALL;
+ 
+ENTITY Switches_LEDs_tb IS
+END Switches_LEDs_tb;
+ 
+ARCHITECTURE behavior OF Switches_LEDs_tb IS 
+ 
+    -- Component Declaration for the Unit Under Test (UUT)
+ 
+    COMPONENT Switches_LEDs
+    PORT(
+         switch1 : IN  std_logic;
+         switch2 : IN  std_logic;
+         led1 : OUT  std_logic;
+         led2 : OUT  std_logic
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal switch1 : std_logic := '0';
+   signal switch2 : std_logic := '0';
+
+ 	--Outputs
+   signal led1 : std_logic;
+   signal led2 : std_logic;
+   -- No clocks detected in port list. Replace &lt;clock&gt; below with 
+   -- appropriate port name 
+ 
+   --constant &lt;clock&gt;_period : time := 10 ns;
+   --remember to delete the clock because in this test we dont use clock
+ 
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: Switches_LEDs PORT MAP (
+          switch1 =&gt; switch1,
+          switch2 =&gt; switch2,
+          led1 =&gt; led1,
+          led2 =&gt; led2
+        );
+
+   -- Clock process definitions
+   --&lt;clock&gt;_process :process
+  -- begin
+	--	&lt;clock&gt; &lt;= '0';
+	--	wait for &lt;clock&gt;_period/2;
+	--	&lt;clock&gt; &lt;= '1';
+	--	wait for &lt;clock&gt;_period/2;
+ --  end process;
+ 
+
+   -- Stimulus process
+   stim_proc: process
+   begin		
+      -- hold reset state for 100 ns.
+      wait for 100 ns;	
+
+      --wait for &lt;clock&gt;_period*10;
+
+      -- insert stimulus here 
+		switch1 &lt;= '0'; -- initialise input
+		switch2 &lt;= '0';
+		wait for 10 ns;
+		
+		switch1 &lt;= '1';
+		switch2 &lt;= '0';
+		wait for 10 ns;
+		
+		switch1 &lt;= '0';
+		switch2 &lt;= '1';
+		wait for 10 ns;
+		
+		switch1 &lt;= '1';
+		switch2 &lt;= '1';
+		wait for 10 ns;
+		
+      wait;
+   end process;
+
+END;
+
+</code></pre>
+<p>Change to simulation view in the top left &quot;View&quot;. Double click down left &quot;Simulate Behavioral Model&quot; to see the simulation result.</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 3, switches control LEDs]]></title>
+        <id>https://ray-sang.github.io/post/lecture-3-switches-control-leds/</id>
+        <link href="https://ray-sang.github.io/post/lecture-3-switches-control-leds/">
+        </link>
+        <updated>2020-09-24T08:30:36.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="using-ise">Using ISE</h1>
+<p>Make a simulation that switch1 controls led1, while switch2 controls led2.</p>
+<p>Codes are as follows, written in VHDL.</p>
+<h1 id="lecture-3-lab-1-switches-leds-explanation">Lecture 3: Lab 1, Switches LEDs explanation</h1>
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity Switches_LEDs is
+port(
+	  switch1 : in std_logic;
+	  switch2 : in std_logic;
+	  led1 : out std_logic;
+	  led2 : out std_logic
+	  );
+end Switches_LEDs;
+
+architecture Behavioral of Switches_LEDs is
+
+begin
+
+led1 &lt;= switch1;
+led2 &lt;= switch2;
+
+end Behavioral;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 2]]></title>
+        <id>https://ray-sang.github.io/post/lecture-2/</id>
+        <link href="https://ray-sang.github.io/post/lecture-2/">
+        </link>
+        <updated>2020-09-24T08:29:54.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="lecture-2">Lecture 2</h1>
+<ul>
+<li>understading entity better</li>
+<li>data types:
+<ul>
+<li>BIT</li>
+<li>BOOLEAN</li>
+<li>STD_LOGIC</li>
+</ul>
+</li>
+</ul>
+<h2 id="a-few-kay-terms">A few kay terms</h2>
+<ul>
+<li>
+<p>Assigned<br>
+<code>x &lt;= y; -- x is assinged the value of y</code></p>
+</li>
+<li>
+<p>Read/reading<br>
+<code>x &lt;= y; -- x is reading the value of y</code></p>
+</li>
+<li>
+<p>Drivers<br>
+Drivers give value to make signals in the following circuit.</p>
+</li>
+</ul>
+<h2 id="four-types-of-modes-are-used-in-vhdl">Four types of Modes are used in VHDL</h2>
+<ul>
+<li><strong>Mode in</strong><br>
+Values can be read from port(outside of the entity) but not assigned.</li>
+</ul>
+<pre><code class="language-vhdl">entity driver is
+port(A : in std_logic;
+	 B : out std_logic;
+	 Data : inout std_logic;
+	 Count : buffer std_logic);
+end driver;
+</code></pre>
+<ul>
+<li><strong>Mode out</strong><br>
+Can wirte the value into the output port.</li>
+<li>Mode inout<br>
+You can read the signal from the inside of the entity and also outside.<br>
+Bi-directional.</li>
+<li>Mode buffer</li>
+</ul>
+<h2 id="few-data-types">Few Data Types</h2>
+<ul>
+<li>BIT data type<br>
+Supports the value of <strong>logic</strong> '0' &amp; '1', for example:</li>
+</ul>
+<pre><code class="language-vhdl">entity driver is
+port(A : in BIT;
+     B : out BIT;
+     Data : inout BIT);
+end driver
+</code></pre>
+<ul>
+<li>
+<p>BOOLEAN<br>
+Supports literals FALSE &amp; TRUE, less frequently used.</p>
+</li>
+<li>
+<p>STD_LOGIC<br>
+Most commonly used, which is defined in the std_logic_1164 package of IEEE library. It is defined as: ('U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-'), totally 9 states.</p>
+</li>
+</ul>
+<pre><code>TYPE std_logic IS ( 'U',  -- Uninitialized
+                    'X',  -- Forcing  Unknown
+                    '0',  -- Forcing  0
+                    '1',  -- Forcing  1
+                    'Z',  -- High Impedance, usually no current 
+                    'W',  -- Weak     Unknown
+                    'L',  -- Weak     0       
+                    'H',  -- Weak     1       
+                    '-'   -- Don't care
+                    );
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 1 of VHDL, entity and arch]]></title>
+        <id>https://ray-sang.github.io/post/lecture-1-of-vhdl-entity-and-arch/</id>
+        <link href="https://ray-sang.github.io/post/lecture-1-of-vhdl-entity-and-arch/">
+        </link>
+        <updated>2020-09-24T08:29:05.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Switches_LEDs is
+    Port(switch_0 : in STD_LOGIC;
+         switch_1 : in STD_LOGIC;
+         LED_0 : out STD_LOGIC;
+         LED_1 : out STD_LOGIC);
+end Switches_LEDs;
+
+architecture Behavioral of Switches_LEDs is
+begin
+    LED_0 &lt;= switch_0; 
+    LED_1 &lt;= switch_1;
+end Behavioral;
+</code></pre>
+<pre><code class="language-vhdl">entity Half_Adder is
+    port(A, B : in BIT;
+        SUM, CARRY : out BIT);
+end Half_Adder;
+</code></pre>
+<p>You can have one entity but different architectures.<br>
+Three styles: structure, dataflow, behavioral</p>
+<pre><code class="language-vhdl">-- the firsts style
+architecture Structure_HA of Half_Adder is
+    component XOR1
+    	port(P, Q: in BIT; R : out BIT);
+    end component;
+        
+    component AND1
+        port(X, Y: in BIT; Z : out BIT);
+    end component;
+    
+    begin
+        X1 : XOR1 port map(A, B, SUM);
+    	A1 : AND1 port map(A, B, CARRY);
+    end Structure_HA;
+            
+-- the second style
+architecture Dataflow_HA of Half_Adder is
+    begin
+        SUM &lt;= A xor B;
+    	CARRY &lt;= A and B;
+    end Dataflow_HA;
+                        
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[如何在typecho中插入图片，并使其居中]]></title>
         <id>https://ray-sang.github.io/post/ru-he-zai-typecho-zhong-cha-ru-tu-pian-bing-shi-qi-ju-zhong/</id>
@@ -248,466 +669,6 @@ CPU：i3-8100散片，b0步进，670<br>
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/qW8l2i.jpg" alt="qW8l2i" loading="lazy"></p>
 <p><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/VqtoZB.jpg" alt="VqtoZB" loading="lazy"><br>
 晚上看乐夏，宋捷太帅了！</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/09/12 Saturday]]></title>
-        <id>https://ray-sang.github.io/post/20200912-saturday/</id>
-        <link href="https://ray-sang.github.io/post/20200912-saturday/">
-        </link>
-        <updated>2020-09-11T23:49:40.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="20200912">2020/09/12</h1>
-<ul>
-<li>devise
-<ul>
-<li>devise a training program</li>
-<li>devise how to do sth</li>
-</ul>
-</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="20200912">2020/09/12</h1>
-<ul>
-<li>devise
-<ul>
-<li>devise a training program</li>
-<li>devise how to do sth</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>censure</p>
-<ul>
-<li>cens = to judge评价</li>
-<li>to censure a movie</li>
-<li>cunsus人口普查</li>
-</ul>
-</li>
-<li>
-<p>self-discipline 自律的</p>
-</li>
-<li>
-<p>partial adj. 部分的；偏袒的，偏爱的</p>
-<ul>
-<li>be partial to 对......偏爱</li>
-</ul>
-</li>
-<li>
-<p>thrive-prosperous</p>
-</li>
-<li>
-<p>crescent n. 新月形（物） adj. 新月形的</p>
-<ul>
-<li>The lake shapes like a shining crescent. 这座湖形状像一个明亮的新月。</li>
-<li>cre=grow=make，表示增长，生长，产生</li>
-</ul>
-</li>
-<li>
-<p>vacant - vacancy - job vacancy</p>
-</li>
-<li>
-<p>subsidy n. 津贴，补助金</p>
-<ul>
-<li>subsidiary</li>
-<li>subsidize</li>
-<li>subside v. 下沉</li>
-<li>welfare</li>
-</ul>
-</li>
-<li>
-<p>optimism - pessimism</p>
-</li>
-<li>
-<p>inlet n. 水湾,小港; 注入口</p>
-<ul>
-<li>There is a tiny fishing village by a rocky inlet. 岩石嶙峋的水湾边上有一个小渔村.</li>
-<li>outlet 出路,出口,通风口,批发商店</li>
-</ul>
-</li>
-<li>
-<p>aisle n. 过道,通道</p>
-<ul>
-<li>an aisle seat 靠走道的座位</li>
-</ul>
-</li>
-<li>
-<p>stash v. 藏匿,储藏</p>
-<ul>
-<li>have money stashed away under the ground</li>
-</ul>
-</li>
-<li>
-<p>flora and fauna 动植物</p>
-</li>
-<li>
-<p>plaster n. 灰泥,泥浆;创口贴 v. 抹灰泥,粉刷;粘贴</p>
-<ul>
-<li>plaster over sth 掩盖什么</li>
-</ul>
-</li>
-<li>
-<p>acumen n. 敏锐,机智,聪明</p>
-<ul>
-<li>acute</li>
-</ul>
-</li>
-<li>
-<p>coupon n. 优惠券;票证;礼券</p>
-<ul>
-<li>a 30%-off coupon</li>
-</ul>
-</li>
-<li>
-<p>coarse adj. 粗糙的;粗劣的</p>
-<ul>
-<li>The carpenter's hands became coarse due to years of woodworking.</li>
-<li>rough</li>
-</ul>
-</li>
-<li>
-<p>lexicographer n. 字典编纂者</p>
-<ul>
-<li>lexical adj. 词汇的</li>
-<li>lexicology 词汇学</li>
-</ul>
-</li>
-<li>
-<p>tug v. 猛拉; 拽 n. 一股强烈的感情;拉</p>
-<ul>
-<li>tug one's hair</li>
-<li>tug of war 拔河</li>
-<li>heart-tugging 揪心的</li>
-</ul>
-</li>
-<li>
-<p>windscreen n. 挡风玻璃</p>
-<ul>
-<li>windshield 挡风玻璃(美)</li>
-<li>windowsill 窗沿</li>
-</ul>
-</li>
-<li>
-<p>audacious adj. 大胆的</p>
-<ul>
-<li>bold</li>
-<li>audacity n. 大胆,无畏; 鲁莽,胆大妄为,厚颜无耻</li>
-<li>audacious spirit 冒险精神</li>
-<li>an bold and audacious plan</li>
-</ul>
-</li>
-<li>
-<p>invoice n. 发票,发货单; v. 开发票,开清单</p>
-<ul>
-<li>receipt 收据</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/11]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200911/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200911/">
-        </link>
-        <updated>2020-09-11T01:01:10.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<p>今天好多事情。</p>
-<p>看见了以前在包图喂猫的阿姨。<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/YTd7KU.jpg" alt="YTd7KU" loading="lazy"></p>
-<p>那只黑白的叫做警长，哈哈哈哈哈</p>
-<p>中饭普普通通，蛮油的。<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/hSTxq6.jpg" alt="hSTxq6" loading="lazy"></p>
-<p>晚饭吃了螺蛳粉，海京阁真的无数次少放料了。<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/5TYv04.jpg" alt="5TYv04" loading="lazy"></p>
-<p>看到了一只戴胜：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/mSTggx.jpg" alt="mSTggx" loading="lazy"></p>
-<p>打了网球，不是很开心。</p>
-<p>仔仔最后：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/mGz5NJ.jpg" alt="mGz5NJ" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/10]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200910/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200910/">
-        </link>
-        <updated>2020-09-10T00:59:38.000Z</updated>
-        <summary type="html"><![CDATA[<p>普通的一天，没有早八，去二餐一起吃了早饭。吃的是吉祥馄饨！荠菜鲜笋，好吃！</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>普通的一天，没有早八，去二餐一起吃了早饭。吃的是吉祥馄饨！荠菜鲜笋，好吃！</p>
-<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/uiEtX2.jpg" alt="uiEtX2" loading="lazy"></figure>
-<p>早上的课热死了，老师没开空调。</p>
-<p>中饭吃素！每天下课就有饭吃的生活太幸福啦！</p>
-<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/Ecwiir.jpg" alt="Ecwiir" loading="lazy"></figure>
-<p>晚上雨好大，为了吃个外卖跑来跑去的，椒麻鸡不爱我了。喝了乳酸菌味的元气森林，喝了牛奶，吃了迷你大福，开心了！</p>
-<p>希望明天能顺利打球！不要下雨啊！</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/09/10 Thursday]]></title>
-        <id>https://ray-sang.github.io/post/20200910-thursday/</id>
-        <link href="https://ray-sang.github.io/post/20200910-thursday/">
-        </link>
-        <updated>2020-09-09T23:47:28.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="20200910">2020/09/10</h1>
-<ul>
-<li>linger	v. 停留 ，逗留；徘徊
-<ul>
-<li>lingering memories    挥之不去的记忆</li>
-</ul>
-</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="20200910">2020/09/10</h1>
-<ul>
-<li>linger	v. 停留 ，逗留；徘徊
-<ul>
-<li>lingering memories    挥之不去的记忆</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>casualty	n. 伤者，死者；受害品；牺牲品</p>
-</li>
-<li>
-<p>discriminate    v. 歧视；区别</p>
-<ul>
-<li>discriminate agaist 歧视，排斥</li>
-<li>discriminate between 区别，辨别</li>
-</ul>
-</li>
-<li>
-<p>decapitate    v. 斩首，砍头</p>
-<ul>
-<li>eviscerate v. 取出内脏</li>
-</ul>
-</li>
-<li>
-<p>prevail  -&gt;  prevalent</p>
-<ul>
-<li>prevalence n. 衍生</li>
-</ul>
-</li>
-<li>
-<p>clench    v. 握紧，咬紧</p>
-<ul>
-<li>clench one's fist</li>
-<li>clench the jaw 咬紧牙关</li>
-</ul>
-</li>
-<li>
-<p>treadmill    n. 无聊的重复性工作；踏步机，跑步机</p>
-<ul>
-<li>tread 踩，踏，跳</li>
-</ul>
-</li>
-<li>
-<p>commence    v. 开始发生；开始；着手</p>
-<ul>
-<li>She commenced her medical career in 1956.</li>
-<li>commence with 由......开始</li>
-<li>commence doing sth 开始做某事</li>
-</ul>
-</li>
-<li>
-<p>siesta    n. 午休，午睡</p>
-<ul>
-<li>have a siesta</li>
-<li>have a cat nap</li>
-</ul>
-</li>
-<li>
-<p>censure    v. 批评，谴责 n. 批评，谴责</p>
-<ul>
-<li>His wrongdoing came under severe censure.</li>
-<li>census 人口普查，统计</li>
-</ul>
-</li>
-<li>
-<p>burgeon  v. 迅速成长；发展</p>
-<ul>
-<li>Love burgeoned between the two young people.</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/09]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200909/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200909/">
-        </link>
-        <updated>2020-09-09T00:57:43.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/Mj9SPQ.jpg" alt="Mj9SPQ" loading="lazy"></figure>
-<p>白天还是很普通。小笼包很嫩，但是没有非常灌汤的感觉。</p>
-<p>中午的椒麻鸡把他辣哭了哈哈哈<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/bGwUve.jpg" alt="bGwUve" loading="lazy"></p>
-<p>晚上吃了小红帽和糯米甜甜！大鸡腿没有入镜。<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/jN9XQ7.jpg" alt="jN9XQ7" loading="lazy"><br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/id5kLd.jpg" alt="id5kLd" loading="lazy"><br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/Y5muqv.jpg" alt="Y5muqv" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/09/09 Wednesday]]></title>
-        <id>https://ray-sang.github.io/post/20200909-wednesday/</id>
-        <link href="https://ray-sang.github.io/post/20200909-wednesday/">
-        </link>
-        <updated>2020-09-08T23:43:16.000Z</updated>
-        <summary type="html"><![CDATA[<ul>
-<li>sensation n. 知觉，感觉；感觉能力；轰动，哗然，引起轰动的人或事
-<ul>
-<li>a sensation of</li>
-<li>create a sensation 引起轰动</li>
-<li>a great sensation</li>
-<li>online sensation</li>
-</ul>
-</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<ul>
-<li>sensation n. 知觉，感觉；感觉能力；轰动，哗然，引起轰动的人或事
-<ul>
-<li>a sensation of</li>
-<li>create a sensation 引起轰动</li>
-<li>a great sensation</li>
-<li>online sensation</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>handout n. 捐赠品，救济品；传单；课堂讲义</p>
-<ul>
-<li>cash handouts 现金发放</li>
-</ul>
-</li>
-<li>
-<p>amorphous adj. 无定形的；无固定形状的</p>
-<ul>
-<li>He raised his head and saw those amorphous cloud masses.</li>
-<li>morph = form = shape, 形状</li>
-</ul>
-</li>
-<li>
-<p>odour n. 气味；意味，迹象；名声</p>
-<ul>
-<li>The strong odour of garbage terribly bothered the neighbors.</li>
-<li>主要指难闻的气味；人或动物的体味</li>
-<li>scent 香味， = fragrance</li>
-<li>smell 可以指香或者丑</li>
-</ul>
-</li>
-<li>
-<p>primitive adj. 原始的；早期的；简陋的</p>
-<ul>
-<li>prime 一流的</li>
-<li>primary</li>
-</ul>
-</li>
-<li>
-<p>exhibit 注意发音/ɪɡˈzɪbɪt/</p>
-</li>
-<li>
-<p>pedal n. 踏板 adj. 踏板的；脚踏的 v. 骑自行车</p>
-</li>
-<li>
-<p>be in ignorance of 对……不熟悉</p>
-</li>
-<li>
-<p>foam n. 泡沫；海绵橡胶 v. 有泡沫</p>
-<ul>
-<li>economic foam 经济泡沫</li>
-</ul>
-</li>
-<li>
-<p>qualitative adj. 质量的；性质上的； 定性的</p>
-<ul>
-<li>quantitative adj. 定量的</li>
-</ul>
-</li>
-<li>
-<p>signpost v. 在……设置路标；预兆 n. 路标；征兆，预兆</p>
-<ul>
-<li>indicate</li>
-<li>follow the signpost</li>
-</ul>
-</li>
-<li>
-<p>centennial /senˈteniəl/ n. 百年纪念 adj. 一百年的</p>
-<ul>
-<li>cent(i)表示“一百”</li>
-<li>centenarian 百岁老人</li>
-<li>century</li>
-<li>percent</li>
-</ul>
-</li>
-<li>
-<p>alienation n. 疏远；疏远</p>
-<ul>
-<li>His failure in this election resulted from the alienation of his voters.</li>
-<li>alienate v. 疏远，离间</li>
-</ul>
-</li>
-<li>
-<p>swamp n. 沼泽 v. 淹没，席卷</p>
-<ul>
-<li>get stuck in the swamp/marsh</li>
-<li>a financial swamp 财政困境</li>
-</ul>
-</li>
-<li>
-<p>locality n. 地区，位置，地点，发生地</p>
-<ul>
-<li>a location 是一个居住地，a locality 是居住地内一个区域</li>
-</ul>
-</li>
-<li>
-<p>embark on/upon 着手做</p>
-</li>
-<li>
-<p>astrology n. 占星学，占星术</p>
-<ul>
-<li>astronomy 天文学（science）</li>
-<li>astrology 占星术（pseudioscience 伪科学）</li>
-</ul>
-</li>
-<li>
-<p>suicide  -&gt;  suicidal</p>
-</li>
-<li>
-<p>controvert v. 争论，反驳  -&gt;  controversial</p>
-</li>
-<li>
-<p>debris 注意发音/dəˈbriː/ n. 废墟，残骸；碎片</p>
-<ul>
-<li>wreckage</li>
-</ul>
-</li>
-<li>
-<p>troposphere 对流层</p>
-<ul>
-<li>stratosphere /ˈstrætəsfɪr/ 平流层</li>
-<li>ionosphere /aɪˈɑːnəsfɪr/ 电离层</li>
-<li>mesosphere /ˈmezəsfɪr/ n. (大气层的)中间层</li>
-<li>thermosphere n. 热层</li>
-<li>exosphere /ˈeksoʊsfɪr/ n. 外层，外逸层(行星大气的最外层)</li>
-</ul>
-</li>
-<li>
-<p>aggravate  -&gt;  aggravation n.加重，恶化</p>
-<ul>
-<li>exacerbate  -&gt;  exacerbation</li>
-</ul>
-</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
