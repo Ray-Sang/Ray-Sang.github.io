@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-09-24T08:35:03.393Z</updated>
+    <updated>2020-09-27T15:30:08.104Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[每日一图 2020/09/27]]></title>
+        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200927/</id>
+        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200927/">
+        </link>
+        <updated>2020-09-27T15:21:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>回顾一下昨天在 Blue Note 上海的火星电台.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>回顾一下昨天在 Blue Note 上海的火星电台.</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/BlueJENote.jpg" alt="BlueNote" loading="lazy"></figure>
+<p>韩阳, 黄少, 曾宇, 贝贝.</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Lecture 6, understand signals with select statement]]></title>
         <id>https://ray-sang.github.io/post/lecture-6-understand-signals-with-select-statement/</id>
@@ -653,22 +667,6 @@ CPU：i3-8100散片，b0步进，670<br>
 <p>spineless 无脊椎骨的，也比喻懦弱的，优柔寡断的，没有骨气的</p>
 </li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/12]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200912/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200912/">
-        </link>
-        <updated>2020-09-12T01:10:19.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<p>今天是大三的第一个周六，大多数时间都在图书馆度过。</p>
-<p>肥橘镇楼<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/2cRhCL.jpg" alt="2cRhCL" loading="lazy"></p>
-<p>出去吃了马玉涛麻辣烫，好热，出了好多汗<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/qW8l2i.jpg" alt="qW8l2i" loading="lazy"></p>
-<p><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/VqtoZB.jpg" alt="VqtoZB" loading="lazy"><br>
-晚上看乐夏，宋捷太帅了！</p>
 ]]></content>
     </entry>
 </feed>
