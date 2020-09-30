@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-09-29T15:56:08.767Z</updated>
+    <updated>2020-09-30T14:04:14.059Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[每日一图 2020/09/30]]></title>
+        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200930/</id>
+        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200930/">
+        </link>
+        <updated>2020-09-30T14:02:13.000Z</updated>
+        <content type="html"><![CDATA[<p>九月的最后一天。周三。</p>
+<p>耳机里放的是病态三部曲。“如果我，露出斑点满身，可会被抱紧”。</p>
+<p>焊板子，很快乐。风枪320度低风。<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/20200930-1.JPG" alt="" loading="lazy"></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/20200930-2.JPG" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[每日一图 2020/09/29]]></title>
         <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200929/</id>
@@ -472,25 +485,6 @@ architecture Dataflow_HA of Half_Adder is
 &lt;center&gt;&lt;img src=&quot;https://www.sangrui.xyz:60001/usr/uploads/2020/09/4087492125.jpg&quot; title=&quot;test&quot;&gt;&lt;/center&gt;
 !!!
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第一台黑苹果]]></title>
-        <id>https://ray-sang.github.io/post/di-yi-tai-hei-ping-guo/</id>
-        <link href="https://ray-sang.github.io/post/di-yi-tai-hei-ping-guo/">
-        </link>
-        <updated>2020-09-24T00:35:38.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/uPic/TV3kHE.jpg" alt="主机大小" loading="lazy"></figure>
-<p>准系统：云轩h170,主板技嘉h170m，399<br>
-CPU：i3-8100散片，b0步进，670<br>
-散热：乔思伯hp-400,80<br>
-内存：玖合16g，2666,290<br>
-硬盘：三星pm871a，512G，850evo的oem版，399<br>
-网卡：DW1820A，算上天线一共85<br>
-电源：华硕二手90w，43</p>
-<p>总计：1950<br>
-系统：MacOS 10.15.2,有完美10.15.3efi，clover引导</p>
 ]]></content>
     </entry>
 </feed>
