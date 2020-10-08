@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Lecture 16, sequential circuits | Ray&#39;s Space</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1602133229281">
+<link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Points to discuss
+
+if-else statement
+using if-else statement in clocked processes
+hardware modeling examples
+using varia..." />
+    <meta name="keywords" content="VHDL学习" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ray-sang.github.io">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1602133229281" class="site-logo">
+        <h1 class="site-title">Ray&#39;s Space</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Plain living and high thicking
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ray-sang.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Lecture 16, sequential circuits</h2>
+            <div class="post-date">2020-10-08</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="points-to-discuss">Points to discuss</h2>
+<ul>
+<li>if-else statement</li>
+<li>using if-else statement in clocked processes</li>
+<li>hardware modeling examples</li>
+<li>using variables as part of clocked processes</li>
+</ul>
+<!-- more -->
+<h2 id="if-statement">if statement</h2>
+<ul>
+<li>If statement evaluates each condition <strong>in order</strong>.</li>
+<li>Statements can be nested.</li>
+</ul>
+<h2 id="synchronous-reset">Synchronous reset</h2>
+<p>Flip-flops are reset on the active edge of the clock when reset is held active.</p>
+<pre><code class="language-vhdl">process(clk, RST)
+begin
+	if(clk'event and clk='1') then
+		if(RST='1') then
+			Q &lt;= '0';
+		else
+			Q &lt;= D;
+		end if;
+	end if;
+end process;
+</code></pre>
+<h2 id="asynchronous-reset">Asynchronous reset</h2>
+<p>Flip-flops are cleared as soon as reset is asserted.</p>
+<pre><code class="language-vhdl">process(clk, RST)
+begin
+	if(RST='1') then
+		Q &lt;= '0';
+	elsif(clk'event and clk='1')
+		Q &lt;= D;
+	end if;
+end process;
+</code></pre>
+<h2 id="about-flip-flop">About flip-flop</h2>
+<p>Any assignment within clock statement wil generate a flip-flop, and other combinational circuitry will be generated at the 'D' input of the flip-flop.</p>
+<p>An hardware modeling example:</p>
+<pre><code class="language-vhdl">process(clk, reset)
+begin
+	if(reset='1') then
+		out1 &lt;= '0';
+	elsif(clk'event and clk='1') then
+		if(in1='1') then
+			out1 &lt;= a and b;
+		else
+			out1 &lt;= c and d;
+		end if;
+	end if;
+
+end process;
+</code></pre>
+<h2 id="latch">Latch</h2>
+<p>Imcompletely specified conditional expression infers a latch.</p>
+<p>Latch is a combinational circuit which necessarily has feedback to hold the output to previous value for the unspecified state/conditions.</p>
+<p>Avoid the inference of latches in synchronous designs. As latches infer feedback and they cause difficulties in timing analysis and test insertion applications. Most synthesizers provide warnings when latches are inferred.</p>
+<ul>
+<li>incompletely specified conditional expression, infers a latch</li>
+</ul>
+<pre><code class="language-vhdl">process(en, a)
+begin
+	if(en='1') then
+		out1 &lt;= a;
+	end if;
+end process;
+</code></pre>
+<ul>
+<li>completely specified conditional expression, infers a normal combinational circuit(MUX)</li>
+</ul>
+<pre><code class="language-vhdl">process(en, a)
+begin
+	if(en='1') then
+		out1 &lt;= a;
+	else
+		out1 &lt;= '1';
+	end if;
+end process;
+</code></pre>
+<h2 id="an-multiple-flip-flop-example">An multiple flip-flop example</h2>
+<p>Asynchronous reset.<br>
+(a or b)    ---flipflop---&gt;  temp  ---flipflop---&gt;  out.<br>
+Rather than <s>(a or b) ---ff---&gt; temp ---&gt; out</s>.</p>
+<p>Inside the clock process, every time when using an assignment will infer a flip-flop!</p>
+<p><strong>Total 2 flip-flops!</strong></p>
+<pre><code class="language-vhdl">architecture var of FF is
+	signal temp : std_logic;
+begin
+	process(clock)
+	begin
+		if(reset='1') then
+			out &lt;= '0';
+		elsif(rising_edge(clock)) then
+			temp &lt;= a or b;
+			out &lt;= temp; -- end up with 2 flip-flops
+		end if;
+	end process;
+end var;
+</code></pre>
+<p>So, to achieve** (a or b) ---&gt; temp   ---ff---&gt;  out**, how to adjust the code?</p>
+<pre><code class="language-vhdl">architecture var of FF is
+begin
+	process(clock)
+		variable temp : std_logic; -- note this
+	begin
+		temp := '0';
+		if(reset='1') then
+			out &lt;= '0';
+		elsif(rising_edge(clock)) then
+			temp := a or b;
+			out &lt;= temp; -- end up with 1 flip-flop
+		end if;
+	end process;
+end var;
+</code></pre>
+<p>Consider another example:</p>
+<p>Create a circuit which is sequential and has a feedback.<br>
+(a and out) ---&gt; temp ---ff---&gt; out.</p>
+<pre><code class="language-vhdl">architecture var of FF is
+begin
+	process(clock)
+		variable temp : std_logic;
+	begin
+		temp := '0';
+		if(reset='1') then
+			out &lt;= '0';
+		elsif(rising_edge(clock)) then
+			temp := a and out; -- note this
+			out &lt;= temp;
+		end if;
+	end process;
+end var;
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/lecture-15-lab-5-case-select-simulation/">
+                  <h3 class="post-title">
+                    Lecture 15, Lab 5, case-select simulation
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

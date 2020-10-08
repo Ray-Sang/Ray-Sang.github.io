@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Lecture 1 of VHDL, entity and arch | Ray&#39;s Space</title>
+<title>Lecture 17, building bigger designs from smaller ones | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,13 +18,15 @@
 
 
 
-    <meta name="description" content="
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+    <meta name="description" content="Points to discuss
 
-entity Switches_LEDs is
-    Port(switch_0 : in STD_LOGIC;
-         switch_1..." />
+component instantiation
+basic example
+full adder example using half adders
+
+
+Component
+When use desig..." />
     <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
@@ -96,56 +98,85 @@ entity Switches_LEDs is
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Lecture 1 of VHDL, entity and arch</h2>
-            <div class="post-date">2020-09-24</div>
+            <h2 class="post-title">Lecture 17, building bigger designs from smaller ones</h2>
+            <div class="post-date">2020-10-08</div>
             
             <div class="post-content" v-pre>
-              <!-- more -->
-<pre><code class="language-vhdl">library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+              <h2 id="points-to-discuss">Points to discuss</h2>
+<ul>
+<li>component instantiation</li>
+<li>basic example</li>
+<li>full adder example using half adders</li>
+</ul>
+<!-- more -->
+<h2 id="component">Component</h2>
+<p>When use design 'X' many times in 'Y', the problem is the repitition of designs. To make a hierarchy and a clear circuit design.</p>
+<p>Components are precompiled entity-architecture pair.</p>
+<p>Instantiation is selecting a component and using it as an instance in your design.</p>
+<p>Port mapping is assignment of actual signals in the system to the formal ports of the component declaration.</p>
+<h2 id="component-instantiation">Component instantiation</h2>
+<pre><code class="language-vhdl">entity ND4 is -- NAND gate
+	port(IN1, IN2, IN3, IN4 : in bit;
+			Z : out bit);
+end ND4;
 
-entity Switches_LEDs is
-    Port(switch_0 : in STD_LOGIC;
-         switch_1 : in STD_LOGIC;
-         LED_0 : out STD_LOGIC;
-         LED_1 : out STD_LOGIC);
-end Switches_LEDs;
-
-architecture Behavioral of Switches_LEDs is
+architecture gate_arch of ND4 is
+	component ND2 -- declaring the NAND gate component
+		port(A ,B : in bit;
+				C : out bit);
+	end component;
+	
+	signal TEMP_1, TEMP_2 : bit; -- internal connections
 begin
-    LED_0 &lt;= switch_0; 
-    LED_1 &lt;= switch_1;
+	U1 : ND2 port map(A =&gt; IN1, B =&gt; IN2, C =&gt; TEMP_1);
+	U2 : ND2 port map(A =&gt; IN3, B =&gt; IN4, C =&gt; TEMP_2);
+	U3 : ND2 port map(A =&gt; TEMP_1, B =&gt; TEMP_2, C =&gt; Z);
+end gate_arch;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/component_instantiation.png" alt="" loading="lazy"></figure>
+<h2 id="full-adder-using-half-adder">Full adder using half adder</h2>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_using_half_adder.png" alt="" loading="lazy"></figure>
+<h3 id="half-adder-implementation">Half adder implementation</h3>
+<pre><code class="language-vhdl">entity Lab6_2_halfadder is
+port(A, B : in std_logic;
+		sum, carry: out std_logic);
+end Lab6_2_halfadder;
+
+architecture Behavioral of Lab6_2_halfadder is
+begin
+	sum &lt;= A xor B;
+	carry &lt;= A and B;
 end Behavioral;
 </code></pre>
-<pre><code class="language-vhdl">entity Half_Adder is
-    port(A, B : in BIT;
-        SUM, CARRY : out BIT);
-end Half_Adder;
-</code></pre>
-<p>You can have one entity but different architectures.<br>
-Three styles: structure, dataflow, behavioral</p>
-<pre><code class="language-vhdl">-- the firsts style
-architecture Structure_HA of Half_Adder is
-    component XOR1
-    	port(P, Q: in BIT; R : out BIT);
-    end component;
-        
-    component AND1
-        port(X, Y: in BIT; Z : out BIT);
-    end component;
-    
-    begin
-        X1 : XOR1 port map(A, B, SUM);
-    	A1 : AND1 port map(A, B, CARRY);
-    end Structure_HA;
-            
--- the second style
-architecture Dataflow_HA of Half_Adder is
-    begin
-        SUM &lt;= A xor B;
-    	CARRY &lt;= A and B;
-    end Dataflow_HA;
-                        
+<h3 id="full-adder">Full adder</h3>
+<pre><code class="language-vhdl">-- entity part
+entity Lab6_2 is
+port(A, B, C : in std_logic;
+		sum, carry : out std_logic);
+end Lab6_2;
+
+-- arch part
+architecture Behavioral of Lab6_2 is
+
+-- component, must be the same as halfadder
+component Lab6_2_halfadder is
+port(A, B : in std_logic;
+		sum, carry: out std_logic);
+end Lab6_2_halfadder;
+end component;
+
+-- signal
+signal sum1, sum2, carry1, carry2 : std_logic;
+begin
+	HA1 : Lab6_2_halfadder 
+		port map(A=&gt;A, B=&gt;B, sum=&gt;sum1, carry=&gt;carry1);
+	HA2 : Lab6_2_halfadder 
+		port map(A=&gt;sum1, B=&gt;C, sum=&gt;sum2, carry=&gt;carry2);
+	
+	carry &lt;= carry1 or carry2;
+	sum &lt;= sum2;
+	
+end Behavioral;
 </code></pre>
 
             </div>
@@ -161,9 +192,9 @@ architecture Dataflow_HA of Half_Adder is
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/ru-he-zai-typecho-zhong-cha-ru-tu-pian-bing-shi-qi-ju-zhong/">
+                <a href="https://ray-sang.github.io/post/lecture-16-sequential-circuits/">
                   <h3 class="post-title">
-                    如何在typecho中插入图片，并使其居中
+                    Lecture 16, sequential circuits
                   </h3>
                 </a>
               </div>

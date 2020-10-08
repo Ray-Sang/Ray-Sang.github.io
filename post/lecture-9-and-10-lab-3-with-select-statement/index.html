@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Ray&#39;s Space</title>
+<title>Lecture 9 &amp; 10, Lab 3, with-select statement | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,7 +18,13 @@
 
 
 
-    <meta name="description" content="Plain living and high thicking">
+    <meta name="description" content="Aim: To understand and implement with-select statement.
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the fo..." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -88,22 +94,77 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">Lecture 9 &amp; 10, Lab 3, with-select statement</h2>
+            <div class="post-date">2020-10-08</div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/v0fuWKhzW/">VHDL学习</a>
+            <div class="post-content" v-pre>
+              <p>Aim: To understand and implement with-select statement.</p>
+<!-- more -->
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity With_select is
+port(
+	A : in std_logic;
+	B : in std_logic;
+	C : in std_logic;
+	D : in std_logic;
+	control : in std_logic_vector(1 downto 0);
+	Z : out std_logic
+	);
+end With_select;
+
+architecture Behavioral of With_select is
+signal control_signal : std_logic_vector(1 downto 0);
+
+begin
+	control_signal &lt;= control;
+	with control_signal select 
+		Z &lt;= A when &quot;00&quot;,
+			  B when &quot;01&quot;,
+			  C when &quot;10&quot;,
+			  D when &quot;11&quot;,
+			  '0' when others;
+
+end Behavioral;
+
+</code></pre>
+
+            </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/dC9fVrR-E/">每日一图</a>
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
+                  </a>
+                
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/eHgRSsjep/">Typecho使用心得</a>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wrGIlUR1X/">搞机</a>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/lecture-7-and-8-lab-2-when-else/">
+                  <h3 class="post-title">
+                    Lecture 7 &amp; 8, Lab 2, when-else
+                  </h3>
+                </a>
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wmpvTqMUZ/">雅思单词</a>
+
             
-              <a class="tag" href="https://ray-sang.github.io/tag/mYokiOa8F/">Gridea</a>
-            
+
           </div>
+
         </div>
       </div>
     </div>

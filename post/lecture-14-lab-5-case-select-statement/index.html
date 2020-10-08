@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Ray&#39;s Space</title>
+<title>Lecture 14, Lab 5, case-select statement | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,7 +18,16 @@
 
 
 
-    <meta name="description" content="Plain living and high thicking">
+    <meta name="description" content="
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity case_sel is
+port(
+	A : in std_logic;
+	B : in std_logic;
+	C : in std_..." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -88,22 +97,69 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">Lecture 14, Lab 5, case-select statement</h2>
+            <div class="post-date">2020-10-08</div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/v0fuWKhzW/">VHDL学习</a>
+            <div class="post-content" v-pre>
+              <!-- more -->
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity case_sel is
+port(
+	A : in std_logic;
+	B : in std_logic;
+	C : in std_logic;
+	D : in std_logic;
+	sel : in std_logic_vector(1 downto 0);
+	Y : out std_logic
+);
+end case_sel;
+
+
+architecture Behavioral of case_sel is
+
+begin
+process(A, B, C, D, sel)
+	begin
+		case sel is
+			when &quot;00&quot; =&gt; Y &lt;= A;
+			when &quot;01&quot; =&gt; Y &lt;= B;
+			when &quot;10&quot; =&gt; Y &lt;= C;
+			when &quot;11&quot; =&gt; Y &lt;= D;
+			when others =&gt; Y &lt;= '0';
+		end case;
+	end process;
+end Behavioral;
+
+</code></pre>
+
+            </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/dC9fVrR-E/">每日一图</a>
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
+                  </a>
+                
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/eHgRSsjep/">Typecho使用心得</a>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wrGIlUR1X/">搞机</a>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/lecture-13-lab-4-process-simulation/">
+                  <h3 class="post-title">
+                    Lecture 13, Lab 4, process simulation
+                  </h3>
+                </a>
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wmpvTqMUZ/">雅思单词</a>
+
             
-              <a class="tag" href="https://ray-sang.github.io/tag/mYokiOa8F/">Gridea</a>
-            
+
           </div>
+
         </div>
       </div>
     </div>

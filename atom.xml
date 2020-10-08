@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-10-07T23:51:58.703Z</updated>
+    <updated>2020-10-08T05:00:32.176Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -11,247 +11,54 @@
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
     <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/30]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200930/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200930/">
+        <title type="html"><![CDATA[Lecture 19, Lab 6, simulation of full adder]]></title>
+        <id>https://ray-sang.github.io/post/lecture-19-lab-6-simulation-of-full-adder/</id>
+        <link href="https://ray-sang.github.io/post/lecture-19-lab-6-simulation-of-full-adder/">
         </link>
-        <updated>2020-09-30T14:02:13.000Z</updated>
-        <content type="html"><![CDATA[<p>九月的最后一天。周三。</p>
-<p>耳机里放的是病态三部曲。“如果我，露出斑点满身，可会被抱紧”。</p>
-<p>焊板子，很快乐。风枪320度低风。<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/20200930-1.JPG" alt="" loading="lazy"></p>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/20200930-2.JPG" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/29]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200929/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200929/">
-        </link>
-        <updated>2020-09-29T15:54:46.000Z</updated>
-        <summary type="html"><![CDATA[<p>收到了之前拜托朋友买的专辑。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>收到了之前拜托朋友买的专辑。</p>
-<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020929-1.JPG" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020929-2.JPG" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020929-3.JPG" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[每日一图 2020/09/27]]></title>
-        <id>https://ray-sang.github.io/post/mei-ri-yi-tu-20200927/</id>
-        <link href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200927/">
-        </link>
-        <updated>2020-09-27T15:21:07.000Z</updated>
-        <summary type="html"><![CDATA[<p>回顾一下昨天在 Blue Note 上海的火星电台.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>回顾一下昨天在 Blue Note 上海的火星电台.</p>
-<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/09/27/2uSlM6sEJGnD7UI.jpg" alt="2uSlM6sEJGnD7UI" loading="lazy"></figure>
-<p>韩阳, 黄少, 曾宇, 贝贝.</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 6, understand signals with select statement]]></title>
-        <id>https://ray-sang.github.io/post/lecture-6-understand-signals-with-select-statement/</id>
-        <link href="https://ray-sang.github.io/post/lecture-6-understand-signals-with-select-statement/">
-        </link>
-        <updated>2020-09-24T08:34:07.000Z</updated>
+        <updated>2020-10-08T05:00:04.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
-<h1 id="lecture-6-understand-signals-with-select-statement">Lecture 6, understand signals with select statement</h1>
-<p>In this lecture, we will discuss signals and concurrent statements:</p>
-<ul>
-<li>when-else statement</li>
-<li>with select statement</li>
-</ul>
-<h2 id="signals">signals</h2>
-<p>Signals represent wires within a circuit.</p>
-<pre><code class="language-vhdl">architecture and_gt of anding is
-	signal a, b, temp : std_logic;
-	
-	begin
-		temp &lt;= a and b;
-		C &lt;= temp and D
-end and_gt
-</code></pre>
-<p>The signals can be used :</p>
-<ul>
-<li>to connect design entities together &amp; communicate changes in values within a design</li>
-<li>instead of input ports</li>
-</ul>
-<h2 id="concurrent-statement">Concurrent statement</h2>
-<p>concurrent: at the same time, parallel<br>
-concurrent constructs:</p>
-<ul>
-<li>when else statement</li>
-<li>with select statement</li>
-</ul>
-<p>Take <strong>combinational feedback</strong> for example:<br>
-In VHDL, if you write <code>X &lt;= X + Y;</code> , you get a adder whose output feedbacks to its input. It is a very <strong>bad</strong> style of design, a <strong>sin</strong>!</p>
-<h2 id="drivers">Drivers</h2>
-<p>In <code>Z &lt;= A</code> , A becomes the driver of Z.<br>
-Avoid multiple drivers:</p>
-<pre><code class="language-vhdl">architecture CONCURRENT of MULTIPLE is
-	signal Z, A, B, C, D : std_logic;
-begin 
-	Z &lt;= A and B;
-	Z &lt;= C and D;
-end CONCURRENT
-</code></pre>
-<p>As shown, Z was assigned two times, hence has multiple drivers.</p>
-<p>That lead to <strong>conditional assignment</strong>.</p>
-<h2 id="when-statement">when statement</h2>
-<pre><code class="language-vhdl">Z &lt;= A when ASSIGN_A = '1' else
-	 B when ASSIGN_B = '1' else
-	 C；
-</code></pre>
-<ul>
-<li>modeling tri-state buffer</li>
-</ul>
-<pre><code class="language-vhdl">architecture tri_ex_a of tri_ex is
-	signal out1 : std_logic;
-begin
-	out1 &lt;= in1 when control = '1' else
-		'Z'; -- high impedence, no current flowing(current cannot flow at all)
-end tri_ex_a;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 5, understand architecture better]]></title>
-        <id>https://ray-sang.github.io/post/lecture-5-understand-architecture-better/</id>
-        <link href="https://ray-sang.github.io/post/lecture-5-understand-architecture-better/">
-        </link>
-        <updated>2020-09-24T08:32:32.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<h1 id="lecture-5-understand-architecture-better">Lecture 5, understand architecture better</h1>
-<h2 id="styles-of-architectural-modeling">Styles of architectural modeling</h2>
-<p>In lecture 1, we have discussed the 3 different architectural modeling:</p>
-<h3 id="dataflow">Dataflow</h3>
-<pre><code class="language-vhdl">-- the dataflow style
-architecture Dataflow_HA of Half_Adder is
-    begin
-        SUM &lt;= A xor B;
-        CARRY &lt;= A and B;
-    end Dataflow_HA;
-</code></pre>
-<h3 id="behavioral">Behavioral</h3>
-<p>No need to focus on the gate-level implementation of a design.<br>
-VHDL -&gt; compiler -&gt; systhesis tool -&gt; gates(circuits)</p>
-<pre><code class="language-vhdl">-- the behavioral style
-architecture Dataflow_HA of Half_Adder is
-    begin
-        if A='1' and B='1' then
-        	CARRY &lt;= '1';
-        else
-        	CARRY &lt;= '0';
-        end if
-    end Dataflow_HA;
-</code></pre>
-<h3 id="structural">Structural</h3>
-<pre><code class="language-vhdl">-- the structural style
-architecture Structure_HA of Half_Adder is
-    component XOR1
-        port(P, Q: in BIT; R : out BIT);
-    end component;
-        
-    component AND1
-        port(X, Y: in BIT; Z : out BIT);
-    end component;
-    
-    begin
-        X1 : XOR1 port map(A, B, SUM);
-        A1 : AND1 port map(A, B, CARRY);
-    end Structure_HA;
-</code></pre>
-<h2 id="the-utility-of-architecture">The utility of architecture</h2>
-<p>Architecture specifies:</p>
-<ul>
-<li>behavior: What the design will do</li>
-<li>function</li>
-<li>relations between inputs and outputs of an entity</li>
-</ul>
-<p>syntax:</p>
-<pre><code class="language-vhdl">architecture architecture_name of entity_name is
-declarations
-begin 
-	concurrent_statements -- the codes are executed at the same time!!
-	-- sequential statements have particular syntax/style, 
-	-- will be discussed later
-end architecture_name
-</code></pre>
-<p>Note that a design can be described in an Architecture using various <strong>levels of abstraction</strong>; An entity can have more than one architecture; There can be no architecture without an entity.</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 4, Switches Leds simulation using VHDL test bench]]></title>
-        <id>https://ray-sang.github.io/post/lecture-4-switches-leds-simulation-using-vhdl-test-bench/</id>
-        <link href="https://ray-sang.github.io/post/lecture-4-switches-leds-simulation-using-vhdl-test-bench/">
-        </link>
-        <updated>2020-09-24T08:31:46.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<h1 id="lecture-4-switches-leds-simulation">Lecture 4, Switches LEDs simulation</h1>
-<p>This is the simulation part of lab1.</p>
-<p>To test the module, we use test bench to test.</p>
-<p>Click &quot;entity-new source-VHDL test bench-file name:xxxx_tb(name it right!)-next-next-finish&quot;</p>
-<p>The test code will generate automatically, as following.<br>
-Write our own test code in the last part of the code, begin with comment &quot;-- insert stimulus here&quot;:</p>
 <pre><code class="language-vhdl">LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+ENTITY full_adder_tb IS
+END full_adder_tb;
  
-ENTITY Switches_LEDs_tb IS
-END Switches_LEDs_tb;
- 
-ARCHITECTURE behavior OF Switches_LEDs_tb IS 
+ARCHITECTURE behavior OF full_adder_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT Switches_LEDs
+    COMPONENT full_adder
     PORT(
-         switch1 : IN  std_logic;
-         switch2 : IN  std_logic;
-         led1 : OUT  std_logic;
-         led2 : OUT  std_logic
+         A : IN  std_logic;
+         B : IN  std_logic;
+         C : IN  std_logic;
+         SUM : OUT  std_logic;
+         CARRY : OUT  std_logic
         );
     END COMPONENT;
     
 
    --Inputs
-   signal switch1 : std_logic := '0';
-   signal switch2 : std_logic := '0';
+   signal A : std_logic := '0';
+   signal B : std_logic := '0';
+   signal C : std_logic := '0';
 
  	--Outputs
-   signal led1 : std_logic;
-   signal led2 : std_logic;
+   signal SUM : std_logic;
+   signal CARRY : std_logic;
    -- No clocks detected in port list. Replace &lt;clock&gt; below with 
    -- appropriate port name 
- 
-   --constant &lt;clock&gt;_period : time := 10 ns;
-   --remember to delete the clock because in this test we dont use clock
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: Switches_LEDs PORT MAP (
-          switch1 =&gt; switch1,
-          switch2 =&gt; switch2,
-          led1 =&gt; led1,
-          led2 =&gt; led2
+   uut: full_adder PORT MAP (
+          A =&gt; A,
+          B =&gt; B,
+          C =&gt; C,
+          SUM =&gt; SUM,
+          CARRY =&gt; CARRY
         );
-
-   -- Clock process definitions
-   --&lt;clock&gt;_process :process
-  -- begin
-	--	&lt;clock&gt; &lt;= '0';
-	--	wait for &lt;clock&gt;_period/2;
-	--	&lt;clock&gt; &lt;= '1';
-	--	wait for &lt;clock&gt;_period/2;
- --  end process;
  
 
    -- Stimulus process
@@ -260,23 +67,409 @@ BEGIN
       -- hold reset state for 100 ns.
       wait for 100 ns;	
 
-      --wait for &lt;clock&gt;_period*10;
+      -- insert stimulus here 
+		A &lt;= '0';
+		B &lt;= '0';
+		C &lt;= '0';
+		wait for 10 ns;
+		
+		A &lt;= '1';
+		B &lt;= '0';
+		C &lt;= '0';
+		wait for 10 ns;
+		
+		A &lt;= '1';
+		B &lt;= '0';
+		C &lt;= '1';
+		wait for 10 ns;
+		
+		A &lt;= '1';
+		B &lt;= '1';
+		C &lt;= '1';
+		wait for 10 ns;
+      wait;
+   end process;
+
+END;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_simulation_testbench.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 18, Lab 6, Full adder using half adder]]></title>
+        <id>https://ray-sang.github.io/post/lecture-18-lab-6-full-adder-using-half-adder/</id>
+        <link href="https://ray-sang.github.io/post/lecture-18-lab-6-full-adder-using-half-adder/">
+        </link>
+        <updated>2020-10-08T04:59:39.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>new project, name &quot;full_adder&quot;, new source, vhdl module, half_adder.<br>
+In half_adder.vhd:</p>
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity half_adder is
+port(A, B : in std_logic;
+		SUM, CARRY : out std_logic);
+end half_adder;
+
+architecture Behavioral of half_adder is
+
+begin
+	SUM &lt;= A xor B;
+	CARRY &lt;= A and B;
+end Behavioral;
+</code></pre>
+<p>The same, new source, full adder.<br>
+In full_adder.vhd:</p>
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity full_adder is
+port(A, B, C : in std_logic;
+		SUM, CARRY : out std_logic);
+end full_adder;
+
+
+architecture Behavioral of full_adder is
+
+component half_adder is
+port(A, B : in std_logic;
+		SUM, CARRY: out std_logic);
+end component;
+
+signal sum1, sum2, carry1, carry2 : std_logic;
+
+begin
+	HA1 : half_adder 
+		port map(A=&gt;A, B=&gt;B, SUM=&gt;sum1, CARRY=&gt;carry1);
+	HA2 : half_adder 
+		port map(A=&gt;sum1, B=&gt;C, SUM=&gt;sum2, CARRY=&gt;carry2);
+	
+	carry &lt;= carry1 or carry2;
+	sum &lt;= sum2;
+
+end Behavioral;
+
+</code></pre>
+<p>Technology schematic:<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_technology_schematic.png" alt="" loading="lazy"></p>
+<p>RTL schematic:<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_RTL_schematic.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 17, building bigger designs from smaller ones]]></title>
+        <id>https://ray-sang.github.io/post/lecture-17-building-bigger-designs-from-smaller-ones/</id>
+        <link href="https://ray-sang.github.io/post/lecture-17-building-bigger-designs-from-smaller-ones/">
+        </link>
+        <updated>2020-10-08T04:59:07.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="points-to-discuss">Points to discuss</h2>
+<ul>
+<li>component instantiation</li>
+<li>basic example</li>
+<li>full adder example using half adders</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="points-to-discuss">Points to discuss</h2>
+<ul>
+<li>component instantiation</li>
+<li>basic example</li>
+<li>full adder example using half adders</li>
+</ul>
+<!-- more -->
+<h2 id="component">Component</h2>
+<p>When use design 'X' many times in 'Y', the problem is the repitition of designs. To make a hierarchy and a clear circuit design.</p>
+<p>Components are precompiled entity-architecture pair.</p>
+<p>Instantiation is selecting a component and using it as an instance in your design.</p>
+<p>Port mapping is assignment of actual signals in the system to the formal ports of the component declaration.</p>
+<h2 id="component-instantiation">Component instantiation</h2>
+<pre><code class="language-vhdl">entity ND4 is -- NAND gate
+	port(IN1, IN2, IN3, IN4 : in bit;
+			Z : out bit);
+end ND4;
+
+architecture gate_arch of ND4 is
+	component ND2 -- declaring the NAND gate component
+		port(A ,B : in bit;
+				C : out bit);
+	end component;
+	
+	signal TEMP_1, TEMP_2 : bit; -- internal connections
+begin
+	U1 : ND2 port map(A =&gt; IN1, B =&gt; IN2, C =&gt; TEMP_1);
+	U2 : ND2 port map(A =&gt; IN3, B =&gt; IN4, C =&gt; TEMP_2);
+	U3 : ND2 port map(A =&gt; TEMP_1, B =&gt; TEMP_2, C =&gt; Z);
+end gate_arch;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/component_instantiation.png" alt="" loading="lazy"></figure>
+<h2 id="full-adder-using-half-adder">Full adder using half adder</h2>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_using_half_adder.png" alt="" loading="lazy"></figure>
+<h3 id="half-adder-implementation">Half adder implementation</h3>
+<pre><code class="language-vhdl">entity Lab6_2_halfadder is
+port(A, B : in std_logic;
+		sum, carry: out std_logic);
+end Lab6_2_halfadder;
+
+architecture Behavioral of Lab6_2_halfadder is
+begin
+	sum &lt;= A xor B;
+	carry &lt;= A and B;
+end Behavioral;
+</code></pre>
+<h3 id="full-adder">Full adder</h3>
+<pre><code class="language-vhdl">-- entity part
+entity Lab6_2 is
+port(A, B, C : in std_logic;
+		sum, carry : out std_logic);
+end Lab6_2;
+
+-- arch part
+architecture Behavioral of Lab6_2 is
+
+-- component, must be the same as halfadder
+component Lab6_2_halfadder is
+port(A, B : in std_logic;
+		sum, carry: out std_logic);
+end Lab6_2_halfadder;
+end component;
+
+-- signal
+signal sum1, sum2, carry1, carry2 : std_logic;
+begin
+	HA1 : Lab6_2_halfadder 
+		port map(A=&gt;A, B=&gt;B, sum=&gt;sum1, carry=&gt;carry1);
+	HA2 : Lab6_2_halfadder 
+		port map(A=&gt;sum1, B=&gt;C, sum=&gt;sum2, carry=&gt;carry2);
+	
+	carry &lt;= carry1 or carry2;
+	sum &lt;= sum2;
+	
+end Behavioral;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 16, sequential circuits]]></title>
+        <id>https://ray-sang.github.io/post/lecture-16-sequential-circuits/</id>
+        <link href="https://ray-sang.github.io/post/lecture-16-sequential-circuits/">
+        </link>
+        <updated>2020-10-08T04:58:31.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="points-to-discuss">Points to discuss</h2>
+<ul>
+<li>if-else statement</li>
+<li>using if-else statement in clocked processes</li>
+<li>hardware modeling examples</li>
+<li>using variables as part of clocked processes</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="points-to-discuss">Points to discuss</h2>
+<ul>
+<li>if-else statement</li>
+<li>using if-else statement in clocked processes</li>
+<li>hardware modeling examples</li>
+<li>using variables as part of clocked processes</li>
+</ul>
+<!-- more -->
+<h2 id="if-statement">if statement</h2>
+<ul>
+<li>If statement evaluates each condition <strong>in order</strong>.</li>
+<li>Statements can be nested.</li>
+</ul>
+<h2 id="synchronous-reset">Synchronous reset</h2>
+<p>Flip-flops are reset on the active edge of the clock when reset is held active.</p>
+<pre><code class="language-vhdl">process(clk, RST)
+begin
+	if(clk'event and clk='1') then
+		if(RST='1') then
+			Q &lt;= '0';
+		else
+			Q &lt;= D;
+		end if;
+	end if;
+end process;
+</code></pre>
+<h2 id="asynchronous-reset">Asynchronous reset</h2>
+<p>Flip-flops are cleared as soon as reset is asserted.</p>
+<pre><code class="language-vhdl">process(clk, RST)
+begin
+	if(RST='1') then
+		Q &lt;= '0';
+	elsif(clk'event and clk='1')
+		Q &lt;= D;
+	end if;
+end process;
+</code></pre>
+<h2 id="about-flip-flop">About flip-flop</h2>
+<p>Any assignment within clock statement wil generate a flip-flop, and other combinational circuitry will be generated at the 'D' input of the flip-flop.</p>
+<p>An hardware modeling example:</p>
+<pre><code class="language-vhdl">process(clk, reset)
+begin
+	if(reset='1') then
+		out1 &lt;= '0';
+	elsif(clk'event and clk='1') then
+		if(in1='1') then
+			out1 &lt;= a and b;
+		else
+			out1 &lt;= c and d;
+		end if;
+	end if;
+
+end process;
+</code></pre>
+<h2 id="latch">Latch</h2>
+<p>Imcompletely specified conditional expression infers a latch.</p>
+<p>Latch is a combinational circuit which necessarily has feedback to hold the output to previous value for the unspecified state/conditions.</p>
+<p>Avoid the inference of latches in synchronous designs. As latches infer feedback and they cause difficulties in timing analysis and test insertion applications. Most synthesizers provide warnings when latches are inferred.</p>
+<ul>
+<li>incompletely specified conditional expression, infers a latch</li>
+</ul>
+<pre><code class="language-vhdl">process(en, a)
+begin
+	if(en='1') then
+		out1 &lt;= a;
+	end if;
+end process;
+</code></pre>
+<ul>
+<li>completely specified conditional expression, infers a normal combinational circuit(MUX)</li>
+</ul>
+<pre><code class="language-vhdl">process(en, a)
+begin
+	if(en='1') then
+		out1 &lt;= a;
+	else
+		out1 &lt;= '1';
+	end if;
+end process;
+</code></pre>
+<h2 id="an-multiple-flip-flop-example">An multiple flip-flop example</h2>
+<p>Asynchronous reset.<br>
+(a or b)    ---flipflop---&gt;  temp  ---flipflop---&gt;  out.<br>
+Rather than <s>(a or b) ---ff---&gt; temp ---&gt; out</s>.</p>
+<p>Inside the clock process, every time when using an assignment will infer a flip-flop!</p>
+<p><strong>Total 2 flip-flops!</strong></p>
+<pre><code class="language-vhdl">architecture var of FF is
+	signal temp : std_logic;
+begin
+	process(clock)
+	begin
+		if(reset='1') then
+			out &lt;= '0';
+		elsif(rising_edge(clock)) then
+			temp &lt;= a or b;
+			out &lt;= temp; -- end up with 2 flip-flops
+		end if;
+	end process;
+end var;
+</code></pre>
+<p>So, to achieve** (a or b) ---&gt; temp   ---ff---&gt;  out**, how to adjust the code?</p>
+<pre><code class="language-vhdl">architecture var of FF is
+begin
+	process(clock)
+		variable temp : std_logic; -- note this
+	begin
+		temp := '0';
+		if(reset='1') then
+			out &lt;= '0';
+		elsif(rising_edge(clock)) then
+			temp := a or b;
+			out &lt;= temp; -- end up with 1 flip-flop
+		end if;
+	end process;
+end var;
+</code></pre>
+<p>Consider another example:</p>
+<p>Create a circuit which is sequential and has a feedback.<br>
+(a and out) ---&gt; temp ---ff---&gt; out.</p>
+<pre><code class="language-vhdl">architecture var of FF is
+begin
+	process(clock)
+		variable temp : std_logic;
+	begin
+		temp := '0';
+		if(reset='1') then
+			out &lt;= '0';
+		elsif(rising_edge(clock)) then
+			temp := a and out; -- note this
+			out &lt;= temp;
+		end if;
+	end process;
+end var;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 15, Lab 5, case-select simulation]]></title>
+        <id>https://ray-sang.github.io/post/lecture-15-lab-5-case-select-simulation/</id>
+        <link href="https://ray-sang.github.io/post/lecture-15-lab-5-case-select-simulation/">
+        </link>
+        <updated>2020-10-08T04:58:10.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<pre><code class="language-vhdl">LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+ENTITY case_sel_tb IS
+END case_sel_tb;
+ 
+ARCHITECTURE behavior OF case_sel_tb IS 
+ 
+    -- Component Declaration for the Unit Under Test (UUT)
+ 
+    COMPONENT case_sel
+    PORT(
+         A : IN  std_logic;
+         B : IN  std_logic;
+         C : IN  std_logic;
+         D : IN  std_logic;
+         sel : IN  std_logic_vector(1 downto 0);
+         Y : OUT  std_logic
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal A : std_logic := '0';
+   signal B : std_logic := '0';
+   signal C : std_logic := '0';
+   signal D : std_logic := '0';
+   signal sel : std_logic_vector(1 downto 0) := (others =&gt; '0');
+
+ 	--Outputs
+   signal Y : std_logic;
+   -- No clocks detected in port list. Replace &lt;clock&gt; below with 
+   -- appropriate port name 
+ 
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: case_sel PORT MAP (
+          A =&gt; A,
+          B =&gt; B,
+          C =&gt; C,
+          D =&gt; D,
+          sel =&gt; sel,
+          Y =&gt; Y
+        );
+
+
+   -- Stimulus process
+   stim_proc: process
+   begin		
+      -- hold reset state for 100 ns.
+      wait for 100 ns;	
 
       -- insert stimulus here 
-		switch1 &lt;= '0'; -- initialise input
-		switch2 &lt;= '0';
+		A &lt;= '1';
+		B &lt;= '1';
+		C &lt;= '0';
+		D &lt;= '0';
+		sel &lt;= &quot;00&quot;;
 		wait for 10 ns;
-		
-		switch1 &lt;= '1';
-		switch2 &lt;= '0';
+		sel &lt;= &quot;01&quot;;
 		wait for 10 ns;
-		
-		switch1 &lt;= '0';
-		switch2 &lt;= '1';
+		sel &lt;= &quot;10&quot;;
 		wait for 10 ns;
-		
-		switch1 &lt;= '1';
-		switch2 &lt;= '1';
+		sel &lt;= &quot;11&quot;;
 		wait for 10 ns;
 		
       wait;
@@ -285,20 +478,350 @@ BEGIN
 END;
 
 </code></pre>
-<p>Change to simulation view in the top left &quot;View&quot;. Double click down left &quot;Simulate Behavioral Model&quot; to see the simulation result.</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Lecture 3, switches control LEDs]]></title>
-        <id>https://ray-sang.github.io/post/lecture-3-switches-control-leds/</id>
-        <link href="https://ray-sang.github.io/post/lecture-3-switches-control-leds/">
+        <title type="html"><![CDATA[Lecture 14, Lab 5, case-select statement]]></title>
+        <id>https://ray-sang.github.io/post/lecture-14-lab-5-case-select-statement/</id>
+        <link href="https://ray-sang.github.io/post/lecture-14-lab-5-case-select-statement/">
         </link>
-        <updated>2020-09-24T08:30:36.000Z</updated>
+        <updated>2020-10-08T04:57:50.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
-<h1 id="using-ise">Using ISE</h1>
-<p>Make a simulation that switch1 controls led1, while switch2 controls led2.</p>
-<p>Codes are as follows, written in VHDL.</p>
-<h1 id="lecture-3-lab-1-switches-leds-explanation">Lecture 3: Lab 1, Switches LEDs explanation</h1>
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity case_sel is
+port(
+	A : in std_logic;
+	B : in std_logic;
+	C : in std_logic;
+	D : in std_logic;
+	sel : in std_logic_vector(1 downto 0);
+	Y : out std_logic
+);
+end case_sel;
+
+
+architecture Behavioral of case_sel is
+
+begin
+process(A, B, C, D, sel)
+	begin
+		case sel is
+			when &quot;00&quot; =&gt; Y &lt;= A;
+			when &quot;01&quot; =&gt; Y &lt;= B;
+			when &quot;10&quot; =&gt; Y &lt;= C;
+			when &quot;11&quot; =&gt; Y &lt;= D;
+			when others =&gt; Y &lt;= '0';
+		end case;
+	end process;
+end Behavioral;
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 13, Lab 4, process simulation]]></title>
+        <id>https://ray-sang.github.io/post/lecture-13-lab-4-process-simulation/</id>
+        <link href="https://ray-sang.github.io/post/lecture-13-lab-4-process-simulation/">
+        </link>
+        <updated>2020-10-08T04:57:23.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<pre><code class="language-vhdl">LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+ENTITY if_else_tb IS
+END if_else_tb;
+ 
+ARCHITECTURE behavior OF if_else_tb IS 
+ 
+    COMPONENT if_else
+    PORT(
+         A : IN  std_logic;
+         B : IN  std_logic;
+         C : IN  std_logic;
+         D : IN  std_logic;
+         sel : IN  std_logic_vector(2 downto 0);
+         Y : OUT  std_logic
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal A : std_logic := '0';
+   signal B : std_logic := '0';
+   signal C : std_logic := '0';
+   signal D : std_logic := '0';
+   signal sel : std_logic_vector(2 downto 0) := (others =&gt; '0');
+
+ 	--Outputs
+   signal Y : std_logic;
+   -- No clocks detected in port list. Replace &lt;clock&gt; below with 
+   -- appropriate port name 
+ 
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: if_else PORT MAP (
+          A =&gt; A,
+          B =&gt; B,
+          C =&gt; C,
+          D =&gt; D,
+          sel =&gt; sel,
+          Y =&gt; Y
+        );
+
+
+   -- Stimulus process
+   stim_proc: process
+   begin		
+      -- hold reset state for 100 ns.
+      wait for 100 ns;	
+
+      -- insert stimulus here 
+		A &lt;= '1';
+		B &lt;= '0';
+		C &lt;= '0';
+		D &lt;= '1';
+		sel &lt;= &quot;100&quot;;
+		wait for 10 ns;
+		sel &lt;= &quot;001&quot;;
+		wait for 10 ns;
+		sel &lt;= &quot;011&quot;;
+		wait for 10 ns;
+		sel &lt;= &quot;000&quot;;
+		
+      wait;
+   end process;
+
+END;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 12, Lab 4 - process in VHDL]]></title>
+        <id>https://ray-sang.github.io/post/lecture-12-lab-4-process-in-vhdl/</id>
+        <link href="https://ray-sang.github.io/post/lecture-12-lab-4-process-in-vhdl/">
+        </link>
+        <updated>2020-10-08T04:56:56.000Z</updated>
+        <summary type="html"><![CDATA[<p>Aim: to learn about process and if-else statement.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Aim: to learn about process and if-else statement.</p>
+<!-- more -->
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity if_else is
+port(
+	A : in std_logic;
+	B : in std_logic;
+	C : in std_logic;
+	D : in std_logic;
+	sel : in std_logic_vector(2 downto 0);
+	Y : out std_logic
+);
+end if_else;
+
+architecture Behavioral of if_else is
+
+begin
+	process(A, B, C, D, sel)
+	begin
+		if (sel(0) = '1') then
+			Y &lt;= A;
+		elsif (sel(1) = '1') then
+			Y &lt;= B;
+		elsif (sel(2) = '1') then
+			Y &lt;= C;
+		else
+			Y &lt;= D;
+		end if;
+	end process;
+end Behavioral;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 11, processes and sequential statements]]></title>
+        <id>https://ray-sang.github.io/post/lecture-11-processes-and-sequential-statements/</id>
+        <link href="https://ray-sang.github.io/post/lecture-11-processes-and-sequential-statements/">
+        </link>
+        <updated>2020-10-08T04:55:44.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h2 id="process-rules">Process rules</h2>
+<ul>
+<li>Process as a whole will execute concurrently, but statements inside will execute sequentially.</li>
+<li>only sequential statements can use variables</li>
+</ul>
+<h2 id="an-example-of-a-process">An example of a process</h2>
+<pre><code class="language-vhdl">architecture SEQUENTIAL of MULTIPLE is
+	signal Z, A, B, C, D : std_logic;
+begin
+	process(A, B, C, D) -- note 1
+	begin
+		Z &lt;= A and B;
+		*** Z &lt;= C and D; *** -- note 2
+	end process;
+end SEQUENTIAL;
+</code></pre>
+<ul>
+<li>
+<p>note 1: sensitivity list. <strong>You can either have a sensitivity list or a wait statement.</strong> What are the changes of the <strong>signals</strong> that my process is sensitive to? When any one of the signals in the blankets changed, the process will be executed. Note that the process will be executed unconditionally for the first time.</p>
+<ul>
+<li>Also, signals in the list should be readable. For example, if  signal A is defined as <code>port(A : out std_logic);</code>, we cannot read an output.</li>
+<li>If the sensitivity list triggeres the process then the process will execute again. It is a very repetitive process.</li>
+</ul>
+</li>
+<li>
+<p>note 2: Process places only one driver on a signal. Value that the signal is updated with is the last value assigned to it within the process execution.</p>
+</li>
+<li>
+<p>It may occur an error of this design.</p>
+</li>
+</ul>
+<h2 id="sensitivity-list">Sensitivity list</h2>
+<p>Simulation runs a process when any one of the signals in the sensitivity list changes. Process should either have a &quot;sensitivity list&quot; or a &quot;wait&quot; statement at the end. Only static signal names are allowed in the sensitivity list.</p>
+<p>Two syntax style:</p>
+<ul>
+<li>sensitivity list:</li>
+</ul>
+<pre><code class="language-vhdl">process(A, B)
+begin
+	if (A='1' or B='1') then
+		Z &lt;= '1';
+	else
+		Z &lt;= '0';
+	end if;
+end process;
+</code></pre>
+<ul>
+<li>suspend at wait:</li>
+</ul>
+<pre><code class="language-vhdl">process
+begin
+	if (A='1' or B='1') then
+		Z &lt;= '1';
+	else
+		Z &lt;= '0';
+	end if;
+	
+	wait on A, B; -- note here
+end process;
+</code></pre>
+<h2 id="if-statement">If statement</h2>
+<h3 id="syntax">Syntax</h3>
+<pre><code class="language-vhdl">if condition1 then
+	{sequential_statement};
+elsif condition2 then
+	{sequential_statement};
+else 
+	{sequential_statement};
+end if;
+</code></pre>
+<p>If statement evaluates each condition in order.<br>
+Statements can  be nested. 嵌套</p>
+<h3 id="an-example">An example</h3>
+<pre><code class="language-vhdl">process(A, B, C, X)
+begin
+	if (X = &quot;0000&quot;) then
+	    Z &lt;= A;
+	elsif (X &lt;= &quot;0101&quot;) then
+		Z &lt;= B;
+	else 
+		Z &lt;= C;
+	end if;
+end process;
+    
+-- rewrite with with-select statement
+process(A, B, C, X)
+begin
+    with X select
+    	Z &lt;= A when &quot;0000&quot;,
+    	     B when &quot;0101&quot;,
+    		 C when others;
+end process;
+</code></pre>
+<ul>
+<li>Avoid using more than 3 levels to reduce delay.</li>
+<li>When defining the condition, use parentheses to diffrenentiate levels of operations on the condition.</li>
+</ul>
+<h2 id="case-statement">Case statement</h2>
+<h3 id="syntax-2">Syntax</h3>
+<pre><code class="language-vhdl">case expression is
+	when choice1 =&gt; {statement};
+    when choice2 =&gt; {statement};
+    when others =&gt; {statement};
+end case;
+</code></pre>
+<h3 id="example">Example</h3>
+<p>A four multiplexer with 2 select lines.</p>
+<pre><code class="language-vhdl">process(sel, a, b, c, d)
+begin
+	case sel is
+		when 0 =&gt; y &lt;= a;
+		when 1 =&gt; y &lt;= b;
+		when 2 =&gt; y &lt;= c;
+		when others =&gt; y &lt;= d;
+	end case;
+end process;
+</code></pre>
+<ul>
+<li>Does not result in prioritized logic structure unlike the if statement.</li>
+<li>Corresponds to &quot;with-select&quot; in concurrent statement.</li>
+</ul>
+<p>A few more rules of case statement:</p>
+<pre><code class="language-vhdl">process(A, B, C, X)
+begin
+	case X is
+		when 0 to 4 =&gt; -- a range
+			Z &lt;= B;
+		when 5 =&gt; -- a signal/variable
+			Z &lt;= c;
+		when 7 | 9 =&gt; -- a list
+			Z &lt;= A;
+		when others =&gt; -- others
+			Z &lt;= 0;
+	end case;
+end process;
+</code></pre>
+<p>Note that</p>
+<ul>
+<li>Every possible value of the case expression must be covered in one and only one when clause. One choice can be covered only once(No overlap).</li>
+<li>Each choice can be either a static expression or a static range, but, we cannot have a when condition that changes when it is being evaluated.</li>
+</ul>
+<h3 id="null-statement">Null statement</h3>
+<p>Null statement does not perform any action. It can be used to indicate that when some conditions are met no action is to be performed.</p>
+<p>An example</p>
+<pre><code class="language-vhdl">case a is
+	when &quot;00&quot; =&gt; q1 &lt;= '1';
+	when &quot;01&quot; =&gt; q2 &lt;= '1';
+	when &quot;10&quot; =&gt; q3 &lt;= '1';
+	when others &lt;= null;
+end case;
+</code></pre>
+<h2 id="comparing-if-and-case-statement">Comparing if and case statement</h2>
+<p>&quot;if&quot; statement produces priority-encoded logic, while &quot;case&quot; produces parallel logic.</p>
+<h2 id="a-short-introduction-to-clock">A short introduction to clock</h2>
+<pre><code class="language-vhdl">process(clk)
+begin
+	if(clk'event and clk='1') then
+		Q &lt;= D;
+	end if;
+end process;
+</code></pre>
+<p><em><strong>important: if(clk'event) should be the last one if statement in the process.</strong></em></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lecture 9 & 10, Lab 3, with-select statement]]></title>
+        <id>https://ray-sang.github.io/post/lecture-9-and-10-lab-3-with-select-statement/</id>
+        <link href="https://ray-sang.github.io/post/lecture-9-and-10-lab-3-with-select-statement/">
+        </link>
+        <updated>2020-10-08T04:55:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>Aim: To understand and implement with-select statement.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Aim: To understand and implement with-select statement.</p>
+<!-- more -->
 <pre><code class="language-vhdl">library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -311,179 +834,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity Switches_LEDs is
+entity With_select is
 port(
-	  switch1 : in std_logic;
-	  switch2 : in std_logic;
-	  led1 : out std_logic;
-	  led2 : out std_logic
-	  );
-end Switches_LEDs;
+	A : in std_logic;
+	B : in std_logic;
+	C : in std_logic;
+	D : in std_logic;
+	control : in std_logic_vector(1 downto 0);
+	Z : out std_logic
+	);
+end With_select;
 
-architecture Behavioral of Switches_LEDs is
+architecture Behavioral of With_select is
+signal control_signal : std_logic_vector(1 downto 0);
 
 begin
-
-led1 &lt;= switch1;
-led2 &lt;= switch2;
+	control_signal &lt;= control;
+	with control_signal select 
+		Z &lt;= A when &quot;00&quot;,
+			  B when &quot;01&quot;,
+			  C when &quot;10&quot;,
+			  D when &quot;11&quot;,
+			  '0' when others;
 
 end Behavioral;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 2]]></title>
-        <id>https://ray-sang.github.io/post/lecture-2/</id>
-        <link href="https://ray-sang.github.io/post/lecture-2/">
-        </link>
-        <updated>2020-09-24T08:29:54.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<h1 id="lecture-2">Lecture 2</h1>
-<ul>
-<li>understading entity better</li>
-<li>data types:
-<ul>
-<li>BIT</li>
-<li>BOOLEAN</li>
-<li>STD_LOGIC</li>
-</ul>
-</li>
-</ul>
-<h2 id="a-few-kay-terms">A few kay terms</h2>
-<ul>
-<li>
-<p>Assigned<br>
-<code>x &lt;= y; -- x is assinged the value of y</code></p>
-</li>
-<li>
-<p>Read/reading<br>
-<code>x &lt;= y; -- x is reading the value of y</code></p>
-</li>
-<li>
-<p>Drivers<br>
-Drivers give value to make signals in the following circuit.</p>
-</li>
-</ul>
-<h2 id="four-types-of-modes-are-used-in-vhdl">Four types of Modes are used in VHDL</h2>
-<ul>
-<li><strong>Mode in</strong><br>
-Values can be read from port(outside of the entity) but not assigned.</li>
-</ul>
-<pre><code class="language-vhdl">entity driver is
-port(A : in std_logic;
-	 B : out std_logic;
-	 Data : inout std_logic;
-	 Count : buffer std_logic);
-end driver;
-</code></pre>
-<ul>
-<li><strong>Mode out</strong><br>
-Can wirte the value into the output port.</li>
-<li>Mode inout<br>
-You can read the signal from the inside of the entity and also outside.<br>
-Bi-directional.</li>
-<li>Mode buffer</li>
-</ul>
-<h2 id="few-data-types">Few Data Types</h2>
-<ul>
-<li>BIT data type<br>
-Supports the value of <strong>logic</strong> '0' &amp; '1', for example:</li>
-</ul>
-<pre><code class="language-vhdl">entity driver is
-port(A : in BIT;
-     B : out BIT;
-     Data : inout BIT);
-end driver
-</code></pre>
-<ul>
-<li>
-<p>BOOLEAN<br>
-Supports literals FALSE &amp; TRUE, less frequently used.</p>
-</li>
-<li>
-<p>STD_LOGIC<br>
-Most commonly used, which is defined in the std_logic_1164 package of IEEE library. It is defined as: ('U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-'), totally 9 states.</p>
-</li>
-</ul>
-<pre><code>TYPE std_logic IS ( 'U',  -- Uninitialized
-                    'X',  -- Forcing  Unknown
-                    '0',  -- Forcing  0
-                    '1',  -- Forcing  1
-                    'Z',  -- High Impedance, usually no current 
-                    'W',  -- Weak     Unknown
-                    'L',  -- Weak     0       
-                    'H',  -- Weak     1       
-                    '-'   -- Don't care
-                    );
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 1 of VHDL, entity and arch]]></title>
-        <id>https://ray-sang.github.io/post/lecture-1-of-vhdl-entity-and-arch/</id>
-        <link href="https://ray-sang.github.io/post/lecture-1-of-vhdl-entity-and-arch/">
-        </link>
-        <updated>2020-09-24T08:29:05.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<pre><code class="language-vhdl">library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
 
-entity Switches_LEDs is
-    Port(switch_0 : in STD_LOGIC;
-         switch_1 : in STD_LOGIC;
-         LED_0 : out STD_LOGIC;
-         LED_1 : out STD_LOGIC);
-end Switches_LEDs;
-
-architecture Behavioral of Switches_LEDs is
-begin
-    LED_0 &lt;= switch_0; 
-    LED_1 &lt;= switch_1;
-end Behavioral;
-</code></pre>
-<pre><code class="language-vhdl">entity Half_Adder is
-    port(A, B : in BIT;
-        SUM, CARRY : out BIT);
-end Half_Adder;
-</code></pre>
-<p>You can have one entity but different architectures.<br>
-Three styles: structure, dataflow, behavioral</p>
-<pre><code class="language-vhdl">-- the firsts style
-architecture Structure_HA of Half_Adder is
-    component XOR1
-    	port(P, Q: in BIT; R : out BIT);
-    end component;
-        
-    component AND1
-        port(X, Y: in BIT; Z : out BIT);
-    end component;
-    
-    begin
-        X1 : XOR1 port map(A, B, SUM);
-    	A1 : AND1 port map(A, B, CARRY);
-    end Structure_HA;
-            
--- the second style
-architecture Dataflow_HA of Half_Adder is
-    begin
-        SUM &lt;= A xor B;
-    	CARRY &lt;= A and B;
-    end Dataflow_HA;
-                        
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[如何在typecho中插入图片，并使其居中]]></title>
-        <id>https://ray-sang.github.io/post/ru-he-zai-typecho-zhong-cha-ru-tu-pian-bing-shi-qi-ju-zhong/</id>
-        <link href="https://ray-sang.github.io/post/ru-he-zai-typecho-zhong-cha-ru-tu-pian-bing-shi-qi-ju-zhong/">
-        </link>
-        <updated>2020-09-24T00:37:58.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<p>在使用typecho的时候，我发现markdown语法插入的图片默认向左对齐，不甚美观。通过在编辑器中强制使用html语法，实现图片居中效果。代码如下：</p>
-<pre><code class="language-html">!!!
-&lt;center&gt;&lt;img src=&quot;https://www.sangrui.xyz:60001/usr/uploads/2020/09/4087492125.jpg&quot; title=&quot;test&quot;&gt;&lt;/center&gt;
-!!!
 </code></pre>
 ]]></content>
     </entry>

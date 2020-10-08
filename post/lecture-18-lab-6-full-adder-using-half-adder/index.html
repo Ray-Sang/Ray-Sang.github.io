@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Ray&#39;s Space</title>
+<title>Lecture 18, Lab 6, Full adder using half adder | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,7 +18,12 @@
 
 
 
-    <meta name="description" content="Plain living and high thicking">
+    <meta name="description" content="
+new project, name &quot;full_adder&quot;, new source, vhdl module, half_adder.
+In half_adder.vhd:
+library IEEE;
+use IEE..." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -88,22 +93,91 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">Lecture 18, Lab 6, Full adder using half adder</h2>
+            <div class="post-date">2020-10-08</div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/v0fuWKhzW/">VHDL学习</a>
+            <div class="post-content" v-pre>
+              <!-- more -->
+<p>new project, name &quot;full_adder&quot;, new source, vhdl module, half_adder.<br>
+In half_adder.vhd:</p>
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity half_adder is
+port(A, B : in std_logic;
+		SUM, CARRY : out std_logic);
+end half_adder;
+
+architecture Behavioral of half_adder is
+
+begin
+	SUM &lt;= A xor B;
+	CARRY &lt;= A and B;
+end Behavioral;
+</code></pre>
+<p>The same, new source, full adder.<br>
+In full_adder.vhd:</p>
+<pre><code class="language-vhdl">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity full_adder is
+port(A, B, C : in std_logic;
+		SUM, CARRY : out std_logic);
+end full_adder;
+
+
+architecture Behavioral of full_adder is
+
+component half_adder is
+port(A, B : in std_logic;
+		SUM, CARRY: out std_logic);
+end component;
+
+signal sum1, sum2, carry1, carry2 : std_logic;
+
+begin
+	HA1 : half_adder 
+		port map(A=&gt;A, B=&gt;B, SUM=&gt;sum1, CARRY=&gt;carry1);
+	HA2 : half_adder 
+		port map(A=&gt;sum1, B=&gt;C, SUM=&gt;sum2, CARRY=&gt;carry2);
+	
+	carry &lt;= carry1 or carry2;
+	sum &lt;= sum2;
+
+end Behavioral;
+
+</code></pre>
+<p>Technology schematic:<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_technology_schematic.png" alt="" loading="lazy"></p>
+<p>RTL schematic:<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_RTL_schematic.png" alt="" loading="lazy"></p>
+
+            </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/dC9fVrR-E/">每日一图</a>
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
+                  </a>
+                
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/eHgRSsjep/">Typecho使用心得</a>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wrGIlUR1X/">搞机</a>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/lecture-17-building-bigger-designs-from-smaller-ones/">
+                  <h3 class="post-title">
+                    Lecture 17, building bigger designs from smaller ones
+                  </h3>
+                </a>
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wmpvTqMUZ/">雅思单词</a>
+
             
-              <a class="tag" href="https://ray-sang.github.io/tag/mYokiOa8F/">Gridea</a>
-            
+
           </div>
+
         </div>
       </div>
     </div>

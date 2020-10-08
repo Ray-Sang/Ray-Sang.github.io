@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Ray&#39;s Space</title>
+<title>Lecture 13, Lab 4, process simulation | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,7 +18,15 @@
 
 
 
-    <meta name="description" content="Plain living and high thicking">
+    <meta name="description" content="
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+ENTITY if_else_tb IS
+END if_else_tb;
+ 
+ARCHITECTURE behavior OF if_else_tb..." />
+    <meta name="keywords" content="VHDL学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -88,22 +96,107 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">Lecture 13, Lab 4, process simulation</h2>
+            <div class="post-date">2020-10-08</div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/v0fuWKhzW/">VHDL学习</a>
+            <div class="post-content" v-pre>
+              <!-- more -->
+<pre><code class="language-vhdl">LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ 
+ENTITY if_else_tb IS
+END if_else_tb;
+ 
+ARCHITECTURE behavior OF if_else_tb IS 
+ 
+    COMPONENT if_else
+    PORT(
+         A : IN  std_logic;
+         B : IN  std_logic;
+         C : IN  std_logic;
+         D : IN  std_logic;
+         sel : IN  std_logic_vector(2 downto 0);
+         Y : OUT  std_logic
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal A : std_logic := '0';
+   signal B : std_logic := '0';
+   signal C : std_logic := '0';
+   signal D : std_logic := '0';
+   signal sel : std_logic_vector(2 downto 0) := (others =&gt; '0');
+
+ 	--Outputs
+   signal Y : std_logic;
+   -- No clocks detected in port list. Replace &lt;clock&gt; below with 
+   -- appropriate port name 
+ 
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: if_else PORT MAP (
+          A =&gt; A,
+          B =&gt; B,
+          C =&gt; C,
+          D =&gt; D,
+          sel =&gt; sel,
+          Y =&gt; Y
+        );
+
+
+   -- Stimulus process
+   stim_proc: process
+   begin		
+      -- hold reset state for 100 ns.
+      wait for 100 ns;	
+
+      -- insert stimulus here 
+		A &lt;= '1';
+		B &lt;= '0';
+		C &lt;= '0';
+		D &lt;= '1';
+		sel &lt;= &quot;100&quot;;
+		wait for 10 ns;
+		sel &lt;= &quot;001&quot;;
+		wait for 10 ns;
+		sel &lt;= &quot;011&quot;;
+		wait for 10 ns;
+		sel &lt;= &quot;000&quot;;
+		
+      wait;
+   end process;
+
+END;
+</code></pre>
+
+            </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/dC9fVrR-E/">每日一图</a>
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
+                  </a>
+                
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/eHgRSsjep/">Typecho使用心得</a>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wrGIlUR1X/">搞机</a>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/lecture-12-lab-4-process-in-vhdl/">
+                  <h3 class="post-title">
+                    Lecture 12, Lab 4 - process in VHDL
+                  </h3>
+                </a>
+              </div>
             
-              <a class="tag" href="https://ray-sang.github.io/tag/wmpvTqMUZ/">雅思单词</a>
+
             
-              <a class="tag" href="https://ray-sang.github.io/tag/mYokiOa8F/">Gridea</a>
-            
+
           </div>
+
         </div>
       </div>
     </div>

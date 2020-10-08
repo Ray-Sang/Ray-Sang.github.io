@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Lecture 11, processes and sequential statements | Ray&#39;s Space</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1602133229281">
+<link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+Process rules
+
+Process as a whole will execute concurrently, but statements inside will execute sequentially.
+only sequ..." />
+    <meta name="keywords" content="VHDL学习" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ray-sang.github.io">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1602133229281" class="site-logo">
+        <h1 class="site-title">Ray&#39;s Space</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Plain living and high thicking
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ray-sang.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Lecture 11, processes and sequential statements</h2>
+            <div class="post-date">2020-10-08</div>
+            
+            <div class="post-content" v-pre>
+              <!-- more -->
+<h2 id="process-rules">Process rules</h2>
+<ul>
+<li>Process as a whole will execute concurrently, but statements inside will execute sequentially.</li>
+<li>only sequential statements can use variables</li>
+</ul>
+<h2 id="an-example-of-a-process">An example of a process</h2>
+<pre><code class="language-vhdl">architecture SEQUENTIAL of MULTIPLE is
+	signal Z, A, B, C, D : std_logic;
+begin
+	process(A, B, C, D) -- note 1
+	begin
+		Z &lt;= A and B;
+		*** Z &lt;= C and D; *** -- note 2
+	end process;
+end SEQUENTIAL;
+</code></pre>
+<ul>
+<li>
+<p>note 1: sensitivity list. <strong>You can either have a sensitivity list or a wait statement.</strong> What are the changes of the <strong>signals</strong> that my process is sensitive to? When any one of the signals in the blankets changed, the process will be executed. Note that the process will be executed unconditionally for the first time.</p>
+<ul>
+<li>Also, signals in the list should be readable. For example, if  signal A is defined as <code>port(A : out std_logic);</code>, we cannot read an output.</li>
+<li>If the sensitivity list triggeres the process then the process will execute again. It is a very repetitive process.</li>
+</ul>
+</li>
+<li>
+<p>note 2: Process places only one driver on a signal. Value that the signal is updated with is the last value assigned to it within the process execution.</p>
+</li>
+<li>
+<p>It may occur an error of this design.</p>
+</li>
+</ul>
+<h2 id="sensitivity-list">Sensitivity list</h2>
+<p>Simulation runs a process when any one of the signals in the sensitivity list changes. Process should either have a &quot;sensitivity list&quot; or a &quot;wait&quot; statement at the end. Only static signal names are allowed in the sensitivity list.</p>
+<p>Two syntax style:</p>
+<ul>
+<li>sensitivity list:</li>
+</ul>
+<pre><code class="language-vhdl">process(A, B)
+begin
+	if (A='1' or B='1') then
+		Z &lt;= '1';
+	else
+		Z &lt;= '0';
+	end if;
+end process;
+</code></pre>
+<ul>
+<li>suspend at wait:</li>
+</ul>
+<pre><code class="language-vhdl">process
+begin
+	if (A='1' or B='1') then
+		Z &lt;= '1';
+	else
+		Z &lt;= '0';
+	end if;
+	
+	wait on A, B; -- note here
+end process;
+</code></pre>
+<h2 id="if-statement">If statement</h2>
+<h3 id="syntax">Syntax</h3>
+<pre><code class="language-vhdl">if condition1 then
+	{sequential_statement};
+elsif condition2 then
+	{sequential_statement};
+else 
+	{sequential_statement};
+end if;
+</code></pre>
+<p>If statement evaluates each condition in order.<br>
+Statements can  be nested. 嵌套</p>
+<h3 id="an-example">An example</h3>
+<pre><code class="language-vhdl">process(A, B, C, X)
+begin
+	if (X = &quot;0000&quot;) then
+	    Z &lt;= A;
+	elsif (X &lt;= &quot;0101&quot;) then
+		Z &lt;= B;
+	else 
+		Z &lt;= C;
+	end if;
+end process;
+    
+-- rewrite with with-select statement
+process(A, B, C, X)
+begin
+    with X select
+    	Z &lt;= A when &quot;0000&quot;,
+    	     B when &quot;0101&quot;,
+    		 C when others;
+end process;
+</code></pre>
+<ul>
+<li>Avoid using more than 3 levels to reduce delay.</li>
+<li>When defining the condition, use parentheses to diffrenentiate levels of operations on the condition.</li>
+</ul>
+<h2 id="case-statement">Case statement</h2>
+<h3 id="syntax-2">Syntax</h3>
+<pre><code class="language-vhdl">case expression is
+	when choice1 =&gt; {statement};
+    when choice2 =&gt; {statement};
+    when others =&gt; {statement};
+end case;
+</code></pre>
+<h3 id="example">Example</h3>
+<p>A four multiplexer with 2 select lines.</p>
+<pre><code class="language-vhdl">process(sel, a, b, c, d)
+begin
+	case sel is
+		when 0 =&gt; y &lt;= a;
+		when 1 =&gt; y &lt;= b;
+		when 2 =&gt; y &lt;= c;
+		when others =&gt; y &lt;= d;
+	end case;
+end process;
+</code></pre>
+<ul>
+<li>Does not result in prioritized logic structure unlike the if statement.</li>
+<li>Corresponds to &quot;with-select&quot; in concurrent statement.</li>
+</ul>
+<p>A few more rules of case statement:</p>
+<pre><code class="language-vhdl">process(A, B, C, X)
+begin
+	case X is
+		when 0 to 4 =&gt; -- a range
+			Z &lt;= B;
+		when 5 =&gt; -- a signal/variable
+			Z &lt;= c;
+		when 7 | 9 =&gt; -- a list
+			Z &lt;= A;
+		when others =&gt; -- others
+			Z &lt;= 0;
+	end case;
+end process;
+</code></pre>
+<p>Note that</p>
+<ul>
+<li>Every possible value of the case expression must be covered in one and only one when clause. One choice can be covered only once(No overlap).</li>
+<li>Each choice can be either a static expression or a static range, but, we cannot have a when condition that changes when it is being evaluated.</li>
+</ul>
+<h3 id="null-statement">Null statement</h3>
+<p>Null statement does not perform any action. It can be used to indicate that when some conditions are met no action is to be performed.</p>
+<p>An example</p>
+<pre><code class="language-vhdl">case a is
+	when &quot;00&quot; =&gt; q1 &lt;= '1';
+	when &quot;01&quot; =&gt; q2 &lt;= '1';
+	when &quot;10&quot; =&gt; q3 &lt;= '1';
+	when others &lt;= null;
+end case;
+</code></pre>
+<h2 id="comparing-if-and-case-statement">Comparing if and case statement</h2>
+<p>&quot;if&quot; statement produces priority-encoded logic, while &quot;case&quot; produces parallel logic.</p>
+<h2 id="a-short-introduction-to-clock">A short introduction to clock</h2>
+<pre><code class="language-vhdl">process(clk)
+begin
+	if(clk'event and clk='1') then
+		Q &lt;= D;
+	end if;
+end process;
+</code></pre>
+<p><em><strong>important: if(clk'event) should be the last one if statement in the process.</strong></em></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
+                    VHDL学习
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/lecture-9-and-10-lab-3-with-select-statement/">
+                  <h3 class="post-title">
+                    Lecture 9 &amp; 10, Lab 3, with-select statement
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
