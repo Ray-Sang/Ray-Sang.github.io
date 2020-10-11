@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1602420232327">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1602421056995">
 <link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
 
 
@@ -40,7 +40,7 @@ entity gcd is
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://ray-sang.github.io">
-        <img src="https://ray-sang.github.io/images/avatar.png?v=1602420232327" class="site-logo">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1602421056995" class="site-logo">
         <h1 class="site-title">Ray&#39;s Space</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -199,9 +199,10 @@ begin
 
 end;
 
-
 </code></pre>
-<p>盖的程序：我觉得最大的不同/优点就是使用temp的变量代替信号的作用，实现实时赋值，不用考虑信号赋值的问题。</p>
+<p>我的tb波形：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_mine.png" alt="" loading="lazy"></p>
+<p>盖的程序：我觉得最大的不同/优点就是使用temp的变量代替信号的作用，实现实时赋值，不用考虑信号赋值的问题。但是不需要使用tmp_a and tmp_b，故我在此处进行了注释处理。</p>
 <pre><code class="language-vhdl">library ieee; 
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -217,11 +218,11 @@ entity gcd is
 end;
 
 architecture rtl of gcd is
-    signal tmp_a, tmp_b : unsigned(15 downto 0);
+    --signal tmp_a, tmp_b : unsigned(15 downto 0);
     
 begin
-    tmp_a &lt;= a ;
-    tmp_b &lt;= b ;
+    --tmp_a &lt;= a ;
+    --tmp_b &lt;= b ;
 
     process(clock)
     variable tmp_busy : integer :=0;
@@ -234,8 +235,10 @@ begin
            if new_input = '1' then
                  busy &lt;= '1' ;
                  tmp_busy :=1;
-                 int_a := tmp_a;
-                 int_b := tmp_b;
+                -- int_a := tmp_a;
+                 --int_b := tmp_b;
+                 int_a := a;
+                 int_b := b;
             end if;
             if tmp_busy = 1 then
                 if int_a &gt; int_b  then
@@ -256,6 +259,8 @@ end;
 
 
 </code></pre>
+<p>波形图：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_gai.png" alt="" loading="lazy"></p>
 
             </div>
             
