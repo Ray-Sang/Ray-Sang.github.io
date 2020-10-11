@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1602421056995">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1602426563716">
 <link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
 
 
@@ -40,7 +40,7 @@ entity gcd is
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://ray-sang.github.io">
-        <img src="https://ray-sang.github.io/images/avatar.png?v=1602421056995" class="site-logo">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1602426563716" class="site-logo">
         <h1 class="site-title">Ray&#39;s Space</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -202,6 +202,67 @@ end;
 </code></pre>
 <p>我的tb波形：<br>
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_mine.png" alt="" loading="lazy"></p>
+<p>但是这样的问题是，最初的时候，a、b信号未赋值，输出为XXXX。与要求的波形不符。分析得，n1在不确定时，会给result赋值X。那么，考虑给n1、n2添加默认值0：<code>variable n1, n2 : unsigned(15 downto 0) := to_unsigned(0,16);</code>,并且修改代码。</p>
+<p>修改后的代码为：</p>
+<pre><code class="language-vhdl">library ieee; 
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity gcd is
+    port 
+    (
+        clock, new_input : in std_logic;
+        a, b   : in  unsigned(15 downto 0);
+        result : out unsigned(15 downto 0):=to_unsigned(0,16);
+        busy   : out std_logic
+    );
+end gcd;
+
+architecture rtl of gcd is
+
+begin
+    process(clock)
+    variable n1, n2 : unsigned(15 downto 0) := to_unsigned(0,16);
+    
+    begin
+        if rising_edge(clock) then
+
+            if (new_input = '1') then
+                n1 := a;
+                n2 := b;
+                busy &lt;= '1';
+            end if;
+
+            if (n1 = 1 or n2 = 1) then -- consider when a or b = 1, then gcd is always 1
+            	busy &lt;= '0';
+            	result &lt;= n1;
+            elsif (n1 &gt; n2) then
+                n1 := n1 - n2;
+            elsif (n1 &lt; n2) then
+                n2 := n2 - n1;
+            else
+                busy &lt;= '0';
+                result &lt;= n1;
+            end if;
+
+            --calculate : while (n1 /= n2) loop
+            --    if (n1&gt;n2) then
+            --        n1 := n1 - n2;
+            --    elsif (n2&gt;n1) then
+            --        n2 := n2 - n1;
+            --    --else
+            --    --    flag := false;
+            --    --    result &lt;= n1;
+            --    end if;
+            --end loop calculate;
+            null;
+        end if;
+    end process;
+
+end;
+</code></pre>
+<p>修改后的tb为：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_mine_refined.png" alt="" loading="lazy"></p>
 <p>盖的程序：我觉得最大的不同/优点就是使用temp的变量代替信号的作用，实现实时赋值，不用考虑信号赋值的问题。但是不需要使用tmp_a and tmp_b，故我在此处进行了注释处理。</p>
 <pre><code class="language-vhdl">library ieee; 
 use ieee.std_logic_1164.all;
