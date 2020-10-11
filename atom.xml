@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-10-08T05:00:32.176Z</updated>
+    <updated>2020-10-11T12:43:56.838Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,167 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[硬件仿真课程作业-gcd]]></title>
+        <id>https://ray-sang.github.io/post/ying-jian-fang-zhen-ke-cheng-zuo-ye-gcd/</id>
+        <link href="https://ray-sang.github.io/post/ying-jian-fang-zhen-ke-cheng-zuo-ye-gcd/">
+        </link>
+        <updated>2020-10-11T12:38:14.000Z</updated>
+        <summary type="html"><![CDATA[<p>要求：<br>
+设计一个电路，实现最大公约数计算。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>要求：<br>
+设计一个电路，实现最大公约数计算。</p>
+<!-- more -->
+<p>例程对应的entity结构为：</p>
+<pre><code class="language-vhdl">entity gcd is
+
+    port
+
+    (
+
+        clock, new_input : in std_logic;
+
+        a, b   : in  unsigned(15 downto 0);
+
+        result : out unsigned(15 downto 0):=to_unsigned(0,16);
+
+        busy   : out std_logic
+
+    );
+
+end;
+</code></pre>
+<p>各个信号功能说明如下：<br>
+Clock：时钟，在它的上升沿作用下进行数据计算<br>
+New_input：该信号=’1’时，表示需要在clock上升沿输入待计算的两个数a和b<br>
+Result: 运算结果，当busy=‘0‘时输出最新的运算结果<br>
+Busy: 表明当前电路处于运算中，还是运算完成，它为‘1’的时候表明运算尚未完成，此时result的内容不可用，但它为’0’时，表明运算结束，此时result存放的是运算结果（最近一次new_input=‘1‘时输入数据a和b的最大公约数）</p>
+<p>tb的结果应该为：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd.png" alt="" loading="lazy"></p>
+<p>我的程序：</p>
+<pre><code class="language-vhdl">library ieee; 
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity gcd is
+    port 
+    (
+        clock, new_input : in std_logic;
+        a, b   : in  unsigned(15 downto 0);
+        result : out unsigned(15 downto 0):=to_unsigned(0,16);
+        busy   : out std_logic
+    );
+end gcd;
+
+architecture rtl of gcd is
+    -- fill you code here
+begin
+    process(clock)
+    -- fill your code
+    variable flag : boolean := false;
+    variable n1, n2 : unsigned(15 downto 0);
+    
+    begin
+        if rising_edge(clock) then
+
+            if (new_input = '1') then
+                n1 := a;
+                n2 := b;
+                busy &lt;= '1';
+                flag := true;
+            end if;
+
+            if (n1 = 1 or n2 = 1) then -- consider when a or b = 1, then gcd is always 1
+            	flag := false;
+            	busy &lt;= '0';
+            elsif (n1 &gt; n2) then
+                n1 := n1 - n2;
+            elsif (n1 &lt; n2) then
+                n2 := n2 - n1;
+            else
+                flag := false;
+                busy &lt;= '0';
+            end if;
+
+            if (flag=false) then
+                result &lt;= n1;
+            end if;
+            --calculate : while (n1 /= n2) loop
+            --    if (n1&gt;n2) then
+            --        n1 := n1 - n2;
+            --    elsif (n2&gt;n1) then
+            --        n2 := n2 - n1;
+            --    --else
+            --    --    flag := false;
+            --    --    result &lt;= n1;
+            --    end if;
+            --end loop calculate;
+
+        end if;
+    end process;
+
+end;
+
+
+</code></pre>
+<p>盖的程序：我觉得最大的不同/优点就是使用temp的变量代替信号的作用，实现实时赋值，不用考虑信号赋值的问题。</p>
+<pre><code class="language-vhdl">library ieee; 
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity gcd is
+    port 
+    (
+        clock, new_input : in std_logic;
+        a, b   : in  unsigned(15 downto 0);
+        result : out unsigned(15 downto 0):=to_unsigned(0,16);
+        busy   : out std_logic
+    );
+end;
+
+architecture rtl of gcd is
+    signal tmp_a, tmp_b : unsigned(15 downto 0);
+    
+begin
+    tmp_a &lt;= a ;
+    tmp_b &lt;= b ;
+
+    process(clock)
+    variable tmp_busy : integer :=0;
+    variable int_a, int_b : unsigned(15 downto 0) ;
+    begin
+        if rising_edge(clock) then
+           if new_input='0' then
+              busy&lt;= '0';
+           end if;
+           if new_input = '1' then
+                 busy &lt;= '1' ;
+                 tmp_busy :=1;
+                 int_a := tmp_a;
+                 int_b := tmp_b;
+            end if;
+            if tmp_busy = 1 then
+                if int_a &gt; int_b  then
+                      int_a :=int_a-int_b;
+                elsif int_a&lt;int_b then
+                      int_b :=int_b-int_a;
+                end if;
+            end if;
+            if int_a = int_b then
+                 busy&lt;='0';
+                 tmp_busy:=0;
+                 result&lt;=int_a;
+            end if;
+            null;
+        end if;
+    end process;
+end;
+
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Lecture 19, Lab 6, simulation of full adder]]></title>
         <id>https://ray-sang.github.io/post/lecture-19-lab-6-simulation-of-full-adder/</id>
@@ -810,56 +971,6 @@ begin
 end process;
 </code></pre>
 <p><em><strong>important: if(clk'event) should be the last one if statement in the process.</strong></em></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 9 & 10, Lab 3, with-select statement]]></title>
-        <id>https://ray-sang.github.io/post/lecture-9-and-10-lab-3-with-select-statement/</id>
-        <link href="https://ray-sang.github.io/post/lecture-9-and-10-lab-3-with-select-statement/">
-        </link>
-        <updated>2020-10-08T04:55:15.000Z</updated>
-        <summary type="html"><![CDATA[<p>Aim: To understand and implement with-select statement.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Aim: To understand and implement with-select statement.</p>
-<!-- more -->
-<pre><code class="language-vhdl">library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-entity With_select is
-port(
-	A : in std_logic;
-	B : in std_logic;
-	C : in std_logic;
-	D : in std_logic;
-	control : in std_logic_vector(1 downto 0);
-	Z : out std_logic
-	);
-end With_select;
-
-architecture Behavioral of With_select is
-signal control_signal : std_logic_vector(1 downto 0);
-
-begin
-	control_signal &lt;= control;
-	with control_signal select 
-		Z &lt;= A when &quot;00&quot;,
-			  B when &quot;01&quot;,
-			  C when &quot;10&quot;,
-			  D when &quot;11&quot;,
-			  '0' when others;
-
-end Behavioral;
-
-</code></pre>
 ]]></content>
     </entry>
 </feed>
