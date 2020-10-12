@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-10-11T14:29:25.442Z</updated>
+    <updated>2020-10-12T10:55:19.001Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,140 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[2020/10/12 Monday]]></title>
+        <id>https://ray-sang.github.io/post/20201012-monday/</id>
+        <link href="https://ray-sang.github.io/post/20201012-monday/">
+        </link>
+        <updated>2020-10-12T10:24:41.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>回顾</p>
+<ul>
+<li>formidable</li>
+<li>hose</li>
+<li>plaster</li>
+<li>astrology</li>
+<li>credible</li>
+<li>dredge</li>
+<li>swamp</li>
+<li>siesta</li>
+<li>crescent</li>
+<li>skew</li>
+<li>coffer</li>
+<li>subsidy</li>
+<li>crescent</li>
+<li>centennial</li>
+<li>censure</li>
+<li>odour</li>
+<li>audacious</li>
+<li>stint</li>
+<li>arboreal</li>
+<li>absenteeism</li>
+<li>clench</li>
+<li>aggravation</li>
+<li>discriminate</li>
+<li>alienation</li>
+<li>fauna</li>
+<li>avalanche</li>
+<li>cosset</li>
+<li>silt</li>
+<li>acumen</li>
+</ul>
+<p>新词</p>
+<ul>
+<li>
+<p>primarily</p>
+<ul>
+<li>The advertisement is aimed primarily at housewives.</li>
+</ul>
+</li>
+<li>
+<p>beverage n. 饮料</p>
+<ul>
+<li>alcoholic beverages</li>
+</ul>
+</li>
+<li>
+<p>harridan n. 凶恶的老妇;老巫婆</p>
+<ul>
+<li>She seemed an infuriating harridan sometimes.</li>
+</ul>
+</li>
+<li>
+<p>backbone n. 脊椎,骨干;支柱 spine</p>
+<ul>
+<li>Agriculture forms the backbone of the country's economy.</li>
+</ul>
+</li>
+<li>
+<p>ventilation n. 空气流通;通风设备</p>
+<ul>
+<li>ventilate</li>
+</ul>
+</li>
+<li>
+<p>fossil n. 化石;老人;老顽童,老古董</p>
+<ul>
+<li>He found a piece of fossil of an ancient bird.</li>
+</ul>
+</li>
+<li>
+<p>competent</p>
+</li>
+<li>
+<p>grip v. 紧握,紧抓 n. 紧握;把手,夹具;支配,控制</p>
+<ul>
+<li>He gripped the rope tightly and pulled the boat to the shore.</li>
+</ul>
+</li>
+<li>
+<p>bibliography n. 参考书目,书目</p>
+<ul>
+<li>She provides a detailed bibliography of her thesis for readers to find souces of the reference.</li>
+</ul>
+</li>
+<li>
+<p>graphology n. 笔迹学</p>
+<ul>
+<li>graphologist 笔迹学家</li>
+</ul>
+</li>
+<li>
+<p>flaw n. 错误,缺点;裂痕,瑕疵</p>
+<ul>
+<li>drawback shortpoint</li>
+</ul>
+</li>
+<li>
+<p>aesthetic adj. 美学的;审美的</p>
+<ul>
+<li>This oil painting has little aesthetic value.</li>
+<li>esthetic adj. 审美的</li>
+</ul>
+</li>
+<li>
+<p>endorse v. 认可,赞同</p>
+<ul>
+<li>The proposal for an educational reform was endorsed by the state coucil.</li>
+<li>endorser 背书人</li>
+<li>to endorse 背书</li>
+</ul>
+</li>
+<li>
+<p>apparatus n. 装置,器具,机构,组织</p>
+<ul>
+<li>electric apparatus</li>
+</ul>
+</li>
+<li>
+<p>medieval  中世纪的 中古时代的</p>
+<ul>
+<li>medieval attitude 守旧的态度</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[硬件仿真课程作业-gcd]]></title>
         <id>https://ray-sang.github.io/post/ying-jian-fang-zhen-ke-cheng-zuo-ye-gcd/</id>
@@ -866,177 +1000,6 @@ begin
 	end process;
 end Behavioral;
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 11, processes and sequential statements]]></title>
-        <id>https://ray-sang.github.io/post/lecture-11-processes-and-sequential-statements/</id>
-        <link href="https://ray-sang.github.io/post/lecture-11-processes-and-sequential-statements/">
-        </link>
-        <updated>2020-10-08T04:55:44.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<h2 id="process-rules">Process rules</h2>
-<ul>
-<li>Process as a whole will execute concurrently, but statements inside will execute sequentially.</li>
-<li>only sequential statements can use variables</li>
-</ul>
-<h2 id="an-example-of-a-process">An example of a process</h2>
-<pre><code class="language-vhdl">architecture SEQUENTIAL of MULTIPLE is
-	signal Z, A, B, C, D : std_logic;
-begin
-	process(A, B, C, D) -- note 1
-	begin
-		Z &lt;= A and B;
-		*** Z &lt;= C and D; *** -- note 2
-	end process;
-end SEQUENTIAL;
-</code></pre>
-<ul>
-<li>
-<p>note 1: sensitivity list. <strong>You can either have a sensitivity list or a wait statement.</strong> What are the changes of the <strong>signals</strong> that my process is sensitive to? When any one of the signals in the blankets changed, the process will be executed. Note that the process will be executed unconditionally for the first time.</p>
-<ul>
-<li>Also, signals in the list should be readable. For example, if  signal A is defined as <code>port(A : out std_logic);</code>, we cannot read an output.</li>
-<li>If the sensitivity list triggeres the process then the process will execute again. It is a very repetitive process.</li>
-</ul>
-</li>
-<li>
-<p>note 2: Process places only one driver on a signal. Value that the signal is updated with is the last value assigned to it within the process execution.</p>
-</li>
-<li>
-<p>It may occur an error of this design.</p>
-</li>
-</ul>
-<h2 id="sensitivity-list">Sensitivity list</h2>
-<p>Simulation runs a process when any one of the signals in the sensitivity list changes. Process should either have a &quot;sensitivity list&quot; or a &quot;wait&quot; statement at the end. Only static signal names are allowed in the sensitivity list.</p>
-<p>Two syntax style:</p>
-<ul>
-<li>sensitivity list:</li>
-</ul>
-<pre><code class="language-vhdl">process(A, B)
-begin
-	if (A='1' or B='1') then
-		Z &lt;= '1';
-	else
-		Z &lt;= '0';
-	end if;
-end process;
-</code></pre>
-<ul>
-<li>suspend at wait:</li>
-</ul>
-<pre><code class="language-vhdl">process
-begin
-	if (A='1' or B='1') then
-		Z &lt;= '1';
-	else
-		Z &lt;= '0';
-	end if;
-	
-	wait on A, B; -- note here
-end process;
-</code></pre>
-<h2 id="if-statement">If statement</h2>
-<h3 id="syntax">Syntax</h3>
-<pre><code class="language-vhdl">if condition1 then
-	{sequential_statement};
-elsif condition2 then
-	{sequential_statement};
-else 
-	{sequential_statement};
-end if;
-</code></pre>
-<p>If statement evaluates each condition in order.<br>
-Statements can  be nested. 嵌套</p>
-<h3 id="an-example">An example</h3>
-<pre><code class="language-vhdl">process(A, B, C, X)
-begin
-	if (X = &quot;0000&quot;) then
-	    Z &lt;= A;
-	elsif (X &lt;= &quot;0101&quot;) then
-		Z &lt;= B;
-	else 
-		Z &lt;= C;
-	end if;
-end process;
-    
--- rewrite with with-select statement
-process(A, B, C, X)
-begin
-    with X select
-    	Z &lt;= A when &quot;0000&quot;,
-    	     B when &quot;0101&quot;,
-    		 C when others;
-end process;
-</code></pre>
-<ul>
-<li>Avoid using more than 3 levels to reduce delay.</li>
-<li>When defining the condition, use parentheses to diffrenentiate levels of operations on the condition.</li>
-</ul>
-<h2 id="case-statement">Case statement</h2>
-<h3 id="syntax-2">Syntax</h3>
-<pre><code class="language-vhdl">case expression is
-	when choice1 =&gt; {statement};
-    when choice2 =&gt; {statement};
-    when others =&gt; {statement};
-end case;
-</code></pre>
-<h3 id="example">Example</h3>
-<p>A four multiplexer with 2 select lines.</p>
-<pre><code class="language-vhdl">process(sel, a, b, c, d)
-begin
-	case sel is
-		when 0 =&gt; y &lt;= a;
-		when 1 =&gt; y &lt;= b;
-		when 2 =&gt; y &lt;= c;
-		when others =&gt; y &lt;= d;
-	end case;
-end process;
-</code></pre>
-<ul>
-<li>Does not result in prioritized logic structure unlike the if statement.</li>
-<li>Corresponds to &quot;with-select&quot; in concurrent statement.</li>
-</ul>
-<p>A few more rules of case statement:</p>
-<pre><code class="language-vhdl">process(A, B, C, X)
-begin
-	case X is
-		when 0 to 4 =&gt; -- a range
-			Z &lt;= B;
-		when 5 =&gt; -- a signal/variable
-			Z &lt;= c;
-		when 7 | 9 =&gt; -- a list
-			Z &lt;= A;
-		when others =&gt; -- others
-			Z &lt;= 0;
-	end case;
-end process;
-</code></pre>
-<p>Note that</p>
-<ul>
-<li>Every possible value of the case expression must be covered in one and only one when clause. One choice can be covered only once(No overlap).</li>
-<li>Each choice can be either a static expression or a static range, but, we cannot have a when condition that changes when it is being evaluated.</li>
-</ul>
-<h3 id="null-statement">Null statement</h3>
-<p>Null statement does not perform any action. It can be used to indicate that when some conditions are met no action is to be performed.</p>
-<p>An example</p>
-<pre><code class="language-vhdl">case a is
-	when &quot;00&quot; =&gt; q1 &lt;= '1';
-	when &quot;01&quot; =&gt; q2 &lt;= '1';
-	when &quot;10&quot; =&gt; q3 &lt;= '1';
-	when others &lt;= null;
-end case;
-</code></pre>
-<h2 id="comparing-if-and-case-statement">Comparing if and case statement</h2>
-<p>&quot;if&quot; statement produces priority-encoded logic, while &quot;case&quot; produces parallel logic.</p>
-<h2 id="a-short-introduction-to-clock">A short introduction to clock</h2>
-<pre><code class="language-vhdl">process(clk)
-begin
-	if(clk'event and clk='1') then
-		Q &lt;= D;
-	end if;
-end process;
-</code></pre>
-<p><em><strong>important: if(clk'event) should be the last one if statement in the process.</strong></em></p>
 ]]></content>
     </entry>
 </feed>
