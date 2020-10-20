@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-10-20T12:49:29.027Z</updated>
+    <updated>2020-10-20T12:55:04.097Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -23,7 +23,7 @@
 <p>在LaTeX中插入图片的时候，希望一个figure能够有多个subfigure，并且用(a)(b)(c)的形式标号，有独立的子图标题和主图标题，排版格式美观。</p>
 <!-- more -->
 <p>在这里放上单张图片的插入方法：</p>
-<pre><code class="language-latex">\usepackage{graphicx}%插入图片所需
+<pre><code class="language-latex">\usepackage{graphicx} % 插入图片所需
 
 %-----------------------------------------------------------%
 \begin{figure}
@@ -41,6 +41,7 @@
         \label{fig:schematic}
 \end{figure}
 </code></pre>
+<hr>
 <h1 id="第一种插入子图的方法">第一种插入子图的方法</h1>
 <p>利用subfigure排版，放置多张图片。</p>
 <p>我个人会在<code>settings.tex</code>中，使用宏包：</p>
@@ -86,10 +87,6 @@
 <figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/subfigure_latex_1.png" alt="" loading="lazy"></figure>
 <p>其中<code>0.25\linewidth</code>或<code>0.25\linewidth</code>是你插入图片的幅度（我理解为这副图的宽占1/4行，你下张图并排插入的话需要从1/4行处往后开始插），相当于0.25倍的当前latex中规定的一行的长度。width=1in是指图片的宽度。它可以在一个大图的框架里面插入多个小图，自动编号为a,b,c,d....并对小图分别描述。</p>
 <p>但是，如果加入回车：</p>
-<pre><code class="language-latex">\usepackage{graphicx}
-\usepackage{subfigure}
-</code></pre>
-<p>放置子图的代码如下：</p>
 <pre><code class="language-latex">\begin{figure}[htbp]
  \centering
      \subfigure[Step 2]{ % []内为子图标题
@@ -133,6 +130,7 @@
 <p>那么图片的呈现形式就是：<br>
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/subfigure_latex_2.png" alt="" loading="lazy"></p>
 <p>既能将图片分成四个小图片，也能对四个小图片分别进行描述。</p>
+<hr>
 <h1 id="现在流行用subfig包代替subfigure">现在流行用subfig包代替subfigure？</h1>
 <p>注意把代码中的\subfigure改成\subfloat.</p>
 <p>注意subfig包和subfigure包不能共存。</p>
