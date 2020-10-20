@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>如何在LaTeX中插入子图（subfigure包） | Ray&#39;s Space</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1603198166240">
+<link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="预期效果
+在LaTeX中插入图片的时候，希望一个figure能够有多个subfigure，并且用(a)(b)(c)的形式标号，有独立的子图标题和主图标题，排版格式美观。
+
+在这里放上单张图片的插入方法：
+\usepackage{graphi..." />
+    <meta name="keywords" content="LaTeX学习" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ray-sang.github.io">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1603198166240" class="site-logo">
+        <h1 class="site-title">Ray&#39;s Space</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Plain living and high thicking
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ray-sang.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">如何在LaTeX中插入子图（subfigure包）</h2>
+            <div class="post-date">2020-10-20</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="预期效果">预期效果</h1>
+<p>在LaTeX中插入图片的时候，希望一个figure能够有多个subfigure，并且用(a)(b)(c)的形式标号，有独立的子图标题和主图标题，排版格式美观。</p>
+<!-- more -->
+<p>在这里放上单张图片的插入方法：</p>
+<pre><code class="language-latex">\usepackage{graphicx}%插入图片所需
+
+%-----------------------------------------------------------%
+\begin{figure}
+\centering
+\includegraphics[height=4.5cm,width=9.5cm]{111.eps}
+\caption{pic1}
+\label{2}
+\end{figure}
+
+% using scale
+\begin{figure}[h]
+        \centering
+        \includegraphics[scale=0.3]{figures/schematic.png}
+        \caption{\centering The schematic of simulation}
+        \label{fig:schematic}
+\end{figure}
+</code></pre>
+<h1 id="第一种插入子图的方法">第一种插入子图的方法</h1>
+<p>利用subfigure排版，放置多张图片。</p>
+<p>我个人会在<code>settings.tex</code>中，使用宏包：</p>
+<pre><code class="language-latex">\usepackage{graphicx}
+\usepackage{subfigure}
+</code></pre>
+<p>放置子图的代码如下：</p>
+<pre><code class="language-latex">\begin{figure}[htbp]
+ \centering
+     \subfigure[Step 2]{ % []内为子图标题
+        \begin{minipage}[t]{0.2\linewidth}
+        \centering
+            \includegraphics[width=1in]{figures/s1.png}
+             \label{fig:step2} % 子图label
+         \end{minipage}
+         } % if add a new line here, figures will be seperated! %如果在此处分行，子图也会分行
+    \subfigure[Step 3]{
+        \begin{minipage}[t]{0.2\linewidth}
+        \centering
+            \includegraphics[width=1in]{figures/s2.png}
+            \label{fig:step3}
+        \end{minipage}
+        }
+    \subfigure[Step 4]{
+    \begin{minipage}[t]{0.2\linewidth}
+    \centering
+        \includegraphics[width=1in]{figures/s3.png}
+        \label{fig:step4}
+    \end{minipage}
+    }
+    \subfigure[Step 6]{
+    \begin{minipage}[t]{0.2\linewidth}
+    \centering
+        \includegraphics[width=1in]{figures/s6.png}
+        \label{fig:step6}
+    \end{minipage}
+    }
+\centering
+\caption{The main steps}
+\label{fig:Steps}
+\end{figure}
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/subfigure_latex_1.png" alt="" loading="lazy"></figure>
+<p>其中<code>0.25\linewidth</code>或<code>0.25\linewidth</code>是你插入图片的幅度（我理解为这副图的宽占1/4行，你下张图并排插入的话需要从1/4行处往后开始插），相当于0.25倍的当前latex中规定的一行的长度。width=1in是指图片的宽度。它可以在一个大图的框架里面插入多个小图，自动编号为a,b,c,d....并对小图分别描述。</p>
+<p>但是，如果加入回车：</p>
+<pre><code class="language-latex">\usepackage{graphicx}
+\usepackage{subfigure}
+</code></pre>
+<p>放置子图的代码如下：</p>
+<pre><code class="language-latex">\begin{figure}[htbp]
+ \centering
+     \subfigure[Step 2]{ % []内为子图标题
+        \begin{minipage}[t]{0.2\linewidth}
+        \centering
+            \includegraphics[width=1in]{figures/s1.png}
+             \label{fig:step2} % 子图label
+         \end{minipage}
+         } % if add a new line here, figures will be seperated! %如果在此处分行，子图也会分行
+          \quad \quad % 增加图片横向间距
+    \subfigure[Step 3]{
+        \begin{minipage}[t]{0.2\linewidth}
+        \centering
+            \includegraphics[width=1in]{figures/s2.png}
+            \label{fig:step3}
+        \end{minipage}
+        }
+
+                    
+            % 这个回车很重要 \quad也可以
+    \subfigure[Step 4]{
+    \begin{minipage}[t]{0.2\linewidth}
+    \centering
+        \includegraphics[width=1in]{figures/s3.png}
+        \label{fig:step4}
+    \end{minipage}
+    }
+     \quad \quad 
+    \subfigure[Step 6]{
+    \begin{minipage}[t]{0.2\linewidth}
+    \centering
+        \includegraphics[width=1in]{figures/s6.png}
+        \label{fig:step6}
+    \end{minipage}
+    }
+\centering
+\caption{The main steps}
+\label{fig:Steps}
+\end{figure}
+</code></pre>
+<p>那么图片的呈现形式就是：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/subfigure_latex_2.png" alt="" loading="lazy"></p>
+<p>既能将图片分成四个小图片，也能对四个小图片分别进行描述。</p>
+<h1 id="现在流行用subfig包代替subfigure">现在流行用subfig包代替subfigure？</h1>
+<p>注意把代码中的\subfigure改成\subfloat.</p>
+<p>注意subfig包和subfigure包不能共存。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/_IFkg8nI7/" class="tag">
+                    LaTeX学习
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/ru-he-zai-latex-quan-ju-xiu-gai-zi-ti-zi-jian-ju/">
+                  <h3 class="post-title">
+                    如何在LaTeX全局修改字体字间距
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
