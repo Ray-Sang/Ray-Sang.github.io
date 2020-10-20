@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-10-12T10:55:19.001Z</updated>
+    <updated>2020-10-20T08:38:10.223Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[如何在LaTeX全局修改字体字间距]]></title>
+        <id>https://ray-sang.github.io/post/ru-he-zai-latex-quan-ju-xiu-gai-zi-ti-zi-jian-ju/</id>
+        <link href="https://ray-sang.github.io/post/ru-he-zai-latex-quan-ju-xiu-gai-zi-ti-zi-jian-ju/">
+        </link>
+        <updated>2020-10-20T08:36:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>英文适用。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>英文适用。</p>
+<!-- more -->
+<pre><code class="language-latex">\documentclass{article}
+
+\usepackage{fontspec}
+\defaultfontfeatures{LetterSpace=2}
+\setmainfont{Times New Roman}
+
+\usepackage{lipsum}
+\begin{document}
+\lipsum[1]
+\end{document}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020/10/12 Monday]]></title>
         <id>https://ray-sang.github.io/post/20201012-monday/</id>
@@ -956,49 +980,6 @@ BEGIN
    end process;
 
 END;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 12, Lab 4 - process in VHDL]]></title>
-        <id>https://ray-sang.github.io/post/lecture-12-lab-4-process-in-vhdl/</id>
-        <link href="https://ray-sang.github.io/post/lecture-12-lab-4-process-in-vhdl/">
-        </link>
-        <updated>2020-10-08T04:56:56.000Z</updated>
-        <summary type="html"><![CDATA[<p>Aim: to learn about process and if-else statement.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Aim: to learn about process and if-else statement.</p>
-<!-- more -->
-<pre><code class="language-vhdl">library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-entity if_else is
-port(
-	A : in std_logic;
-	B : in std_logic;
-	C : in std_logic;
-	D : in std_logic;
-	sel : in std_logic_vector(2 downto 0);
-	Y : out std_logic
-);
-end if_else;
-
-architecture Behavioral of if_else is
-
-begin
-	process(A, B, C, D, sel)
-	begin
-		if (sel(0) = '1') then
-			Y &lt;= A;
-		elsif (sel(1) = '1') then
-			Y &lt;= B;
-		elsif (sel(2) = '1') then
-			Y &lt;= C;
-		else
-			Y &lt;= D;
-		end if;
-	end process;
-end Behavioral;
 </code></pre>
 ]]></content>
     </entry>
