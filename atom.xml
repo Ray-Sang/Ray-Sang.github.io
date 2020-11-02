@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-11-02T07:29:42.744Z</updated>
+    <updated>2020-11-02T14:19:57.028Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,22 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[fyx生日！]]></title>
+        <id>https://ray-sang.github.io/post/fyx-sheng-ri/</id>
+        <link href="https://ray-sang.github.io/post/fyx-sheng-ri/">
+        </link>
+        <updated>2020-11-02T07:34:38.000Z</updated>
+        <summary type="html"><![CDATA[<p>10.31是十月最后一天。随手拍。很奇怪的是高感在800就有很明显噪点了，是机器老了的缘故吗……</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>10.31是十月最后一天。随手拍。很奇怪的是高感在800就有很明显噪点了，是机器老了的缘故吗……</p>
+<!-- more -->
+<p><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2563-1.jpg" alt="" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2543-1.jpg" alt="" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2582-1.jpg" alt="" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2591-1.jpg" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020/10/31 Saturday]]></title>
         <id>https://ray-sang.github.io/post/20201031-saturday/</id>
@@ -966,97 +982,6 @@ end Behavioral;
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_technology_schematic.png" alt="" loading="lazy"></p>
 <p>RTL schematic:<br>
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_RTL_schematic.png" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Lecture 17, building bigger designs from smaller ones]]></title>
-        <id>https://ray-sang.github.io/post/lecture-17-building-bigger-designs-from-smaller-ones/</id>
-        <link href="https://ray-sang.github.io/post/lecture-17-building-bigger-designs-from-smaller-ones/">
-        </link>
-        <updated>2020-10-08T04:59:07.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="points-to-discuss">Points to discuss</h2>
-<ul>
-<li>component instantiation</li>
-<li>basic example</li>
-<li>full adder example using half adders</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="points-to-discuss">Points to discuss</h2>
-<ul>
-<li>component instantiation</li>
-<li>basic example</li>
-<li>full adder example using half adders</li>
-</ul>
-<!-- more -->
-<h2 id="component">Component</h2>
-<p>When use design 'X' many times in 'Y', the problem is the repitition of designs. To make a hierarchy and a clear circuit design.</p>
-<p>Components are precompiled entity-architecture pair.</p>
-<p>Instantiation is selecting a component and using it as an instance in your design.</p>
-<p>Port mapping is assignment of actual signals in the system to the formal ports of the component declaration.</p>
-<h2 id="component-instantiation">Component instantiation</h2>
-<pre><code class="language-vhdl">entity ND4 is -- NAND gate
-	port(IN1, IN2, IN3, IN4 : in bit;
-			Z : out bit);
-end ND4;
-
-architecture gate_arch of ND4 is
-	component ND2 -- declaring the NAND gate component
-		port(A ,B : in bit;
-				C : out bit);
-	end component;
-	
-	signal TEMP_1, TEMP_2 : bit; -- internal connections
-begin
-	U1 : ND2 port map(A =&gt; IN1, B =&gt; IN2, C =&gt; TEMP_1);
-	U2 : ND2 port map(A =&gt; IN3, B =&gt; IN4, C =&gt; TEMP_2);
-	U3 : ND2 port map(A =&gt; TEMP_1, B =&gt; TEMP_2, C =&gt; Z);
-end gate_arch;
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/component_instantiation.png" alt="" loading="lazy"></figure>
-<h2 id="full-adder-using-half-adder">Full adder using half adder</h2>
-<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/full_adder_using_half_adder.png" alt="" loading="lazy"></figure>
-<h3 id="half-adder-implementation">Half adder implementation</h3>
-<pre><code class="language-vhdl">entity Lab6_2_halfadder is
-port(A, B : in std_logic;
-		sum, carry: out std_logic);
-end Lab6_2_halfadder;
-
-architecture Behavioral of Lab6_2_halfadder is
-begin
-	sum &lt;= A xor B;
-	carry &lt;= A and B;
-end Behavioral;
-</code></pre>
-<h3 id="full-adder">Full adder</h3>
-<pre><code class="language-vhdl">-- entity part
-entity Lab6_2 is
-port(A, B, C : in std_logic;
-		sum, carry : out std_logic);
-end Lab6_2;
-
--- arch part
-architecture Behavioral of Lab6_2 is
-
--- component, must be the same as halfadder
-component Lab6_2_halfadder is
-port(A, B : in std_logic;
-		sum, carry: out std_logic);
-end Lab6_2_halfadder;
-end component;
-
--- signal
-signal sum1, sum2, carry1, carry2 : std_logic;
-begin
-	HA1 : Lab6_2_halfadder 
-		port map(A=&gt;A, B=&gt;B, sum=&gt;sum1, carry=&gt;carry1);
-	HA2 : Lab6_2_halfadder 
-		port map(A=&gt;sum1, B=&gt;C, sum=&gt;sum2, carry=&gt;carry2);
-	
-	carry &lt;= carry1 or carry2;
-	sum &lt;= sum2;
-	
-end Behavioral;
-</code></pre>
 ]]></content>
     </entry>
 </feed>
