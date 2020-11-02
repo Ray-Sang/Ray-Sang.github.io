@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Lecture 6, understand signals with select statement | Ray&#39;s Space</title>
+<title>2020/10/29 Thursday | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,10 +18,16 @@
 
 
 
-    <meta name="description" content="
-Lecture 6, understand signals with select statement
-In this lecture, we will discuss signals and concurrent statements:..." />
-    <meta name="keywords" content="VHDL学习" />
+    <meta name="description" content="Happiness adds and multiplies, as we divide it with others.
+
+复习
+
+
+commencement n. 开始，毕业典礼
+
+
+be instrumental in sth/in do..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -92,85 +98,118 @@ In this lecture, we will discuss signals and concurrent statements:..." />
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Lecture 6, understand signals with select statement</h2>
-            <div class="post-date">2020-09-24</div>
+            <h2 class="post-title">2020/10/29 Thursday</h2>
+            <div class="post-date">2020-10-29</div>
             
             <div class="post-content" v-pre>
-              <!-- more -->
-<h1 id="lecture-6-understand-signals-with-select-statement">Lecture 6, understand signals with select statement</h1>
-<p>In this lecture, we will discuss signals and concurrent statements:</p>
+              <p>Happiness adds and multiplies, as we divide it with others.</p>
+<!-- more -->
+<h1 id="复习">复习</h1>
 <ul>
-<li>when-else statement</li>
-<li>with select statement</li>
-</ul>
-<h2 id="signals">signals</h2>
-<p>Signals represent wires within a circuit.</p>
-<pre><code class="language-vhdl">architecture and_gt of anding is
-	signal a, b, temp : std_logic;
-	
-	begin
-		temp &lt;= a and b;
-		C &lt;= temp and D
-end and_gt
-</code></pre>
-<p>The signals can be used :</p>
+<li>
+<p>commencement n. 开始，毕业典礼</p>
+</li>
+<li>
+<p>be instrumental in sth/in doing sth 有助于,有利于</p>
+</li>
+<li>
+<p>censure v,n.批评，谴责</p>
+</li>
+<li>
+<p>census n. 人口普查，统计</p>
+<h1 id="新词">新词</h1>
 <ul>
-<li>to connect design entities together &amp; communicate changes in values within a design</li>
-<li>instead of input ports</li>
-</ul>
-<h2 id="concurrent-statement">Concurrent statement</h2>
-<p>concurrent: at the same time, parallel<br>
-concurrent constructs:</p>
+<li>
+<p>frown /fraʊn/ v. 皱眉 n. 皱眉, 蹙眉头</p>
 <ul>
-<li>when else statement</li>
-<li>with select statement</li>
+<li>She frowned at the noisy kid because she was unable to concentrate on reading. 她朝着这个吵闹的孩子皱了皱眉，因为她无法集中注意力读书。</li>
 </ul>
-<p>Take <strong>combinational feedback</strong> for example:<br>
-In VHDL, if you write <code>X &lt;= X + Y;</code> , you get a adder whose output feedbacks to its input. It is a very <strong>bad</strong> style of design, a <strong>sin</strong>!</p>
-<h2 id="drivers">Drivers</h2>
-<p>In <code>Z &lt;= A</code> , A becomes the driver of Z.<br>
-Avoid multiple drivers:</p>
-<pre><code class="language-vhdl">architecture CONCURRENT of MULTIPLE is
-	signal Z, A, B, C, D : std_logic;
-begin 
-	Z &lt;= A and B;
-	Z &lt;= C and D;
-end CONCURRENT
-</code></pre>
-<p>As shown, Z was assigned two times, hence has multiple drivers.</p>
-<p>That lead to <strong>conditional assignment</strong>.</p>
-<h2 id="when-statement">when statement</h2>
-<pre><code class="language-vhdl">Z &lt;= A when ASSIGN_A = '1' else
-	 B when ASSIGN_B = '1' else
-	 C；
-</code></pre>
+</li>
+<li>
+<p>technician n. 技术员</p>
 <ul>
-<li>modeling tri-state buffer</li>
+<li>technologist</li>
 </ul>
-<pre><code class="language-vhdl">architecture tri_ex_a of tri_ex is
-	signal out1 : std_logic;
-begin
-	out1 &lt;= in1 when control = '1' else
-		'Z'; -- high impedence, no current flowing(current cannot flow at all)
-end tri_ex_a;
-</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>microcosm /'maɪkrəʊkɒzəm/ n. 微观世界；缩影</p>
+<ul>
+<li>New York's problems of society is a microcosm of America. 纽约的社会问题是美国社会的缩影。</li>
+</ul>
+</li>
+<li>
+<p>the elite of society 社会名流名士</p>
+</li>
+<li>
+<p>conceal v. 掩盖，隐瞒</p>
+<ul>
+<li>He put a mask on his face to conceal his identity.</li>
+</ul>
+</li>
+<li>
+<p>transcribe /træn'skraɪb/ vt. 誊写；打印；转录</p>
+<ul>
+<li>Recordings of conversations have been transcribed.谈话的录音已被转写。</li>
+</ul>
+</li>
+<li>
+<p>impair v. 损害，削弱，减少</p>
+<ul>
+<li>The injured leg has impaired his ability to run.</li>
+</ul>
+</li>
+<li>
+<p>corps n. 特种部队；一群人</p>
+<ul>
+<li>He is a number of intelligence corps.</li>
+</ul>
+</li>
+<li>
+<p>procession n. 行列, 列队行进, 游行, （一个接着一个而来的）一队人</p>
+<ul>
+<li>The long wedding procession follows the bride and bridegroom.</li>
+</ul>
+</li>
+<li>
+<p>nickel and dime 斤斤计较, 锱铢必较</p>
+</li>
+<li>
+<p>landfill n. 垃圾填埋（场）</p>
+<ul>
+<li>The rubbish will end up in landfill sites.</li>
+<li>landfill site 垃圾填埋场；垃圾堆填区</li>
+<li>sanitary landfill 卫生掩埋；垃圾填坑</li>
+<li>landfill gas 填埋的废物气体</li>
+</ul>
+</li>
+<li>
+<p>principal n. 校长; 院长; 负责人; 主要演员; 本金; 委托人; 主犯 adj. 首要的; 主要的; 最重要的; 资本的; 本金的</p>
+</li>
+<li>
+<p>sip v. 小口地喝；吸吮</p>
+<ul>
+<li>He sipped at his wine with pleasure and then put it down.</li>
+<li>lick 舔吃，sip 啜饮，slurp 咕嘟咕嘟地喝，suck 吸，gulp 大口地喝，swallow 吞咽</li>
+</ul>
+</li>
+<li>
+<p>incorporate /ɪn'kɔːpəreɪt/ v. 包含，把…包括在内；（使）合并，并入，吸纳；注册成立</p>
+<ul>
+<li>Many of your suggestions have been incorporated in the new plan.</li>
+</ul>
+</li>
+</ul>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
-                    VHDL学习
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/lecture-5-understand-architecture-better/">
+                <a href="https://ray-sang.github.io/post/2020-qiu-tian-de-jiao-da/">
                   <h3 class="post-title">
-                    Lecture 5, understand architecture better
+                    2020秋天的交大
                   </h3>
                 </a>
               </div>

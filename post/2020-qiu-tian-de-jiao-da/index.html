@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Lecture 6, understand signals with select statement | Ray&#39;s Space</title>
+<title>2020秋天的交大 | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,10 +18,22 @@
 
 
 
-    <meta name="description" content="
-Lecture 6, understand signals with select statement
-In this lecture, we will discuss signals and concurrent statements:..." />
-    <meta name="keywords" content="VHDL学习" />
+    <meta name="description" content="这个主题/标签用来存放一些照片。每日一图还是坚持不下去，可能要我每天坚持做一件事情还是太难。
+
+试用了一下28-135。这个头在长焦还是过分肉了。
+
+
+去致远湖边：
+
+
+
+
+太阳落下了
+
+路灯
+
+..." />
+    <meta name="keywords" content="拍照" />
   </head>
   <body>
     <div id="app" class="main">
@@ -92,75 +104,31 @@ In this lecture, we will discuss signals and concurrent statements:..." />
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Lecture 6, understand signals with select statement</h2>
-            <div class="post-date">2020-09-24</div>
+            <h2 class="post-title">2020秋天的交大</h2>
+            <div class="post-date">2020-10-24</div>
             
             <div class="post-content" v-pre>
-              <!-- more -->
-<h1 id="lecture-6-understand-signals-with-select-statement">Lecture 6, understand signals with select statement</h1>
-<p>In this lecture, we will discuss signals and concurrent statements:</p>
-<ul>
-<li>when-else statement</li>
-<li>with select statement</li>
-</ul>
-<h2 id="signals">signals</h2>
-<p>Signals represent wires within a circuit.</p>
-<pre><code class="language-vhdl">architecture and_gt of anding is
-	signal a, b, temp : std_logic;
-	
-	begin
-		temp &lt;= a and b;
-		C &lt;= temp and D
-end and_gt
-</code></pre>
-<p>The signals can be used :</p>
-<ul>
-<li>to connect design entities together &amp; communicate changes in values within a design</li>
-<li>instead of input ports</li>
-</ul>
-<h2 id="concurrent-statement">Concurrent statement</h2>
-<p>concurrent: at the same time, parallel<br>
-concurrent constructs:</p>
-<ul>
-<li>when else statement</li>
-<li>with select statement</li>
-</ul>
-<p>Take <strong>combinational feedback</strong> for example:<br>
-In VHDL, if you write <code>X &lt;= X + Y;</code> , you get a adder whose output feedbacks to its input. It is a very <strong>bad</strong> style of design, a <strong>sin</strong>!</p>
-<h2 id="drivers">Drivers</h2>
-<p>In <code>Z &lt;= A</code> , A becomes the driver of Z.<br>
-Avoid multiple drivers:</p>
-<pre><code class="language-vhdl">architecture CONCURRENT of MULTIPLE is
-	signal Z, A, B, C, D : std_logic;
-begin 
-	Z &lt;= A and B;
-	Z &lt;= C and D;
-end CONCURRENT
-</code></pre>
-<p>As shown, Z was assigned two times, hence has multiple drivers.</p>
-<p>That lead to <strong>conditional assignment</strong>.</p>
-<h2 id="when-statement">when statement</h2>
-<pre><code class="language-vhdl">Z &lt;= A when ASSIGN_A = '1' else
-	 B when ASSIGN_B = '1' else
-	 C；
-</code></pre>
-<ul>
-<li>modeling tri-state buffer</li>
-</ul>
-<pre><code class="language-vhdl">architecture tri_ex_a of tri_ex is
-	signal out1 : std_logic;
-begin
-	out1 &lt;= in1 when control = '1' else
-		'Z'; -- high impedence, no current flowing(current cannot flow at all)
-end tri_ex_a;
-</code></pre>
+              <p>这个主题/标签用来存放一些照片。每日一图还是坚持不下去，可能要我每天坚持做一件事情还是太难。</p>
+<!-- more -->
+<p>试用了一下28-135。这个头在长焦还是过分肉了。<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/IMG_2399.JPG" alt="" loading="lazy"></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/202010_2398.JPG" alt="" loading="lazy"></figure>
+<p>去致远湖边：<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/202010_2443-1.jpg" alt="" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2504-1.jpg" alt="" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2529-1.jpg" alt="" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/2020_2533-1.jpg" alt="" loading="lazy"></p>
+<p>太阳落下了<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/202010_2478.JPG" alt="" loading="lazy"></p>
+<p>路灯<br>
+<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/IMG_2479.JPG" alt="" loading="lazy"></p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
-                    VHDL学习
+                  <a href="https://ray-sang.github.io/tag/_9PkOUM04/" class="tag">
+                    拍照
                   </a>
                 
               </div>
@@ -168,9 +136,9 @@ end tri_ex_a;
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/lecture-5-understand-architecture-better/">
+                <a href="https://ray-sang.github.io/post/ru-he-zai-latex-zhong-cha-ru-zi-tu-subfigure-bao/">
                   <h3 class="post-title">
-                    Lecture 5, understand architecture better
+                    如何在LaTeX中插入子图（subfigure包）
                   </h3>
                 </a>
               </div>
