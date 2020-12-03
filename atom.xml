@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-12-01T14:03:21.077Z</updated>
+    <updated>2020-12-03T07:08:07.861Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,46 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[群晖Docker安装Jellyfin踩的坑]]></title>
+        <id>https://ray-sang.github.io/post/qun-hui-docker-an-zhuang-jellyfin-cai-de-keng/</id>
+        <link href="https://ray-sang.github.io/post/qun-hui-docker-an-zhuang-jellyfin-cai-de-keng/">
+        </link>
+        <updated>2020-12-03T06:39:11.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="jellyfin安装">Jellyfin安装</h1>
+<p>Docker中搜索jellyfin，进行安装。http端口是8096.路由器做好端口映射可以外网访问。<br>
+https://post.smzdm.com/p/a6lnxg3g/</p>
+<p>添加媒体库时，<strong>不要使用任何jellyfin自带的刮削器，包括tmdb等</strong>，否则会导致扫描不出文件夹内的电影文件。刮削方法详见 #影片刮削 部分。</p>
+<p>Nas内文件夹映射逻辑：<br>
+所有影视文件建议放在一个共享文件夹内，再分为多个分类文件夹存储文件（movie，series，etc）。对于每个子文件夹创建媒体库。</p>
+<h1 id="影片刮削">影片刮削</h1>
+<p>参考：https://www.bilibili.com/video/av73683523<br>
+https://post.smzdm.com/p/a4wkqw37/<br>
+https://blog.csdn.net/weixin_43808708/article/details/108909205</p>
+<p>文件的挂载方法：WebDAV挂载（通过RaiDrive）；本地直接通过文件管理器</p>
+<blockquote>
+<p>\192.168.1.xxx</p>
+</blockquote>
+<p>选择刮削器时，选择tmdb。但是按照阿文菌的方法仍然刮削不出，使用imdb可以刮削出英文的信息。后采取司波图评论区方案，成功刮削。</p>
+<blockquote>
+<p>研究了几天，发现问题了，是api.themoviedb.org连不通了，所以才会刮削不到，问了TMM的作者一开始也解决不了.后来发现解决方法很简单：<br>
+文件管理器打开Windows\System32\drivers\etc，右键hosts文件，在安全选项里选择users用户组，在权限这里给&quot;完全控制&quot;权限<br>
+然后就可以编辑 hosts文件了，在文件最末尾加这段<br>
+13.224.161.90 api.themoviedb.org<br>
+保存，然后TMM就不抽疯了</p>
+</blockquote>
+<p>另一种办法，在群晖docker中安装TMM：<br>
+https://www.jianshu.com/p/1f09ad93a9f0</p>
+<h1 id="硬件解码">硬件解码</h1>
+<p>要求DS918+系统。四代以上CPU。</p>
+<p>如何查看是否支持硬件解码：<br>
+powershell链接nas：ssh admin@192.168.1.xxx，输入admin密码，s输入sudo -i获取root权限，ls /dev/dri ，若输出输出 card0 renderD128说明支持硬件解码。即可在jellyfin中开启。</p>
+<h1 id="移动端访问">移动端访问</h1>
+<p>可以使用Jellyfin自带客户端，App Store下载。</p>
+<p>推荐使用<strong>Infuse</strong>，支持smb/WebDAV/Jellyfin/emby等多种挂载方式。刮削效率高，使用顺手。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020/11/17 Tuesday]]></title>
         <id>https://ray-sang.github.io/post/20201117-tuesday/</id>
@@ -1023,233 +1063,6 @@
 </ul>
 </li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[硬件仿真课程作业-gcd]]></title>
-        <id>https://ray-sang.github.io/post/ying-jian-fang-zhen-ke-cheng-zuo-ye-gcd/</id>
-        <link href="https://ray-sang.github.io/post/ying-jian-fang-zhen-ke-cheng-zuo-ye-gcd/">
-        </link>
-        <updated>2020-10-11T12:38:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>要求：<br>
-设计一个电路，实现最大公约数计算。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>要求：<br>
-设计一个电路，实现最大公约数计算。</p>
-<!-- more -->
-<p>例程对应的entity结构为：</p>
-<pre><code class="language-vhdl">entity gcd is
-
-    port
-
-    (
-
-        clock, new_input : in std_logic;
-
-        a, b   : in  unsigned(15 downto 0);
-
-        result : out unsigned(15 downto 0):=to_unsigned(0,16);
-
-        busy   : out std_logic
-
-    );
-
-end;
-</code></pre>
-<p>各个信号功能说明如下：<br>
-Clock：时钟，在它的上升沿作用下进行数据计算<br>
-New_input：该信号=’1’时，表示需要在clock上升沿输入待计算的两个数a和b<br>
-Result: 运算结果，当busy=‘0‘时输出最新的运算结果<br>
-Busy: 表明当前电路处于运算中，还是运算完成，它为‘1’的时候表明运算尚未完成，此时result的内容不可用，但它为’0’时，表明运算结束，此时result存放的是运算结果（最近一次new_input=‘1‘时输入数据a和b的最大公约数）</p>
-<p>tb的结果应该为：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd.png" alt="" loading="lazy"></p>
-<p>我的程序：</p>
-<pre><code class="language-vhdl">library ieee; 
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity gcd is
-    port 
-    (
-        clock, new_input : in std_logic;
-        a, b   : in  unsigned(15 downto 0);
-        result : out unsigned(15 downto 0):=to_unsigned(0,16);
-        busy   : out std_logic
-    );
-end gcd;
-
-architecture rtl of gcd is
-    -- fill you code here
-begin
-    process(clock)
-    -- fill your code
-    variable flag : boolean := false;
-    variable n1, n2 : unsigned(15 downto 0);
-    
-    begin
-        if rising_edge(clock) then
-
-            if (new_input = '1') then
-                n1 := a;
-                n2 := b;
-                busy &lt;= '1';
-                flag := true;
-            end if;
-
-            if (n1 = 1 or n2 = 1) then -- consider when a or b = 1, then gcd is always 1
-            	flag := false;
-            	busy &lt;= '0';
-            elsif (n1 &gt; n2) then
-                n1 := n1 - n2;
-            elsif (n1 &lt; n2) then
-                n2 := n2 - n1;
-            else
-                flag := false;
-                busy &lt;= '0';
-            end if;
-
-            if (flag=false) then
-                result &lt;= n1;
-            end if;
-            --calculate : while (n1 /= n2) loop
-            --    if (n1&gt;n2) then
-            --        n1 := n1 - n2;
-            --    elsif (n2&gt;n1) then
-            --        n2 := n2 - n1;
-            --    --else
-            --    --    flag := false;
-            --    --    result &lt;= n1;
-            --    end if;
-            --end loop calculate;
-
-        end if;
-    end process;
-
-end;
-
-</code></pre>
-<p>我的tb波形：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_mine.png" alt="" loading="lazy"></p>
-<p>但是这样的问题是，最初的时候，a、b信号未赋值，输出为XXXX。与要求的波形不符。分析得，n1在不确定时，会给result赋值X。那么，考虑给n1、n2添加默认值0：<code>variable n1, n2 : unsigned(15 downto 0) := to_unsigned(0,16);</code>,并且修改代码。</p>
-<p>修改后的代码为：</p>
-<pre><code class="language-vhdl">library ieee; 
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity gcd is
-    port 
-    (
-        clock, new_input : in std_logic;
-        a, b   : in  unsigned(15 downto 0);
-        result : out unsigned(15 downto 0):=to_unsigned(0,16);
-        busy   : out std_logic
-    );
-end gcd;
-
-architecture rtl of gcd is
-
-begin
-    process(clock)
-    variable n1, n2 : unsigned(15 downto 0) := to_unsigned(0,16);
-    
-    begin
-        if rising_edge(clock) then
-
-            if (new_input = '1') then
-                n1 := a;
-                n2 := b;
-                busy &lt;= '1';
-            end if;
-
-            if (n1 = 1 or n2 = 1) then -- consider when a or b = 1, then gcd is always 1
-            	busy &lt;= '0';
-            	result &lt;= n1;
-            elsif (n1 &gt; n2) then
-                n1 := n1 - n2;
-            elsif (n1 &lt; n2) then
-                n2 := n2 - n1;
-            else
-                busy &lt;= '0';
-                result &lt;= n1;
-            end if;
-
-            --calculate : while (n1 /= n2) loop
-            --    if (n1&gt;n2) then
-            --        n1 := n1 - n2;
-            --    elsif (n2&gt;n1) then
-            --        n2 := n2 - n1;
-            --    --else
-            --    --    flag := false;
-            --    --    result &lt;= n1;
-            --    end if;
-            --end loop calculate;
-            null;
-        end if;
-    end process;
-
-end;
-</code></pre>
-<p>修改后的tb为：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_mine_refined.png" alt="" loading="lazy"></p>
-<p>盖的程序：我觉得最大的不同/优点就是使用temp的变量代替信号的作用，实现实时赋值，不用考虑信号赋值的问题。但是不需要使用tmp_a and tmp_b，故我在此处进行了注释处理。</p>
-<pre><code class="language-vhdl">library ieee; 
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity gcd is
-    port 
-    (
-        clock, new_input : in std_logic;
-        a, b   : in  unsigned(15 downto 0);
-        result : out unsigned(15 downto 0):=to_unsigned(0,16);
-        busy   : out std_logic
-    );
-end;
-
-architecture rtl of gcd is
-    --signal tmp_a, tmp_b : unsigned(15 downto 0);
-    
-begin
-    --tmp_a &lt;= a ;
-    --tmp_b &lt;= b ;
-
-    process(clock)
-    variable tmp_busy : integer :=0;
-    variable int_a, int_b : unsigned(15 downto 0) ;
-    begin
-        if rising_edge(clock) then
-           if new_input='0' then
-              busy&lt;= '0';
-           end if;
-           if new_input = '1' then
-                 busy &lt;= '1' ;
-                 tmp_busy :=1;
-                -- int_a := tmp_a;
-                 --int_b := tmp_b;
-                 int_a := a;
-                 int_b := b;
-            end if;
-            if tmp_busy = 1 then
-                if int_a &gt; int_b  then
-                      int_a :=int_a-int_b;
-                elsif int_a&lt;int_b then
-                      int_b :=int_b-int_a;
-                end if;
-            end if;
-            if int_a = int_b then
-                 busy&lt;='0';
-                 tmp_busy:=0;
-                 result&lt;=int_a;
-            end if;
-            null;
-        end if;
-    end process;
-end;
-
-
-</code></pre>
-<p>波形图：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/vhdl_homework_gcd_gai.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>2020/09/07 Monday | Ray&#39;s Space</title>
+<title>群晖Docker安装Jellyfin踩的坑 | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -19,18 +19,11 @@
 
 
     <meta name="description" content="
-detrimental adj. 损害的，有害的
-
-be detrimental to sb's health
-have detrimental influence upon
-
-
-
-
-
-
-enfranchise /ɪnˈfræntʃaɪz..." />
-    <meta name="keywords" content="雅思单词" />
+Jellyfin安装
+Docker中搜索jellyfin，进行安装。http端口是8096.路由器做好端口映射可以外网访问。
+https://post.smzdm.com/p/a6lnxg3g/
+添加媒体库时，不要使用任何jellyfin..." />
+    <meta name="keywords" content="搞机" />
   </head>
   <body>
     <div id="app" class="main">
@@ -101,128 +94,49 @@ enfranchise /ɪnˈfræntʃaɪz..." />
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">2020/09/07 Monday</h2>
-            <div class="post-date">2020-09-07</div>
+            <h2 class="post-title">群晖Docker安装Jellyfin踩的坑</h2>
+            <div class="post-date">2020-12-03</div>
             
             <div class="post-content" v-pre>
-              <ul>
-<li>detrimental adj. 损害的，有害的
-<ul>
-<li>be detrimental to sb's health</li>
-<li>have detrimental influence upon</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li>
-<p>enfranchise /ɪnˈfræntʃaɪz/ v. 给(某人)选举权</p>
-</li>
-<li>
-<p>truce n. 讲和协议；休战协定</p>
-<ul>
-<li>declear a truce</li>
-</ul>
-</li>
-<li>
-<p>aeration n. 通风；充气</p>
-<ul>
-<li>aerial adj. 空气的</li>
-</ul>
-</li>
-<li>
-<p>avalanche n. 雪崩</p>
-<ul>
-<li>an avalanch of 大量的</li>
-</ul>
-</li>
-<li>
-<p>spiritual adj. 精神的，心灵的</p>
-<ul>
-<li>a spiritual experience</li>
-</ul>
-</li>
-<li>
-<p>deem v. 认为；视为；相信</p>
-<ul>
-<li>He deems it is his duty to help his needy friends.</li>
-</ul>
-</li>
-<li>
-<p>incur v. 招致，遭受</p>
-<ul>
-<li>The play that mocks the gay community incurred the anger of the audience.</li>
-</ul>
-</li>
-<li>
-<p>impede v. 妨碍，阻碍</p>
-<ul>
-<li>impede sb to do sth</li>
-<li>balk</li>
-<li>The rugged road impeded our progress.</li>
-</ul>
-</li>
-<li>
-<p>judicious adj. 明智的，审慎的</p>
-<ul>
-<li>judicature</li>
-<li>judicatory</li>
-<li>judicial</li>
-<li>make judicious use of the natural resources.</li>
-</ul>
-</li>
-<li>
-<p>trinket n. 小装饰品；廉价的珠宝</p>
-</li>
-<li>
-<p>acrobat n. 特技演员；杂技演员</p>
-</li>
-<li>
-<p>bulletin n. 公告，告示；新闻快报；简报</p>
-<ul>
-<li>bulletin board,公告栏</li>
-<li>BBS：bulletin board system</li>
-<li>a bulletin was issued yesterday</li>
-</ul>
-</li>
-<li>
-<p>sponge n. 海绵 v. 用湿布/海绵擦洗</p>
-</li>
-<li>
-<p>forfeit v. 丧失，被没收 n. 罚款；没收物</p>
-<ul>
-<li>I'm afraid you may forfeit your deposit if you cancel now.</li>
-<li>be forfeit to 被征用</li>
-<li>counterfeit n. 赝品 adj. 假冒的，伪造的 v. 伪造</li>
-</ul>
-</li>
-<li>
-<p>exacerbate v. 恶化，加剧</p>
-<ul>
-<li>aggravate, worsen, intensify, amplify</li>
-</ul>
-</li>
-<li>
-<p>deter v. 制止，吓住；（使）打消念头</p>
-<ul>
-<li>deter from doing</li>
-</ul>
-</li>
-<li>
-<p>formidable adj. 可怕的；令人敬畏的；难对付的</p>
-<ul>
-<li>dreadful</li>
-<li>insurmountable adj. 无法克服的；难以解决的；不可逾越的</li>
-</ul>
-</li>
-</ul>
+              <!-- more -->
+<h1 id="jellyfin安装">Jellyfin安装</h1>
+<p>Docker中搜索jellyfin，进行安装。http端口是8096.路由器做好端口映射可以外网访问。<br>
+https://post.smzdm.com/p/a6lnxg3g/</p>
+<p>添加媒体库时，<strong>不要使用任何jellyfin自带的刮削器，包括tmdb等</strong>，否则会导致扫描不出文件夹内的电影文件。刮削方法详见 #影片刮削 部分。</p>
+<p>Nas内文件夹映射逻辑：<br>
+所有影视文件建议放在一个共享文件夹内，再分为多个分类文件夹存储文件（movie，series，etc）。对于每个子文件夹创建媒体库。</p>
+<h1 id="影片刮削">影片刮削</h1>
+<p>参考：https://www.bilibili.com/video/av73683523<br>
+https://post.smzdm.com/p/a4wkqw37/<br>
+https://blog.csdn.net/weixin_43808708/article/details/108909205</p>
+<p>文件的挂载方法：WebDAV挂载（通过RaiDrive）；本地直接通过文件管理器</p>
+<blockquote>
+<p>\192.168.1.xxx</p>
+</blockquote>
+<p>选择刮削器时，选择tmdb。但是按照阿文菌的方法仍然刮削不出，使用imdb可以刮削出英文的信息。后采取司波图评论区方案，成功刮削。</p>
+<blockquote>
+<p>研究了几天，发现问题了，是api.themoviedb.org连不通了，所以才会刮削不到，问了TMM的作者一开始也解决不了.后来发现解决方法很简单：<br>
+文件管理器打开Windows\System32\drivers\etc，右键hosts文件，在安全选项里选择users用户组，在权限这里给&quot;完全控制&quot;权限<br>
+然后就可以编辑 hosts文件了，在文件最末尾加这段<br>
+13.224.161.90 api.themoviedb.org<br>
+保存，然后TMM就不抽疯了</p>
+</blockquote>
+<p>另一种办法，在群晖docker中安装TMM：<br>
+https://www.jianshu.com/p/1f09ad93a9f0</p>
+<h1 id="硬件解码">硬件解码</h1>
+<p>要求DS918+系统。四代以上CPU。</p>
+<p>如何查看是否支持硬件解码：<br>
+powershell链接nas：ssh admin@192.168.1.xxx，输入admin密码，s输入sudo -i获取root权限，ls /dev/dri ，若输出输出 card0 renderD128说明支持硬件解码。即可在jellyfin中开启。</p>
+<h1 id="移动端访问">移动端访问</h1>
+<p>可以使用Jellyfin自带客户端，App Store下载。</p>
+<p>推荐使用<strong>Infuse</strong>，支持smb/WebDAV/Jellyfin/emby等多种挂载方式。刮削效率高，使用顺手。</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/wmpvTqMUZ/" class="tag">
-                    雅思单词
+                  <a href="https://ray-sang.github.io/tag/wrGIlUR1X/" class="tag">
+                    搞机
                   </a>
                 
               </div>
@@ -230,9 +144,9 @@ enfranchise /ɪnˈfræntʃaɪz..." />
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/mei-ri-yi-tu-20200907/">
+                <a href="https://ray-sang.github.io/post/20201117-tuesday/">
                   <h3 class="post-title">
-                    每日一图 2020/09/07
+                    2020/11/17 Tuesday
                   </h3>
                 </a>
               </div>
