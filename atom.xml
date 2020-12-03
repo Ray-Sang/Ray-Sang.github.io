@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-12-03T07:08:07.861Z</updated>
+    <updated>2020-12-03T15:47:28.510Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -47,7 +47,8 @@ https://www.jianshu.com/p/1f09ad93a9f0</p>
 powershell链接nas：ssh admin@192.168.1.xxx，输入admin密码，s输入sudo -i获取root权限，ls /dev/dri ，若输出输出 card0 renderD128说明支持硬件解码。即可在jellyfin中开启。</p>
 <h1 id="移动端访问">移动端访问</h1>
 <p>可以使用Jellyfin自带客户端，App Store下载。</p>
-<p>推荐使用<strong>Infuse</strong>，支持smb/WebDAV/Jellyfin/emby等多种挂载方式。刮削效率高，使用顺手。</p>
+<p>推荐使用<strong>Infuse</strong>，支持smb/WebDAV/Jellyfin/emby等多种挂载方式。刮削效率高，使用顺手。<br>
+更新！infuse在使用时一定在jellyfin关闭硬件转码，不然外网访问nas会出现问题，过一段时间才自动恢复。</p>
 ]]></content>
     </entry>
     <entry>
