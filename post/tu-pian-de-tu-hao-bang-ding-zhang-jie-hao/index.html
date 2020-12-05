@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Lecture 14, Lab 5, case-select statement | Ray&#39;s Space</title>
+<title>图片的图号绑定章节号 | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -19,15 +19,8 @@
 
 
     <meta name="description" content="
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-entity case_sel is
-port(
-	A : in std_logic;
-	B : in std_logic;
-	C : in std_..." />
-    <meta name="keywords" content="VHDL学习" />
+平时看书经常看到“图1.2”这样的编号，含义是第1章的第2幅插图；或者“图1.1.2”，含义是第1章第1节的第2幅插图。而在LaTeX中如果直接插图的话只会显示“图2”这样的编号，有没有办法在LaTeX的图表序号中加入章节序号呢？办法肯定..." />
+    <meta name="keywords" content="LaTeX学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -98,49 +91,32 @@ port(
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Lecture 14, Lab 5, case-select statement</h2>
-            <div class="post-date">2020-10-08</div>
+            <h2 class="post-title">图片的图号绑定章节号</h2>
+            <div class="post-date">2020-12-05</div>
             
             <div class="post-content" v-pre>
               <!-- more -->
-<pre><code class="language-vhdl">library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-entity case_sel is
-port(
-	A : in std_logic;
-	B : in std_logic;
-	C : in std_logic;
-	D : in std_logic;
-	sel : in std_logic_vector(1 downto 0);
-	Y : out std_logic
-);
-end case_sel;
-
-
-architecture Behavioral of case_sel is
-
-begin
-process(A, B, C, D, sel)
-	begin
-		case sel is
-			when &quot;00&quot; =&gt; Y &lt;= A;
-			when &quot;01&quot; =&gt; Y &lt;= B;
-			when &quot;10&quot; =&gt; Y &lt;= C;
-			when &quot;11&quot; =&gt; Y &lt;= D;
-			when others =&gt; Y &lt;= '0';
-		end case;
-	end process;
-end Behavioral;
-
+<p>平时看书经常看到“图1.2”这样的编号，含义是第1章的第2幅插图；或者“图1.1.2”，含义是第1章第1节的第2幅插图。而在LaTeX中如果直接插图的话只会显示“图2”这样的编号，有没有办法在LaTeX的图表序号中加入章节序号呢？办法肯定是有的，下面就是一种办法。</p>
+<p>在插入图表之前（比如导言区）加入以下两行代码：</p>
+<pre><code class="language-latex">\usepackage{amsmath}
+\numberwithin{figure}{section} %关联图号和章节，应该是每一个section重置一下图号计数器
+\renewcommand {\thefigure} {\thesection{}-\arabic{figure}} %修改图号格式，3-2
+% \renewcommand {\thetable} {\thechapter{}.\arabic{table}}  % 3.2
+% \renewcommand {\thefigure} {\thesection{}.\arabic{figure}}
 </code></pre>
+<p>其中\thechapter是章节号，类似地还有\thesection、\thesubsection。table和figure是表格和图片计数器（counter）的值。</p>
+<p>需要注意的是\thechapter、\thesection和\thesubsection这三个宏的输出会包含上层序号，比如在第1章（chapter）第2节（section）第3小节（subsection）中，\thesubsection的输出结果就是1.2.3，\thesection的输出结果就是1.2，\thechapter的输出结果就是1。使用时要注意避免重复，只用其中一个就行了。</p>
+<p>与上面三个宏形成对比的是\arabic{chapter}、\arabic{section}和\arabic{subsection}这三个命令，它们也可用在前面的指令中，但它们只输出当前一层的序号，同样以第1章（chapter）第2节（section）第3小节（subsection）为例，\arabic{subsection}的输出结果是3，\arabic{section}的输出结果是2，\arabic{chapter}的输出结果是1。使用这三个指令可以输出“1-2-3”这样的章节编号。</p>
+<p>这种方法有一个问题，table和figure计数器不会自动清零，比如第1章有3幅图片，到第2章时LaTeX会从“图2.4”开始编号。为了解决这个问题，需要在合适的地方（比如一章结尾或下一章开头）手动将计数器清零，即<br>
+\setcounter{table}{0}<br>
+\setcounter{figure}{0}</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
-                    VHDL学习
+                  <a href="https://ray-sang.github.io/tag/_IFkg8nI7/" class="tag">
+                    LaTeX学习
                   </a>
                 
               </div>
@@ -148,9 +124,9 @@ end Behavioral;
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/lecture-13-lab-4-process-simulation/">
+                <a href="https://ray-sang.github.io/post/qun-hui-docker-an-zhuang-jellyfin-cai-de-keng/">
                   <h3 class="post-title">
-                    Lecture 13, Lab 4, process simulation
+                    群晖Docker安装Jellyfin踩的坑
                   </h3>
                 </a>
               </div>

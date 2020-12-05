@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-12-03T15:47:28.510Z</updated>
+    <updated>2020-12-05T07:27:19.808Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[图片的图号绑定章节号]]></title>
+        <id>https://ray-sang.github.io/post/tu-pian-de-tu-hao-bang-ding-zhang-jie-hao/</id>
+        <link href="https://ray-sang.github.io/post/tu-pian-de-tu-hao-bang-ding-zhang-jie-hao/">
+        </link>
+        <updated>2020-12-05T07:16:03.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>平时看书经常看到“图1.2”这样的编号，含义是第1章的第2幅插图；或者“图1.1.2”，含义是第1章第1节的第2幅插图。而在LaTeX中如果直接插图的话只会显示“图2”这样的编号，有没有办法在LaTeX的图表序号中加入章节序号呢？办法肯定是有的，下面就是一种办法。</p>
+<p>在插入图表之前（比如导言区）加入以下两行代码：</p>
+<pre><code class="language-latex">\usepackage{amsmath}
+\numberwithin{figure}{section} %关联图号和章节，应该是每一个section重置一下图号计数器
+\renewcommand {\thefigure} {\thesection{}-\arabic{figure}} %修改图号格式，3-2
+% \renewcommand {\thetable} {\thechapter{}.\arabic{table}}  % 3.2
+% \renewcommand {\thefigure} {\thesection{}.\arabic{figure}}
+</code></pre>
+<p>其中\thechapter是章节号，类似地还有\thesection、\thesubsection。table和figure是表格和图片计数器（counter）的值。</p>
+<p>需要注意的是\thechapter、\thesection和\thesubsection这三个宏的输出会包含上层序号，比如在第1章（chapter）第2节（section）第3小节（subsection）中，\thesubsection的输出结果就是1.2.3，\thesection的输出结果就是1.2，\thechapter的输出结果就是1。使用时要注意避免重复，只用其中一个就行了。</p>
+<p>与上面三个宏形成对比的是\arabic{chapter}、\arabic{section}和\arabic{subsection}这三个命令，它们也可用在前面的指令中，但它们只输出当前一层的序号，同样以第1章（chapter）第2节（section）第3小节（subsection）为例，\arabic{subsection}的输出结果是3，\arabic{section}的输出结果是2，\arabic{chapter}的输出结果是1。使用这三个指令可以输出“1-2-3”这样的章节编号。</p>
+<p>这种方法有一个问题，table和figure计数器不会自动清零，比如第1章有3幅图片，到第2章时LaTeX会从“图2.4”开始编号。为了解决这个问题，需要在合适的地方（比如一章结尾或下一章开头）手动将计数器清零，即<br>
+\setcounter{table}{0}<br>
+\setcounter{figure}{0}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[群晖Docker安装Jellyfin踩的坑]]></title>
         <id>https://ray-sang.github.io/post/qun-hui-docker-an-zhuang-jellyfin-cai-de-keng/</id>
@@ -930,140 +953,6 @@ powershell链接nas：ssh admin@192.168.1.xxx，输入admin密码，s输入sudo 
 
 </code></pre>
 <p>来源：https://tex.stackexchange.com/questions/62346/enlarging-tracking-letter-spacing</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020/10/12 Monday]]></title>
-        <id>https://ray-sang.github.io/post/20201012-monday/</id>
-        <link href="https://ray-sang.github.io/post/20201012-monday/">
-        </link>
-        <updated>2020-10-12T10:24:41.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<p>回顾</p>
-<ul>
-<li>formidable</li>
-<li>hose</li>
-<li>plaster</li>
-<li>astrology</li>
-<li>credible</li>
-<li>dredge</li>
-<li>swamp</li>
-<li>siesta</li>
-<li>crescent</li>
-<li>skew</li>
-<li>coffer</li>
-<li>subsidy</li>
-<li>crescent</li>
-<li>centennial</li>
-<li>censure</li>
-<li>odour</li>
-<li>audacious</li>
-<li>stint</li>
-<li>arboreal</li>
-<li>absenteeism</li>
-<li>clench</li>
-<li>aggravation</li>
-<li>discriminate</li>
-<li>alienation</li>
-<li>fauna</li>
-<li>avalanche</li>
-<li>cosset</li>
-<li>silt</li>
-<li>acumen</li>
-</ul>
-<p>新词</p>
-<ul>
-<li>
-<p>primarily</p>
-<ul>
-<li>The advertisement is aimed primarily at housewives.</li>
-</ul>
-</li>
-<li>
-<p>beverage n. 饮料</p>
-<ul>
-<li>alcoholic beverages</li>
-</ul>
-</li>
-<li>
-<p>harridan n. 凶恶的老妇;老巫婆</p>
-<ul>
-<li>She seemed an infuriating harridan sometimes.</li>
-</ul>
-</li>
-<li>
-<p>backbone n. 脊椎,骨干;支柱 spine</p>
-<ul>
-<li>Agriculture forms the backbone of the country's economy.</li>
-</ul>
-</li>
-<li>
-<p>ventilation n. 空气流通;通风设备</p>
-<ul>
-<li>ventilate</li>
-</ul>
-</li>
-<li>
-<p>fossil n. 化石;老人;老顽童,老古董</p>
-<ul>
-<li>He found a piece of fossil of an ancient bird.</li>
-</ul>
-</li>
-<li>
-<p>competent</p>
-</li>
-<li>
-<p>grip v. 紧握,紧抓 n. 紧握;把手,夹具;支配,控制</p>
-<ul>
-<li>He gripped the rope tightly and pulled the boat to the shore.</li>
-</ul>
-</li>
-<li>
-<p>bibliography n. 参考书目,书目</p>
-<ul>
-<li>She provides a detailed bibliography of her thesis for readers to find souces of the reference.</li>
-</ul>
-</li>
-<li>
-<p>graphology n. 笔迹学</p>
-<ul>
-<li>graphologist 笔迹学家</li>
-</ul>
-</li>
-<li>
-<p>flaw n. 错误,缺点;裂痕,瑕疵</p>
-<ul>
-<li>drawback shortpoint</li>
-</ul>
-</li>
-<li>
-<p>aesthetic adj. 美学的;审美的</p>
-<ul>
-<li>This oil painting has little aesthetic value.</li>
-<li>esthetic adj. 审美的</li>
-</ul>
-</li>
-<li>
-<p>endorse v. 认可,赞同</p>
-<ul>
-<li>The proposal for an educational reform was endorsed by the state coucil.</li>
-<li>endorser 背书人</li>
-<li>to endorse 背书</li>
-</ul>
-</li>
-<li>
-<p>apparatus n. 装置,器具,机构,组织</p>
-<ul>
-<li>electric apparatus</li>
-</ul>
-</li>
-<li>
-<p>medieval  中世纪的 中古时代的</p>
-<ul>
-<li>medieval attitude 守旧的态度</li>
-</ul>
-</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
