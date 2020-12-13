@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>LaTeX——表格过窄或过宽时的调整 | Ray&#39;s Space</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1607823632268">
+<link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+问题：表格不匹配页面宽度
+表格一直是LaTeX的难点，我一直搞不懂。在写作业时，出现了表格大小超出页面范围或不匹配页面范围的情况。下面给出解决措施。
+SOLUTION 1
+
+本方法来自于cdsn：https://blog.csdn.net..." />
+    <meta name="keywords" content="LaTeX学习" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ray-sang.github.io">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1607823632268" class="site-logo">
+        <h1 class="site-title">Ray&#39;s Space</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Plain living and high thicking
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ray-sang.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">LaTeX——表格过窄或过宽时的调整</h2>
+            <div class="post-date">2020-12-13</div>
+            
+            <div class="post-content" v-pre>
+              <!-- more -->
+<h1 id="问题表格不匹配页面宽度">问题：表格不匹配页面宽度</h1>
+<p>表格一直是LaTeX的难点，我一直搞不懂。在写作业时，出现了表格大小超出页面范围或不匹配页面范围的情况。下面给出解决措施。</p>
+<h1 id="solution-1">SOLUTION 1</h1>
+<blockquote>
+<p>本方法来自于cdsn：https://blog.csdn.net/wbl90/article/details/52597429/<br>
+要在配置tex中加入 graphicx包 。</p>
+</blockquote>
+<h2 id="表格过窄小于页面尺寸">表格过窄，小于页面尺寸</h2>
+<p>调整表格宽度， 效果为”按页面宽度调整表格”。<br>
+命令: <code>\setlength{\tabcolsep}{7mm}{XXXX}</code><br>
+实现代码：</p>
+<pre><code class="language-latex">\begin{center}
+\textbf{Table 2}~~Improved table.\\
+\setlength{\tabcolsep}{7mm}{
+    \begin{tabular}{cccccc} \toprule
+    Models  &amp;  $\hat c$  &amp;  $\hat\alpha$  &amp;  $\hat\beta_0$  &amp;  $\hat\beta_1$  &amp;  $\hat\beta_2$  \\ \hline
+    model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 12.4089  &amp; 0.5169  &amp; 18.6986  &amp; -6.6157  &amp; - \\
+    model  &amp; 14.8586  &amp; 0.4991  &amp; 19.5421  &amp; -7.0717  &amp; 0.2183  \\
+    model  &amp; 3.06302  &amp; 0.41266  &amp; 0.11725  &amp; - &amp; - \\
+    model  &amp; 1.24089  &amp; 0.51691  &amp; 0.83605  &amp; -0.66157  &amp; - \\
+    model  &amp; 1.48586  &amp; 0.49906  &amp; 0.95609  &amp; -0.70717  &amp; 0.02183  \\
+    \bottomrule
+    \end{tabular
+}
+\end{center}
+</code></pre>
+<h2 id="表格宽过宽超过页面范围">表格宽过宽，超过页面范围</h2>
+<p>目标: 调整表格宽度, 效果为”按内容调整表格”.<br>
+命令: <code>\resizebox{\textwidth}{15mm}{XXXX}</code><br>
+实现代码:</p>
+<pre><code class="language-latex">\begin{center}
+\textbf{Table 1}~~Original table.\\
+\resizebox{\textwidth}{15mm}{
+    \begin{tabular}{cccccccccccc} \toprule
+    Models  &amp;  $\hat c$  &amp;  $\hat\alpha$  &amp;  $\hat\beta_0$  &amp;  $\hat\beta_1$  &amp;  $\hat\beta_2$ &amp; Models  &amp;  $\hat c$  &amp;  $\hat\alpha$  &amp;  $\hat\beta_0$  &amp;  $\hat\beta_1$  &amp;  $\hat\beta_2$  \\ \hline
+    model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; -  &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; -\\
+    model  &amp; 12.4089  &amp; 0.5169  &amp; 18.6986  &amp; -6.6157  &amp; - &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 14.8586  &amp; 0.4991  &amp; 19.5421  &amp; -7.0717  &amp; 0.2183 &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 3.06302  &amp; 0.41266  &amp; 0.11725  &amp; - &amp; - &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 1.24089  &amp; 0.51691  &amp; 0.83605  &amp; -0.66157  &amp; - &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 1.48586  &amp; 0.49906  &amp; 0.95609  &amp; -0.70717  &amp; 0.02183  &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    \bottomrule
+    \end{tabular}
+}
+\end{center}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/_IFkg8nI7/" class="tag">
+                    LaTeX学习
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/tu-pian-de-tu-hao-bang-ding-zhang-jie-hao/">
+                  <h3 class="post-title">
+                    图片的图号绑定章节号
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

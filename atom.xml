@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2020-12-05T07:27:19.808Z</updated>
+    <updated>2020-12-13T01:40:47.654Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,73 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[LaTeX各种操作汇总（不定时更新）]]></title>
+        <id>https://ray-sang.github.io/post/latex-ge-chong-cao-zuo-hui-zong-bu-ding-shi-geng-xin/</id>
+        <link href="https://ray-sang.github.io/post/latex-ge-chong-cao-zuo-hui-zong-bu-ding-shi-geng-xin/">
+        </link>
+        <updated>2020-12-13T01:39:13.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="正文间距段行列间距调整与表格调整宽度-合并-表注">正文间距(段行列间距)调整与表格调整(宽度, 合并, 表注)</h1>
+<p>https://blog.csdn.net/wbl90/article/details/79821532</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[LaTeX——表格过窄或过宽时的调整]]></title>
+        <id>https://ray-sang.github.io/post/latex-biao-ge-guo-zhai-huo-guo-kuan-shi-de-diao-zheng/</id>
+        <link href="https://ray-sang.github.io/post/latex-biao-ge-guo-zhai-huo-guo-kuan-shi-de-diao-zheng/">
+        </link>
+        <updated>2020-12-13T01:31:12.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="问题表格不匹配页面宽度">问题：表格不匹配页面宽度</h1>
+<p>表格一直是LaTeX的难点，我一直搞不懂。在写作业时，出现了表格大小超出页面范围或不匹配页面范围的情况。下面给出解决措施。</p>
+<h1 id="solution-1">SOLUTION 1</h1>
+<blockquote>
+<p>本方法来自于cdsn：https://blog.csdn.net/wbl90/article/details/52597429/<br>
+要在配置tex中加入 graphicx包 。</p>
+</blockquote>
+<h2 id="表格过窄小于页面尺寸">表格过窄，小于页面尺寸</h2>
+<p>调整表格宽度， 效果为”按页面宽度调整表格”。<br>
+命令: <code>\setlength{\tabcolsep}{7mm}{XXXX}</code><br>
+实现代码：</p>
+<pre><code class="language-latex">\begin{center}
+\textbf{Table 2}~~Improved table.\\
+\setlength{\tabcolsep}{7mm}{
+    \begin{tabular}{cccccc} \toprule
+    Models  &amp;  $\hat c$  &amp;  $\hat\alpha$  &amp;  $\hat\beta_0$  &amp;  $\hat\beta_1$  &amp;  $\hat\beta_2$  \\ \hline
+    model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 12.4089  &amp; 0.5169  &amp; 18.6986  &amp; -6.6157  &amp; - \\
+    model  &amp; 14.8586  &amp; 0.4991  &amp; 19.5421  &amp; -7.0717  &amp; 0.2183  \\
+    model  &amp; 3.06302  &amp; 0.41266  &amp; 0.11725  &amp; - &amp; - \\
+    model  &amp; 1.24089  &amp; 0.51691  &amp; 0.83605  &amp; -0.66157  &amp; - \\
+    model  &amp; 1.48586  &amp; 0.49906  &amp; 0.95609  &amp; -0.70717  &amp; 0.02183  \\
+    \bottomrule
+    \end{tabular
+}
+\end{center}
+</code></pre>
+<h2 id="表格宽过宽超过页面范围">表格宽过宽，超过页面范围</h2>
+<p>目标: 调整表格宽度, 效果为”按内容调整表格”.<br>
+命令: <code>\resizebox{\textwidth}{15mm}{XXXX}</code><br>
+实现代码:</p>
+<pre><code class="language-latex">\begin{center}
+\textbf{Table 1}~~Original table.\\
+\resizebox{\textwidth}{15mm}{
+    \begin{tabular}{cccccccccccc} \toprule
+    Models  &amp;  $\hat c$  &amp;  $\hat\alpha$  &amp;  $\hat\beta_0$  &amp;  $\hat\beta_1$  &amp;  $\hat\beta_2$ &amp; Models  &amp;  $\hat c$  &amp;  $\hat\alpha$  &amp;  $\hat\beta_0$  &amp;  $\hat\beta_1$  &amp;  $\hat\beta_2$  \\ \hline
+    model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; -  &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; -\\
+    model  &amp; 12.4089  &amp; 0.5169  &amp; 18.6986  &amp; -6.6157  &amp; - &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 14.8586  &amp; 0.4991  &amp; 19.5421  &amp; -7.0717  &amp; 0.2183 &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 3.06302  &amp; 0.41266  &amp; 0.11725  &amp; - &amp; - &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 1.24089  &amp; 0.51691  &amp; 0.83605  &amp; -0.66157  &amp; - &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    model  &amp; 1.48586  &amp; 0.49906  &amp; 0.95609  &amp; -0.70717  &amp; 0.02183  &amp; model  &amp; 30.6302  &amp; 0.4127  &amp; 9.4257  &amp; - &amp; - \\
+    \bottomrule
+    \end{tabular}
+}
+\end{center}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[图片的图号绑定章节号]]></title>
         <id>https://ray-sang.github.io/post/tu-pian-de-tu-hao-bang-ding-zhang-jie-hao/</id>
@@ -802,157 +869,6 @@ powershell链接nas：ssh admin@192.168.1.xxx，输入admin密码，s输入sudo 
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/202010_2478.JPG" alt="" loading="lazy"></p>
 <p>路灯<br>
 <img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/IMG_2479.JPG" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[如何在LaTeX中插入子图（subfigure包）]]></title>
-        <id>https://ray-sang.github.io/post/ru-he-zai-latex-zhong-cha-ru-zi-tu-subfigure-bao/</id>
-        <link href="https://ray-sang.github.io/post/ru-he-zai-latex-zhong-cha-ru-zi-tu-subfigure-bao/">
-        </link>
-        <updated>2020-10-20T12:15:05.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="预期效果">预期效果</h1>
-<p>在LaTeX中插入图片的时候，希望一个figure能够有多个subfigure，并且用(a)(b)(c)的形式标号，有独立的子图标题和主图标题，排版格式美观。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="预期效果">预期效果</h1>
-<p>在LaTeX中插入图片的时候，希望一个figure能够有多个subfigure，并且用(a)(b)(c)的形式标号，有独立的子图标题和主图标题，排版格式美观。</p>
-<!-- more -->
-<p>在这里放上单张图片的插入方法：</p>
-<pre><code class="language-latex">\usepackage{graphicx} % 插入图片所需
-
-%-----------------------------------------------------------%
-\begin{figure}
-\centering
-\includegraphics[height=4.5cm,width=9.5cm]{111.eps}
-\caption{pic1}
-\label{2}
-\end{figure}
-
-% using scale
-\begin{figure}[h]
-        \centering
-        \includegraphics[scale=0.3]{figures/schematic.png}
-        \caption{\centering The schematic of simulation}
-        \label{fig:schematic}
-\end{figure}
-</code></pre>
-<hr>
-<h1 id="第一种插入子图的方法">第一种插入子图的方法</h1>
-<p>利用subfigure排版，放置多张图片。</p>
-<p>我个人会在<code>settings.tex</code>中，使用宏包：</p>
-<pre><code class="language-latex">\usepackage{graphicx}
-\usepackage{subfigure}
-</code></pre>
-<p>放置子图的代码如下：</p>
-<pre><code class="language-latex">\begin{figure}[htbp]
- \centering
-     \subfigure[Step 2]{ % []内为子图标题
-        \begin{minipage}[t]{0.2\linewidth}
-        \centering
-            \includegraphics[width=1in]{figures/s1.png}
-             \label{fig:step2} % 子图label
-         \end{minipage}
-         } % if add a new line here, figures will be seperated! %如果在此处分行，子图也会分行
-    \subfigure[Step 3]{
-        \begin{minipage}[t]{0.2\linewidth}
-        \centering
-            \includegraphics[width=1in]{figures/s2.png}
-            \label{fig:step3}
-        \end{minipage}
-        }
-    \subfigure[Step 4]{
-    \begin{minipage}[t]{0.2\linewidth}
-    \centering
-        \includegraphics[width=1in]{figures/s3.png}
-        \label{fig:step4}
-    \end{minipage}
-    }
-    \subfigure[Step 6]{
-    \begin{minipage}[t]{0.2\linewidth}
-    \centering
-        \includegraphics[width=1in]{figures/s6.png}
-        \label{fig:step6}
-    \end{minipage}
-    }
-\centering
-\caption{The main steps}
-\label{fig:Steps}
-\end{figure}
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/subfigure_latex_1.png" alt="" loading="lazy"></figure>
-<p>其中<code>0.25\linewidth</code>或<code>0.25\linewidth</code>是你插入图片的幅度（我理解为这副图的宽占1/4行，你下张图并排插入的话需要从1/4行处往后开始插），相当于0.25倍的当前latex中规定的一行的长度。width=1in是指图片的宽度。它可以在一个大图的框架里面插入多个小图，自动编号为a,b,c,d....并对小图分别描述。</p>
-<p>但是，如果加入回车：</p>
-<pre><code class="language-latex">\begin{figure}[htbp]
- \centering
-     \subfigure[Step 2]{ % []内为子图标题
-        \begin{minipage}[t]{0.2\linewidth}
-        \centering
-            \includegraphics[width=1in]{figures/s1.png}
-             \label{fig:step2} % 子图label
-         \end{minipage}
-         } % if add a new line here, figures will be seperated! %如果在此处分行，子图也会分行
-          \quad \quad % 增加图片横向间距
-    \subfigure[Step 3]{
-        \begin{minipage}[t]{0.2\linewidth}
-        \centering
-            \includegraphics[width=1in]{figures/s2.png}
-            \label{fig:step3}
-        \end{minipage}
-        }
-
-                    
-            % 这个回车很重要 \quad也可以
-    \subfigure[Step 4]{
-    \begin{minipage}[t]{0.2\linewidth}
-    \centering
-        \includegraphics[width=1in]{figures/s3.png}
-        \label{fig:step4}
-    \end{minipage}
-    }
-     \quad \quad 
-    \subfigure[Step 6]{
-    \begin{minipage}[t]{0.2\linewidth}
-    \centering
-        \includegraphics[width=1in]{figures/s6.png}
-        \label{fig:step6}
-    \end{minipage}
-    }
-\centering
-\caption{The main steps}
-\label{fig:Steps}
-\end{figure}
-</code></pre>
-<p>那么图片的呈现形式就是：<br>
-<img src="https://raw.githubusercontent.com/Ray-Sang/picsbed1/master/picgo/subfigure_latex_2.png" alt="" loading="lazy"></p>
-<p>既能将图片分成四个小图片，也能对四个小图片分别进行描述。</p>
-<hr>
-<h1 id="现在流行用subfig包代替subfigure">现在流行用subfig包代替subfigure？</h1>
-<p>注意把代码中的\subfigure改成\subfloat.</p>
-<p>注意subfig包和subfigure包不能共存。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[如何在LaTeX全局修改字体字间距]]></title>
-        <id>https://ray-sang.github.io/post/ru-he-zai-latex-quan-ju-xiu-gai-zi-ti-zi-jian-ju/</id>
-        <link href="https://ray-sang.github.io/post/ru-he-zai-latex-quan-ju-xiu-gai-zi-ti-zi-jian-ju/">
-        </link>
-        <updated>2020-10-20T08:36:31.000Z</updated>
-        <summary type="html"><![CDATA[<p>英文适用。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>英文适用。</p>
-<!-- more -->
-<pre><code class="language-latex">\documentclass{article}
-
-\usepackage{fontspec}
-\defaultfontfeatures{LetterSpace=2}
-\setmainfont{Times New Roman}
-
-\usepackage{lipsum}
-\begin{document}
-\lipsum[1]
-\end{document}
-
-</code></pre>
-<p>来源：https://tex.stackexchange.com/questions/62346/enlarging-tracking-letter-spacing</p>
 ]]></content>
     </entry>
 </feed>

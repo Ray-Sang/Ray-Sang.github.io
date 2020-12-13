@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Lecture 14, Lab 5, case-select statement | Ray&#39;s Space</title>
+<title>LaTeX各种操作汇总（不定时更新） | Ray&#39;s Space</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -19,15 +19,10 @@
 
 
     <meta name="description" content="
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-entity case_sel is
-port(
-	A : in std_logic;
-	B : in std_logic;
-	C : in std_..." />
-    <meta name="keywords" content="VHDL学习" />
+正文间距(段行列间距)调整与表格调整(宽度, 合并, 表注)
+https://blog.csdn.net/wbl90/article/details/79821532
+..." />
+    <meta name="keywords" content="LaTeX学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -98,49 +93,20 @@ port(
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Lecture 14, Lab 5, case-select statement</h2>
-            <div class="post-date">2020-10-08</div>
+            <h2 class="post-title">LaTeX各种操作汇总（不定时更新）</h2>
+            <div class="post-date">2020-12-13</div>
             
             <div class="post-content" v-pre>
               <!-- more -->
-<pre><code class="language-vhdl">library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-entity case_sel is
-port(
-	A : in std_logic;
-	B : in std_logic;
-	C : in std_logic;
-	D : in std_logic;
-	sel : in std_logic_vector(1 downto 0);
-	Y : out std_logic
-);
-end case_sel;
-
-
-architecture Behavioral of case_sel is
-
-begin
-process(A, B, C, D, sel)
-	begin
-		case sel is
-			when &quot;00&quot; =&gt; Y &lt;= A;
-			when &quot;01&quot; =&gt; Y &lt;= B;
-			when &quot;10&quot; =&gt; Y &lt;= C;
-			when &quot;11&quot; =&gt; Y &lt;= D;
-			when others =&gt; Y &lt;= '0';
-		end case;
-	end process;
-end Behavioral;
-
-</code></pre>
+<h1 id="正文间距段行列间距调整与表格调整宽度-合并-表注">正文间距(段行列间距)调整与表格调整(宽度, 合并, 表注)</h1>
+<p>https://blog.csdn.net/wbl90/article/details/79821532</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ray-sang.github.io/tag/v0fuWKhzW/" class="tag">
-                    VHDL学习
+                  <a href="https://ray-sang.github.io/tag/_IFkg8nI7/" class="tag">
+                    LaTeX学习
                   </a>
                 
               </div>
@@ -148,9 +114,9 @@ end Behavioral;
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ray-sang.github.io/post/lecture-13-lab-4-process-simulation/">
+                <a href="https://ray-sang.github.io/post/latex-biao-ge-guo-zhai-huo-guo-kuan-shi-de-diao-zheng/">
                   <h3 class="post-title">
-                    Lecture 13, Lab 4, process simulation
+                    LaTeX——表格过窄或过宽时的调整
                   </h3>
                 </a>
               </div>
