@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2021-04-26T12:55:38.123Z</updated>
+    <updated>2021-04-28T05:50:09.493Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -16,19 +16,20 @@
         <link href="https://ray-sang.github.io/post/ying-yu-yu-fa-liu-xiao-yan/">
         </link>
         <updated>2021-04-26T11:35:43.000Z</updated>
-        <summary type="html"><![CDATA[<p>从头开始整理英语语法。</p>
+        <summary type="html"><![CDATA[<p>从头开始整理英语语法和长难句。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>从头开始整理英语语法。</p>
+        <content type="html"><![CDATA[<p>从头开始整理英语语法和长难句。</p>
 <!-- more -->
-<h1 id="1-简单句子">1 简单句子</h1>
-<h2 id="11-句子组成结构">1.1 句子组成结构</h2>
+<h1 id="1-句子的成分简单句">1 句子的成分——简单句</h1>
+<h2 id="11-谓语">1.1 谓语</h2>
+<h3 id="111-句子组成结构">1.1.1 句子组成结构</h3>
 <ul>
 <li>主谓宾</li>
 <li>主系表</li>
 <li>主谓宾宾</li>
 <li>主谓宾补</li>
 </ul>
-<h2 id="12-系动词">1.2 系动词</h2>
+<h3 id="112-系动词">1.1.2 系动词</h3>
 <p>系动词都有：</p>
 <ul>
 <li>be 动词以及各种形式</li>
@@ -41,7 +42,38 @@
 <li>I <strong>am</strong> against you.</li>
 <li>Your mother must <strong>be</strong> very beautiful.</li>
 </ul>
-<h2 id="13-独立主格">1.3 独立主格</h2>
+<h3 id="113-动词的分类">1.1.3 动词的分类</h3>
+<ol>
+<li>
+<p>实义动词</p>
+<ul>
+<li>vi，不及物动词，加介词再加宾语，后面可以不加宾语，look at me</li>
+<li>vt，及物动词，后面必须直接跟宾语，watch TV</li>
+</ul>
+</li>
+<li>
+<p>系动词</p>
+</li>
+<li>
+<p>助动词——帮助谓语构成时态、被动、否定、疑问的词</p>
+<ul>
+<li>I am having class.</li>
+<li>It is cut off.</li>
+<li>I do not love you.</li>
+</ul>
+</li>
+<li>
+<p>情态动词——can，may，must</p>
+<p>​	特殊用法：可以表示对过去的推测。</p>
+<ul>
+<li>He must have fallen in love with me.  一定做过某事，must have done</li>
+<li>You need not have shown your love in this way. 你本<strong>没必要用</strong>这种方式对我表达爱。（本没必要，但是做了）</li>
+<li>I could have become a prominent poet.（could have done，本能做但是没做，<strong>表示遗憾</strong>）</li>
+<li>We should have stayed together.（should have done，本<strong>应该</strong>做某事但是没做）</li>
+</ul>
+</li>
+</ol>
+<h3 id="114-独立主格">1.1.4 独立主格</h3>
 <p>独立主格结构本身不是句子，在句子中作<strong>状语</strong>，表示时间，原因，条件，伴随，目的等。独立主格结构有两部分组成：前一部分是名词或者代词，后一部分是非谓语动词( 不定式，动名词和分词 )或名词，形容词，副词，介词短语。例如：</p>
 <ul>
 <li>为了见你，我来了。 To see you, I came here.</li>
@@ -89,14 +121,109 @@
 </ul>
 </li>
 </ol>
-<h1 id="2-主语">2 主语</h1>
-<h2 id="21-主语的成分">2.1 主语的成分</h2>
+<h2 id="12-主语">1.2 主语</h2>
+<h3 id="121-主语的成分">1.2.1 主语的成分</h3>
 <p>名词充当主语、代词充当主语、非谓语动词充当主语、从句（def：引导词加句子）充当主语。</p>
 <p>形容词不能作为主语。非谓语动词充当主语时，谓语用单数形式，例如：</p>
 <ul>
 <li>Being handsome and strong is his nature.</li>
 <li>Handsomeness and strength are his nature.</li>
 </ul>
+<h3 id="122-主语能不能少">1.2.2 主语能不能少</h3>
+<p>不能少。如果没有主语：</p>
+<ol>
+<li>
+<p>加 it 作为主语，必须与天气、温度、时间有关。</p>
+<ul>
+<li>It keeps(系动词替换be动词) cold in south pole. 南极很冷。</li>
+</ul>
+</li>
+<li>
+<p>There be 句型，当一句话没有主语并听到“有”的时候使用。</p>
+<ul>
+<li>There exist/seem/remain 其他表达</li>
+<li>There exist(与主语相同 individuals) a sea of private individuals having passion for me.</li>
+</ul>
+</li>
+<li>
+<p>被动。当一句话没有主语，或听到人称代词做主语的句子，都可以考虑写成被动。</p>
+<ul>
+<li>English must be pointed out exceedingly indispensable.</li>
+<li>Authorities should be proposed to adopt action.</li>
+</ul>
+<p>三种情况无被动：</p>
+<ul>
+<li>不及物动词没有被动（动词后面有介词时）</li>
+<li>系动词没有被动（<s>is looked</s>）</li>
+<li>have 表达有的意思时无被动</li>
+</ul>
+</li>
+<li>
+<p>人称代词：最好不要使用。（I you we，不够高级）</p>
+</li>
+</ol>
+<p>练习：If there exists a dream, glories are supposed to be achieved.</p>
+<h2 id="13-宾语-表语">1.3 宾语 表语</h2>
+<h3 id="131-宾语">1.3.1 宾语</h3>
+<p>宾语成分：名词、代词、非谓语动词、从句。和主语一样，可通过被动相互转换。</p>
+<h3 id="132-表语">1.3.2 表语</h3>
+<p>表语成分：名词（I am a teacher)、代词、非谓语动词、从句（表语从句）、介词短语（I am in Chongqing)、形容词（I am beautiful）。</p>
+<p>例子：I smiled in the room. 主谓表（或状语）结构，反正不是主谓宾结构。<strong>介词短语不能做宾语。</strong></p>
+<h2 id="14-写作中的使用">1.4 写作中的使用</h2>
+<h3 id="141-小tips">1.4.1 小tips</h3>
+<ul>
+<li>把难词写成自己会的词汇，反正老师不知道自己表达的意思。<s>哈哈</s></li>
+<li>长难句表达，使用简单句。正确第一位。</li>
+<li>分析长难句，第一步找谓语（动词），进而寻找主谓宾。若有多个动词出现，就找主句的谓语动词，其前方没有引导词。</li>
+</ul>
+<h1 id="2-并列句">2 并列句</h1>
+<h2 id="21-并列句的定义">2.1 并列句的定义</h2>
+<p>回顾独立主格：I loving you, you love that dog.</p>
+<h3 id="211-什么是并列句">2.1.1 什么是并列句？</h3>
+<p>在两句话中间加连词。I love you, but you love that dog.</p>
+<h3 id="212-并列连词">2.1.2 并列连词：</h3>
+<ol>
+<li>平行：and, not only...but also...</li>
+<li>转折：but, yet, while, whereas</li>
+<li>选择：or, whether...or...</li>
+<li>因果：for, so, since</li>
+<li>递进：then(是个副词，其实不是连词)</li>
+</ol>
+<h3 id="213-逻辑关系词">2.1.3 逻辑关系词</h3>
+<p>包括连词，副词，介词，介词短语。</p>
+<ol>
+<li>平行：similarly, equally, likewise, at the same time</li>
+<li>转折：however, nevertheless, on the contrary</li>
+<li>选择：alternatively</li>
+<li>因果：therefore, thus, consequently（注意副词不能连接两个句子）, as a result</li>
+<li>递进：besides, furthermore, moreover, additionally</li>
+</ol>
+<p>例子：There seems a friend coming from afar. Consequently I feel exceedingly delighted.(There seems a friend coming from afar, <strong>and consequently,</strong> I feel exceedingly delighted. )</p>
+<p><strong>连词和其他逻辑关系词的区别在于：连词前面有无逗号均可，而其他的逻辑关系词的前面要么用句号要么加连词 and。</strong></p>
+<p>例子：I am said to be changeable like water, and on the contrary, my clarity keeps the same.</p>
+<h2 id="22-并列句的长难句分析">2.2 并列句的长难句分析</h2>
+<h3 id="221-省略">2.2.1 省略</h3>
+<ul>
+<li>一句话只要有省略，就一定在连词后。</li>
+<li>连词后有的成分，连词前面通常都要有。</li>
+<li>连词前面有，而连词后面没有的成分，便是连词后省略的内容。</li>
+</ul>
+<p>并列句的对称原则：</p>
+<ul>
+<li>词性对称：并列连词前后的词性，单复数，时态和语法要一致。</li>
+<li>结构对称：连词所连接的句子结构要保持一致。On fourteenth February, a BFF(best friend forever) of mine from high school got married, then I realized the fleeting time.（例子有点牵强）</li>
+</ul>
+<p>具体看省略，例子1： Under modern conditions, this <em><strong>requires</strong></em> varying measures of centralized control <em><strong>and</strong></em> hence （<em><strong>requires</strong></em>） the help of specialized scientists such as economists and operational research experts.</p>
+<p>步骤：1.找动词 2.找连词 3.连词在连接两个名词则无视。翻译：在现代条件下，这需要不同方法的集中控制，因此<strong>也</strong>需要专业科学家的帮助，如经济学家和业务研究专家。</p>
+<p>例子2： The data suggest（主句的谓语）, for example（插入语忽视）, that <strong>physically attractive individuals</strong>（主） are more likely to be treated well by their parents, （省略more likely to be）sought out as friends <em><strong>and</strong></em> （省略more likely to be）pursued romantically（表语）.</p>
+<p>句子为主谓宾结构。that 引导从句充当宾语。</p>
+<p>例子3： There is（谓语） no agreement （定语从句）<strong>whether</strong> methodology <em>refers to</em>（介词） the concepts （定语开始）peculiar to his historical work in general <strong>or</strong> （省略 <em>methodology refers</em>）to the research technique （定从）appropriate to the various branches historical inquiry.</p>
+<h3 id="222-一些例子">2.2.2 一些例子</h3>
+<p>例子1： Until these issues are resolved, a technology of behavior（主） will continue（谓） to be rejected（不定式做宾语）,  and with it**（指代行为艺术）** possibly the only way to solve our problems（省略will continue  to be rejected）.</p>
+<p>翻译： 直到这些问题被解决，行为技术将继续被拒绝，并且和行为技术一起、很可能解决我们问题的唯一的方法也将继续被拒绝。</p>
+<p>指代：就近原则和一致性原则。语法和意思的一致。</p>
+<p>例子2： As families move away from their stable community, their friends of many years***, and***（说明前面是并列，被切断的只是信息流） their extended family relationships, the informal flow of information（主） is cut off, <em><strong>and</strong></em> （省略，回想：连词后有的成分连词前不一定有，根据后面的成分找前一句对应的成分）with it（就近原则和一致性原则找指代的内容：the informal flow of information） the confidence that information will be available when needed <em><strong>and</strong></em> （省略主语 information）will be trustworthy and reliable（省略 is cut off）.</p>
+<p>翻译：随着家庭搬离他们稳定的社区，搬离他们多年的朋友，搬离他们延伸的大家庭关系（亲戚关系），这类非正式的信息流就被切断了。并且，和非正式的信息流一起，当需要的时候我们就会得到这些可靠的信息  的自信  也消失了。</p>
 ]]></content>
     </entry>
     <entry>
