@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2021-05-07T01:40:16.525Z</updated>
+    <updated>2021-05-07T01:42:59.586Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -21,12 +21,13 @@
         <content type="html"><![CDATA[<p>来源：https://www.cnblogs.com/yanguhung/p/10078276.html</p>
 <!-- more -->
 <h1 id="1-使用markdown语法实现跳转">1 使用Markdown语法实现跳转</h1>
-<p>使用Markdown的语法来增加跳转链接：<a href="#id">名称</a>。</p>
+<p>使用Markdown的语法来增加跳转链接：<code>[名称](#id)</code>。</p>
 <ol>
 <li>只要（）内 #号 后面的内容和锚点处标签内的id对应即可，可以任意使用标签支持html语法</li>
-<li>id不可以有括号和空格，否则没有效果</li>
+<li>id不可以有括号和空格，否则没有效果<br>
+<code>[点击跳转到标题一](#jump)</code><br>
+<a href="#jump">点击跳转到标题一</a></li>
 </ol>
-<p><a href="#jump">点击跳转到标题一</a></p>
 <p>。</p>
 <p>。</p>
 <p>。</p>
@@ -41,15 +42,17 @@
 <p>。</p>
 <p>。</p>
 <p>。</p>
-<p><span id="jump">此处是锚点：标题一</span></p>
+<p><code>&lt;span id=&quot;jump&quot;&gt;此处是锚点：标题一&lt;/span&gt;</code><br>
+<span id="jump">此处是锚点：标题一</span></p>
 <h1 id="2-使用html语法来增加跳转链接">2 使用HTML语法来增加跳转链接</h1>
-<p><a href="#id">名称</a></p>
+<p><code>&lt;a href=&quot;#id&quot;&gt;名称&lt;/a&gt;</code></p>
 <ol>
 <li>只要标签内 href=的值 后面的内容和锚点处标签内的id对应即可，跳转处只能使用a标签，锚点任意</li>
 <li>id不可以有括号和空格，否则没有效果</li>
 <li>github和gitlab网页内不支持此种方式</li>
 </ol>
-<p><a href="#lable">点击跳转到标题二</a><br>
+<p><code>&lt;a href=&quot;#lable&quot;&gt;点击跳转到标题二&lt;/a&gt;</code><br>
+<a href="#lable">点击跳转到标题二</a><br>
 。</p>
 <p>。</p>
 <p>。</p>
@@ -64,6 +67,7 @@
 <p>。</p>
 <p>。</p>
 <p>。<br>
+<code>&lt;span id=&quot;lable&quot;&gt;标题二&lt;/span&gt;</code><br>
 <span id="lable">标题二</span></p>
 ]]></content>
     </entry>
