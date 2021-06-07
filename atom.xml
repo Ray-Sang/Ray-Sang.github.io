@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2021-06-02T03:30:21.071Z</updated>
+    <updated>2021-06-07T12:04:42.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -5224,6 +5224,13 @@
         <content type="html"><![CDATA[<!-- more -->
 <h1 id="正文间距段行列间距调整与表格调整宽度-合并-表注">正文间距(段行列间距)调整与表格调整(宽度, 合并, 表注)</h1>
 <p>https://blog.csdn.net/wbl90/article/details/79821532</p>
+<h1 id="大于小于">大于小于</h1>
+<ul>
+<li>大于 \textgreater</li>
+<li>小于 \textless</li>
+<li>大于等于 \ge 或者 \geq</li>
+<li>小于等于 \le 或者 \leq</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
