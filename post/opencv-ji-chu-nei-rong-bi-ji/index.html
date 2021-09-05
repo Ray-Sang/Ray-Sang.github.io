@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>OpenCV基础内容笔记 | Ray&#39;s Space</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ray-sang.github.io/favicon.ico?v=1630804352477">
+<link rel="stylesheet" href="https://ray-sang.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="🙏
+
+环境配置
+参考：https://blog.csdn.net/bankexinan/article/details/109730277?utm_medium=distribute.pc_relevant.none-task-blog-..." />
+    <meta name="keywords" content="OpenCV" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ray-sang.github.io">
+        <img src="https://ray-sang.github.io/images/avatar.png?v=1630804352477" class="site-logo">
+        <h1 class="site-title">Ray&#39;s Space</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Plain living and high thinking
+    </div>
+    <div class="site-footer">
+      Photography enthusiastic @<a href="https://500px.com.cn/sangray" target="_blank">500px</a> | <a class="rss" href="https://ray-sang.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">OpenCV基础内容笔记</h2>
+            <div class="post-date">2021-09-05</div>
+            
+            <div class="post-content" v-pre>
+              <p>🙏</p>
+<!-- more -->
+<h1 id="环境配置">环境配置</h1>
+<p>参考：https://blog.csdn.net/bankexinan/article/details/109730277?utm_medium=distribute.pc_relevant.none-task-blog-2<sub>default</sub>baidujs_title~default-4.essearch_pc_relevant&amp;spm=1001.2101.3001.4242</p>
+<p>全面，详细，避免踩雷的过程。主要以下步骤：</p>
+<ol>
+<li>第一步：下载解压opencv安装包。到官网下载最新Opencv, 此处用的是4.5.0版本。双击下载好的或者拷好的安装包，选择解压路径后点Extract即可完成解压，解压后会自动生成一个opencv的文件夹。</li>
+<li>第二步：配置环境变量。编辑Path：“xx你的安装目录xx\opencv\build\x64\vc15\bin”</li>
+<li>第三步：相关文件的配置。网上很多教程没有这一步，会报那种找不到dll文件的错误，是因为没有将opencv里面的相关文件复制到C盘中的文件夹里面。操作方法：将bin目录下面的opencv_world450.dll和opencv_world450d.dll文件复制到C:\Windows\SysWOW64这个文件夹里面；<br>
+将bin目录里面的opencv_videoio_ffmpeg450_64.dll和opencv_world450d.dll文件复制到C:\Windows\System32这个文件夹里面；<br>
+（注：如果是opencv其他的版本，把对应的dll文件移动到上述两个C盘文件夹即可！<br>
+如果报错找不到 opencv_xxxxxxx.lib文件，就试试看把相关lib文件复制到C:\Windows\System32和C:\Windows\SysWOW64这两个文件夹里面！）</li>
+<li>新建一个项目，我这里建了一个空项目。进入属性管理器，菜单栏-&gt;视图-&gt;其他窗口-&gt;属性管理器。对Debug|X64进行配置，右键Microsoft.Cpp.x64.user，点击属性。<br>
+（注：Visual studio2019配置OPENCV 时属性管理器中没有Microsoft.Cpp.x64.user的解决办法：找到目录“C:\Users\“你的用户名”\AppData\Local\Microsoft”，（一般情况下不显示AppData文件夹，需要在文件夹的查看选项中勾选“隐藏的项目”使其可见）。在该目录可发现他人电脑上会有“MSBuild”的文件夹，将其拷贝放入自己的电脑相同位置。链接：https://pan.baidu.com/s/1r4qOTi2CVe4j04OQGct_WQ 提取码：VS19 ））<br>
+这里我们对属性中的 VC++目录-&gt;包含目录和VC++目录-&gt;库目录进行添加相关路径，对 链接器-&gt;输入-&gt;附加依赖项进行添加相关路径。包含目录中加入</li>
+</ol>
+<pre><code>D:\Program Files\opencv\build\include
+D:\Program Files\opencv\build\include\opencv2
+</code></pre>
+<p>库目录中加入<code>D:\Program Files\opencv\build\x64\vc15\lib</code>。<br>
+链接器-&gt;输入-&gt;附加依赖项中加入<code>opencv_world450d.lib</code>。</p>
+<h1 id="初级内容">初级内容</h1>
+<h2 id="基本输入输出-imread-and-imshow">基本输入输出： imread() and imshow()</h2>
+<p>下面这段代码完成了一张图片的读入以及窗口显示。</p>
+<pre><code class="language-c++">#include&lt;opencv2/opencv.hpp&gt;
+#include&lt;iostream&gt;
+
+using namespace cv;
+using namespace std;
+
+int main(int artc, char** argv) {
+	Mat src = imread(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/lena.jpg&quot;); // the simplest way to load an image to Mat
+	// Mat src = imread(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/lena.jpg&quot;, IMREAD_GRAYSCALE);
+
+	if (src.empty()) {
+		printf(&quot;Could not load image...\n&quot;);
+		return -1;
+	}
+	
+	cout &lt;&lt; src.depth() &lt;&lt; endl; // output 0, may be a enum value
+	
+	namedWindow(&quot;Input window&quot;, WINDOW_FREERATIO);
+	imshow(&quot;Input window&quot;, src);
+
+	waitKey(0); // ms unit, 0 means wait
+	return 0;
+}
+</code></pre>
+<p>代码说明：</p>
+<ul>
+<li>读入图片的函数<code>imread()</code>接受两个参数，第一个为文件路径，第二个为读入的属性。常见的读取属性有：<code>IMREAD_GRAYSCALE</code>读入灰度图；<code>IMREAD_UNCHANGED</code>读取png格式，读入alpha channel，且输入具有相应的深度时，返回16位/32位图像，否则将转换为8位；<code>IMREAD_ANYCOLOR</code>加载可能的浮点数据，如RGB之外的其他色彩空间图片......</li>
+<li>通过<code>src.empty()</code>方法，获得是否读取成功；通过<code>src.depth()</code>，获得图像位深度。</li>
+<li>创建可以自定义大小的窗口：<code>named_Window(const String&amp; &lt;windowName&gt;, int flag &lt;properties of the window&gt;)</code>。在<code>imshow()</code>时，注意<code>windowName</code>参数和之前创建的窗口保持一致，才能将图像显示在之前创建的窗口中。如果直接使用<code>imshow()</code>，那么默认为<code>WINDOW_AUTOSIZE</code>，当图像分辨率较大时，窗口可能只能显示图像的局部。</li>
+<li><code>waitkey(int &lt;waitTimeInMs&gt;)</code>，0表示阻塞等待。</li>
+<li>要保存图像，使用<code>imwrite(const String&amp; &lt;path.name.format&gt;, Mat &lt;src&gt;)</code>。</li>
+</ul>
+<h2 id="图像色彩空间转换cvtcolor-imwrite">图像色彩空间转换：cvtColor, imwrite</h2>
+<h3 id="知识点">知识点：</h3>
+<ul>
+<li>色彩空间转换函数：<code>cvtColor()</code>
+<ul>
+<li><code>COLOR_BGR2GRAY = 6</code> 彩色到灰度</li>
+<li><code>COLOR_GRAY2BGR = 8</code> 灰度到彩色</li>
+<li><code>COLOR_BGR2HSV = 40</code> BGR到HSV</li>
+<li><code>COLOR_HSV2BGR = 54</code> HSV到BGR</li>
+</ul>
+</li>
+<li>图像保存：<code>imwrite(const String&amp; &lt;path&gt;, Mat? &lt;src&gt;)</code></li>
+</ul>
+<h3 id="示例代码">示例代码</h3>
+<p>quickopencv.h:</p>
+<pre><code class="language-c++">#pragma once
+#include&lt;opencv2/opencv.hpp&gt;
+using namespace cv;
+
+class QuickDemo {
+public:
+	void colorSpace_Demo(Mat&amp; image);
+};
+</code></pre>
+<p>quickdemo.cpp:</p>
+<pre><code class="language-c++">#include&quot;quickopencv.h&quot;
+
+void QuickDemo::colorSpace_Demo(Mat&amp; image) {
+	Mat gray, hsv;
+	cvtColor(image, hsv, COLOR_BGR2HSV);
+	// H 0~180, S/V both 0~255
+	cvtColor(image, gray, COLOR_BGR2GRAY);
+	imshow(&quot;HSV&quot;, hsv);
+	imshow(&quot;gray&quot;, gray);
+	imwrite(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/2_cvtColor/hsv.png&quot;, hsv);
+	imwrite(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/2_cvtColor/gray.png&quot;, gray);
+}
+</code></pre>
+<p>main.cpp:</p>
+<pre><code class="language-c++">#include&lt;opencv2/opencv.hpp&gt;
+#include&lt;iostream&gt;
+#include&quot;quickopencv.h&quot;
+using namespace cv;
+using namespace std;
+
+int main(int artc, char** argv) {
+	Mat src = imread(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/lena.jpg&quot;); // the simplest way to load an image to Mat
+	// Mat src = imread(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/lena.jpg&quot;, IMREAD_GRAYSCALE);
+
+	if (src.empty()) {
+		printf(&quot;Could not load image...\n&quot;);
+		return -1;
+	}
+	
+	cout &lt;&lt; src.depth() &lt;&lt; endl; // output 0, may be a enum value
+	
+	namedWindow(&quot;Input window&quot;, WINDOW_FREERATIO);
+	imshow(&quot;Input window&quot;, src);
+	
+	QuickDemo qd;
+	qd.colorSpace_Demo(src);
+	
+	waitKey(0); // ms unit, 0 means wait
+	return 0;
+}
+</code></pre>
+<h2 id="opencv中图像对象创建与赋值mat">OpenCV中图像对象创建与赋值——Mat</h2>
+<h3 id="知识点-2">知识点</h3>
+<ul>
+<li>C++中Mat对象与赋值</li>
+<li>Python中的numpy对象</li>
+</ul>
+<p>Mat的基本结构：由头部（header）和数据部分（Data Block）组成。头部包括属性（大小、宽高）、类型（int，double）、通道数等。浅拷贝：赋值，只改变指针；深拷贝：克隆、拷贝。</p>
+<p>其他基本对象类型：</p>
+<ul>
+<li>Vec
+<ul>
+<li>Vec&lt;double,19&gt; myVector;</li>
+<li>typedef Vec&lt;uchar,2&gt; Vec2b；</li>
+<li>typedef Vec&lt;short,3&gt; Vec3s;</li>
+<li>typedef Vec&lt;int,4&gt; Vec4i;</li>
+<li>typedef Vec&lt;float,5&gt; Vec5f;</li>
+<li>typedef Vec&lt;double,6&gt; Vec6d;</li>
+</ul>
+</li>
+<li>Scalar
+<ul>
+<li>从Vec派生的模板类，在OpenCV中广泛用于传递和读取像素值。</li>
+<li>可以用[]运算符来访问Vec和Scalar值，初始化可以用传值的方式通过设置另一个标量、向量或值来完成，如：</li>
+<li><code>Scalar s0(0);</code>, <code>Scalar s1(0.0, 1.0, 2.0);</code>, <code>Scalar s2(s1);</code></li>
+</ul>
+</li>
+<li>Point
+<ul>
+<li>typedef Point_<int> Point2i;</li>
+<li>typedef Point2i Point;</li>
+<li>typedef Point_<float> Point2f;</li>
+<li>typedef Point_<double> Point2d;</li>
+</ul>
+</li>
+<li>Size
+<ul>
+<li>用于指定图像或矩形大小。这个类添加了两个成员width和height，以及有用的area()函数。</li>
+<li>
+<pre><code class="language-c++">   Size s(100, 100);
+  Mat img = Mat::zeros(s, CV_8UC1);
+  s.width = 200;
+  int area = s.area(); // return 100×200 
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Rect</li>
+<li>RotatedRect</li>
+</ul>
+<h3 id="示例代码-2">示例代码</h3>
+<p>Mat的常见操作：</p>
+<pre><code class="language-c++">// 创建方法：clone
+Mat m1 = src.clone();
+
+// 复制，等同于clone
+Mat m2;
+src.copyTo(m2);
+
+// 赋值法，指向同一个数据
+Mat m3 = src;
+
+// 创建空白图像
+Mat m4 = Mat::zeros(src.size(), src.type());
+Mat m5 = Mat::zeros(Size(512,512), CV_8UC3);
+Mat m6 = Mat::ones(Size(512,512), CV_8UC3);
+
+Mat kernel = (Mat_&lt;char&gt;(3,3) &lt;&lt; 0, -1, 0,
+	-1, 5, -1,
+	0, -1, 0);
+	
+// 获取列数、行数、通道数
+std::cout &lt;&lt; &quot;Width:&quot; &lt;&lt; m3.cols &lt;&lt;  &quot; Height:&quot; &lt;&lt; m3.rows &lt;&lt; &quot; Channels:&quot; &lt;&lt; m3.channels() &lt;&lt; std::endl;
+</code></pre>
+<p>由代码例子展开，说明：</p>
+<ul>
+<li>m1, m2都是原数据的深拷贝；m3为新建的图像数据。</li>
+<li>8UC1指unsigned的单通道图像，大小为8×8；8UC3大小为8×24，每三个连续的为一个像素点。</li>
+<li>获取行列通道数的方法区分，行列为元素，通道数为方法。</li>
+<li>Scalar为向量？可以用来对Mat进行修改操作。</li>
+<li>等号运算符为浅拷贝，只改变指针指向。</li>
+</ul>
+<p>quickopencv.h:</p>
+<pre><code class="language-c++">#pragma once
+#include&lt;opencv2/opencv.hpp&gt;
+using namespace cv;
+
+class QuickDemo {
+public:
+	void colorSpace_Demo(Mat&amp; image);
+	void mat_creation_demo(Mat&amp; image);
+};
+</code></pre>
+<p>quickdemo.cpp:</p>
+<pre><code class="language-c++">void QuickDemo::mat_creation_demo(Mat&amp; image) {
+	Mat m1, m2;
+	m1 = image.clone();
+	image.copyTo(m2);
+
+	// 创建空白图像
+	Mat m3 = Mat::zeros(Size(8, 8), CV_8UC1); // 8UC1, unsigned, channel one单通道,output 8*8
+	// if 8UC3, then output 8*24, 1-3 cols are for one singal pixel
+	std::cout &lt;&lt; m3 &lt;&lt; std::endl;
+
+	// 获取列数、行数
+	std::cout &lt;&lt; &quot;Width:&quot; &lt;&lt; m3.cols &lt;&lt;  &quot; Height:&quot; &lt;&lt; m3.rows &lt;&lt; &quot; Channels:&quot; &lt;&lt; m3.channels() &lt;&lt; std::endl;
+
+	// 将三个通道都赋值为127
+	m3 = Mat::zeros(Size(200, 200), CV_8UC3);
+	m3 = Scalar(255, 0, 0); 
+	// std::cout &lt;&lt; m3 &lt;&lt; std::endl;
+	std::cout &lt;&lt; &quot;Width:&quot; &lt;&lt; m3.cols &lt;&lt; &quot; Height:&quot; &lt;&lt; m3.rows &lt;&lt; &quot; Channels:&quot; &lt;&lt; m3.channels() &lt;&lt; std::endl;
+	imshow(&quot;m3&quot;, m3);
+
+	// 证明：等号运算符只是指针的指向改变，而没有深拷贝；改变m4也会改变m3
+	Mat m4 = m3;
+	m4 = Scalar(0, 255, 0);
+	imshow(&quot;m4&quot;, m3); // m3被改变
+}
+</code></pre>
+<p>main.cpp:</p>
+<pre><code class="language-c++">#include&lt;opencv2/opencv.hpp&gt;
+#include&lt;iostream&gt;
+#include&quot;quickopencv.h&quot;
+using namespace cv;
+using namespace std;
+
+int main(int artc, char** argv) {
+	Mat src = imread(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/lena.jpg&quot;);
+	if (src.empty()) {
+		printf(&quot;Could not load image...\n&quot;);
+		return -1;
+	}
+
+	QuickDemo qd;
+	qd.mat_creation_demo(src);
+
+	waitKey(0); // ms unit, 0 means wait
+	return 0;
+}
+</code></pre>
+<h2 id="opencv中图像像素-读写-操作">OpenCV中图像像素 读写 操作</h2>
+<h3 id="知识点-3">知识点</h3>
+<ul>
+<li>C++中像素的遍历与访问
+<ul>
+<li>数组遍历</li>
+<li>指针方式遍历</li>
+</ul>
+</li>
+<li>Python中像素的遍历与访问
+<ul>
+<li>数组遍历</li>
+</ul>
+</li>
+<li>常见的像素操作</li>
+</ul>
+<h3 id="示例代码-3">示例代码</h3>
+<p>对彩色/灰度图像进行反转处理。</p>
+<p>quickopencv.h</p>
+<pre><code class="language-c++">#pragma once
+#include&lt;opencv2/opencv.hpp&gt;
+using namespace cv;
+
+class QuickDemo {
+public:
+	void colorSpace_Demo(Mat&amp; image);
+	void mat_creation_demo(Mat&amp; image);
+	void pixel_visit_demo(Mat&amp; image); // 
+};
+</code></pre>
+<p>quickdemo.cpp</p>
+<pre><code class="language-c++">void QuickDemo::pixel_visit_demo(Mat&amp; image) {
+	int w = image.cols;
+	int h = image.rows;
+	int dims = image.channels();
+	for (int row = 0; row &lt; h; row++) {
+		for (int col = 0; col &lt; w; col++) {
+			if (dims == 1) { // 对单通道的灰度图
+				int pv = image.at&lt;uchar&gt;(row, col);  // at访问uchar（字节类型），自动转换为int类型
+
+				// 重新赋值，改变
+				image.at&lt;uchar&gt;(row, col) = 255 - pv;
+			}
+			else if (dims == 3) { // 彩色图，获得三个值
+				Vec3b bgr = image.at&lt;Vec3b&gt;(row, col);
+				// int: Vec3i; float: Vec3f
+
+				// 赋值，改写
+				image.at&lt;Vec3b&gt;(row, col)[0] = 255 - bgr[0];
+				image.at&lt;Vec3b&gt;(row, col)[1] = 255 - bgr[1];
+				image.at&lt;Vec3b&gt;(row, col)[2] = 255 - bgr[2];
+			}
+		}
+	}
+
+	imshow(&quot;像素读写演示&quot;, image);
+}
+</code></pre>
+<p>main.cpp</p>
+<pre><code class="language-c++">#include&lt;opencv2/opencv.hpp&gt;
+#include&lt;iostream&gt;
+#include&quot;quickopencv.h&quot;
+using namespace cv;
+using namespace std;
+
+int main(int artc, char** argv) {
+	Mat src = imread(&quot;D:/sjtu/sjtu_files/4_1/opencv_learn/lena.jpg&quot;); 
+	if (src.empty()) {
+		printf(&quot;Could not load image...\n&quot;);
+		return -1;
+	}
+
+	imshow(&quot;Input window&quot;, src);
+
+	QuickDemo qd;
+	qd.pixel_visit_demo(src); // ************
+
+	waitKey(0); // ms unit, 0 means wait
+	return 0;
+}
+</code></pre>
+<p>如何使用指针访问像素？<br>
+在quickdemo.cpp中：</p>
+<pre><code class="language-c++">void QuickDemo::pixel_visit_demo(Mat&amp; image) {
+	int w = image.cols;
+	int h = image.rows;
+	int dims = image.channels();
+	
+	// 缺点：判断dims在循环里面，应该在最外层判断，资源浪费严重
+	// 使用指针
+	if (dims == 1) {
+		for (int row = 0; row &lt; h; ++row) {
+			uchar* current_pixel = image.ptr&lt;uchar&gt;(row);
+			for (int col = 0; col &lt; w; ++col) {
+				*current_pixel++ = 255 - *current_pixel;
+			}
+		}
+	}
+	else if (dims == 3) {
+		for (int row = 0; row &lt; h; ++row) {
+			uchar* current_pixel = image.ptr&lt;uchar&gt;(row);
+			for (int col = 0; col &lt; w; ++col) {
+				*current_pixel++ = 255 - *current_pixel;
+				*current_pixel++ = 255 - *current_pixel;
+				*current_pixel++ = 255 - *current_pixel;
+			}
+		}
+	}
+
+	imshow(&quot;像素读写演示&quot;, image);
+}
+</code></pre>
+<h2 id="图像像素的-算术-操作">图像像素的 算术 操作</h2>
+<h3 id="知识点-4">知识点</h3>
+<ul>
+<li>加add，减subtract，乘multiply，除divide</li>
+<li>saturate_cast</li>
+</ul>
+<h3 id="示例代码-4">示例代码</h3>
+<p>main.cpp</p>
+<pre><code class="language-c++">QuickDemo qd;
+qd.operators_demo(src);
+</code></pre>
+<p>quickopencv.h</p>
+<pre><code class="language-c++">#pragma once
+#include&lt;opencv2/opencv.hpp&gt;
+using namespace cv;
+
+class QuickDemo {
+public:
+	void colorSpace_Demo(Mat&amp; image);
+	void mat_creation_demo(Mat&amp; image);
+	void pixel_visit_demo(Mat&amp; image);
+	void operators_demo(Mat&amp; image);
+};
+</code></pre>
+<p>quickdemo.cpp</p>
+<pre><code class="language-c++">void QuickDemo::operators_demo(Mat&amp; image) {
+	// 像素操作可以是加减乘除，注意溢出！
+	Mat dst;
+
+	// 加法操作，变亮
+	//dst = image + Scalar(50, 50, 50);
+	add(image, Scalar(50, 50, 50), dst);
+	imshow(&quot;加法操作&quot;, dst);
+
+	// 减法操作，变暗
+	//dst = image - Scalar(50, 50, 50);
+	subtract(image, Scalar(50, 50, 50), dst);
+	imshow(&quot;减法操作&quot;, dst);
+
+	// 除法同理减法，变暗
+	//dst = image / Scalar(2, 2, 2);
+	divide(image, Scalar(2, 2, 2), dst);
+	imshow(&quot;除法操作&quot;, dst);
+
+	// 乘法同理加法，变亮
+	// 专用乘法函数
+	Mat m = Mat::zeros(image.size(), image.type());
+	m = Scalar(2, 2, 2);
+	multiply(image, m, dst);
+	imshow(&quot;乘法操作&quot;, dst);
+
+	// saturate_cast，上限在uchar范围内
+	dst = Mat::zeros(image.size(), image.type()); // 初始化，可以忽略
+	m = Mat::zeros(image.size(), image.type());
+	m = Scalar(2, 2, 2);
+	int w = image.cols;
+	int h = image.rows;
+	int dims = image.channels();
+	for (int row = 0; row &lt; h; ++row) {
+		for (int col = 0; col &lt; w; ++col) {
+			Vec3b lhs = image.at&lt;Vec3b&gt;(row, col);
+			Vec3b rhs = image.at&lt;Vec3b&gt;(row, col);
+			dst.at&lt;Vec3b&gt;(row, col)[0] = saturate_cast&lt;uchar&gt;(lhs[0] + rhs[0]);
+			dst.at&lt;Vec3b&gt;(row, col)[1] = saturate_cast&lt;uchar&gt;(lhs[1] + rhs[1]);
+			dst.at&lt;Vec3b&gt;(row, col)[2] = saturate_cast&lt;uchar&gt;(lhs[2] + rhs[2]);
+		}
+	}
+	imshow(&quot;saturate cast乘法&quot;, dst);
+}
+</code></pre>
+<h2 id="利用gui生成滚动条改变图像亮度trackar">利用GUI生成滚动条，改变图像亮度——Trackar</h2>
+<h3 id="知识点-5">知识点</h3>
+<p>该部分涉及回调函数内容。参考较多。</p>
+<p><code>createTrackbar()</code>函数的函数原型为：<br>
+<code>CV_EXPORTS int createTrackbar(const String&amp; trackbarname, const String&amp; winname，int* value, int count,TrackbarCallback onChange = 0, void* userdata = 0);</code></p>
+<p>trackbarname：这个参数用来给这个滚动条取一个名字；<br>
+winname：这个参数用来指定你要吧这个滚动条用到那个窗口上；<br>
+value：这个参数用来设置滑块初始值位置，同时记录滑块以后的位置；<br>
+count：这个参数用来指定滚动条可以滚动的最大值；<br>
+onChange：这个参数可以理解为一个函数类型的变量（当然这样说感觉有点怪），用来接收回调函数函数名的，默认值为0；<br>
+userdata：这个变量这个参数是用户传给回调函数的数据，用来处理轨迹条事件，默认值为0。</p>
+<p>这里面一共有6个参数，其中<code>value</code>这个参数容易理解有偏差，<code>onchange</code>，<code>userdata</code>这俩参数可能难以理解；</p>
+<p>下面先说我对<code>value</code>这个参数的看法：<br>
+<code>value</code>这个参数首先要知道它是用来给滑块位置一个初始值的，也就是告诉我们滑块最初位置在哪，而不是滑块可以滑动范围的最小值，滑块可以滑动的范围永远都是[0, count]，<code>count</code>即为第四个参数，然后还要理解一个概念，代码运行过程中，不是<code>value</code>的值影响滑块的位置，而是由于用户对滑块的移动改变了<code>value</code>的值，也就是说<code>value</code>是被动的。</p>
+<p>然后在说对<code>onChange</code>该参数的理解：<br>
+首先我们看一下回调函数的函数原型：<br>
+<code>void (*TrackbarCallback)(int pos, void* userdata);</code><br>
+当我们没看回调函数原型时可能很难理解有些代码中定义回调函数时为什么必须要有那俩参数，当看了回调函数原型后我相信有C++基础的人也都能明白了，那么我来说说回调函数和createTrackbar()函数的关系；首先，我们看到回调函数和createTrackbar函数都有一个形参名为userdata，那这是不是巧合呢？<strong>答案当然不是，你可以这样理解，回调函数是一个必须依托于createTrackbar()函数而使用的函数，他不能单独拿来使用，那他的两个形参是怎么用的呢？首先第一个形参pos，它表示的是当前滑块所在的位置，它的值是createTrackbar()传给他的，也就是createTrackbar()形参value的值，这个传输过程是在createTrackbar()内部实现的，无需深究，然后回调函数形参userdata的值就是通过createTrackbar()的形参userdata直接得到的，所以createTrackbar()的形参userdata其实就是专门给回调函数准备的。</strong></p>
+<h3 id="示例代码-5">示例代码</h3>
+<p>main.cpp</p>
+<pre><code class="language-c++">QuickDemo qd;
+qd.tracking_bar_demo(src);
+</code></pre>
+<p>quickopencv.h</p>
+<pre><code class="language-c++">class QuickDemo {
+public:
+	...
+	void tracking_bar_demo(Mat&amp; image);
+};
+</code></pre>
+<p>quickdemo.cpp</p>
+<pre><code class="language-c++">// 定义callback回调函数，用static修饰，表示该函数只在同一个文件内调用
+// 关于回调函数，详见https://www.zhihu.com/question/19801131; https://www.zhihu.com/question/19801131/answer/1641403537
+// 本段代码参考博客：https://www.cnblogs.com/geek-hao/p/11668248.html
+static void onChangeTrackBar(int pos, void* userdata) {
+	Mat src = *(Mat*)(userdata); // 强制类型转换
+	Mat dst, m = Mat::zeros(src.size(), src.type());
+	m = Scalar(pos, pos, pos);
+	add(src, m, dst);
+	imshow(&quot;亮度调整&quot;, dst);
+}
+void QuickDemo::tracking_bar_demo(Mat&amp; image){
+	namedWindow(&quot;亮度调整&quot;, WINDOW_AUTOSIZE);
+	int max_value = 100;
+	int lightness = 50;
+
+	createTrackbar(&quot;Value Bar&quot;, &quot;亮度调整&quot;, &amp;lightness, max_value, onChangeTrackBar, &amp;image);
+}
+</code></pre>
+<h2 id="trackbar参数传递与调整亮度与对比度">trackbar参数传递与调整亮度与对比度</h2>
+<!-- more -->
+<p>🙏😽</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ray-sang.github.io/tag/aLOyylOMR/" class="tag">
+                    OpenCV
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ray-sang.github.io/post/ya-si-zhen-ti-he-xin-ci-hui-shu-1575-ci/">
+                  <h3 class="post-title">
+                    雅思真题核心词汇书——1575词
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
