@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2021-09-05T01:12:35.298Z</updated>
+    <updated>2021-09-05T01:14:13.515Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,229 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[Effective C++ 笔记（待续）]]></title>
+        <id>https://ray-sang.github.io/post/effective-c-bi-ji-dai-xu/</id>
+        <link href="https://ray-sang.github.io/post/effective-c-bi-ji-dai-xu/">
+        </link>
+        <updated>2021-09-05T01:12:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>😀</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>😀</p>
+<!-- more -->
+<p>参考：https://www.cnblogs.com/xiaojianliu/p/12693603.html</p>
+<h1 id="part-1-accusting-yourself-to-c">Part 1 Accusting yourself to C++</h1>
+<p>参考：https://blog.csdn.net/lm409/article/details/72059362</p>
+<h2 id="item-1">Item 1</h2>
+<h2 id="item-2">Item 2</h2>
+<pre><code class="language-c++">// 假设f为
+int f(int num) { return num; }
+
+#define CALL_WITH_MAX(a, b) f((a) &gt; (b) ? (a) : (b))
+// 为所有宏中的实参都加上小括号
+int main(){
+	int a = 5, b = 0;
+	CALL_WITH_MAX(++a, b); // a 被累加二次，a == 7， 函数返回7
+	CALL_WITH_MAX(++a, b+10); // a 被累加一次，a == 8， 函数返回10
+	
+	return 0;
+}
+</code></pre>
+<p>记住：</p>
+<ul>
+<li>单纯常量使用const对象或enum{}替换#defines。</li>
+<li>形似函数的宏（macros），改用inline函数替换#defines。</li>
+</ul>
+<h2 id="item-3-use-const-wherever-possible">Item 3 Use const wherever possible</h2>
+<p>const的约束（由位置决定）：</p>
+<pre><code class="language-c++">char greeting[] = &quot;Hello&quot;;
+char* p = greeting; // non-const ptr, non-const data;
+const char* p = greeting; // non-const ptr, const data;
+char* const p = greeting; // const ptr, non-const data;
+const char* const p = greeting; // const ptr, const data;
+</code></pre>
+<p>如果const出现在星号左边，表示被指物是常量；如果出现在星号右边，表示指针自身是常量；两边，表示被指物和指针自身都是常量。注意，如果被指物是常量，关键字const写在类型之前也可以，即以下两种写法相同：</p>
+<pre><code class="language-c++">void f1(const Widget* pw);
+void f2(Widget const * pw);
+</code></pre>
+<p>面对函数声明时，使用const限定函数返回常量值，避免出现不必要的可能的赋值行为（避免被左值），避免与内置类型的不兼容，如：</p>
+<pre><code class="language-c++">class Rational{...};
+const Rational operator*(const Rational&amp; lhs, const Rational&amp; rhs);
+
+Rational a, b, c;
+...
+if(a*b = c)... // typo of ==, occuring unnecessary assignment
+</code></pre>
+<p>将const应用于成员函数，可以：</p>
+<ul>
+<li>使class接口容易被理解，得知哪个函数可以改动对象内容，而哪个不行。</li>
+<li>使“操作const对象”成为可能。前提是：有const成员函数可用来处理取得的const对象。使用函数重载，对const和non-const对象进行不同的处理。</li>
+</ul>
+<h2 id="item-4-initialize-objects-before-used">Item 4 Initialize objects before used</h2>
+<p>区分赋值与初始化（在类中），赋值：</p>
+<pre><code class="language-c++">class PhoneNumber{...};
+class ABEntry{
+public:
+	ABEntry(const std::string&amp; name, const std::string&amp; address, const std::list&lt;PhoneNumber&gt;&amp; phones);
+private:
+	std::string theName;
+	std::string theAddress;
+	std::list&lt;PhoneNumber&gt; thePhones;
+	int numTimesConsulted;
+};
+// 注意，这不是初始化initialization，是赋值assignments
+ABEntry::ABEntry(const std::string&amp; name, const std::string&amp; address, const std::list&lt;PhoneNumber&gt;&amp; phones){
+	theName = name;
+	theAddress = address;
+	thePhones = phones;
+	numTimesConsulted = 0;
+}
+</code></pre>
+<p>而C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。使用member initialization list替换赋值操作（如果多重继承，使用初始化列表是避免迷惑编译器的唯一办法）：</p>
+<pre><code class="language-c++">ABEntry::ABEntry(const std::string&amp; name, const std::string&amp; address, const std::list&lt;PhoneNumber&gt;&amp; phones) :
+	theName(name), // 只调用一次copy构造函数
+	theAddress(address),
+	thePhones(phones),
+	numTimesConsulted(0)
+{ }
+</code></pre>
+<p>如果成员变量是const或者references，他们就一定需要初值，不能被赋值。总是使用成员初值列可以避免这些问题。</p>
+<p>条款4最后没看懂。先过。</p>
+<h1 id="part-2-constuctors-destructors-and-assignment-operators">Part 2 Constuctors, Destructors, and Assignment Operators</h1>
+<p>参考：https://blog.csdn.net/lm409/article/details/72598020</p>
+<h2 id="item-5-know-what-functions-c-silently-writes-and-calls">Item 5 Know what functions C++ silently writes and calls</h2>
+<p>C++编译器会为一个空类声明（编译器版本的）一个copy构造函数、一个copy assignment操作符和一个析构函数。此外，如果没有声明任何构造函数，编译器也会声明一个default构造函数。所有这些函数都是public且inline。即如果你写下：</p>
+<pre><code class="language-c++">class Empty{};
+</code></pre>
+<p>等同于：</p>
+<pre><code class="language-c++">class Empty{
+public:
+	Empty(){...} // default constructor
+	Empty(const Empty&amp; rhs){...} // copy constructor
+	~Empty(){...} // destructor, 是否该是virtual见稍后说明
+	
+	Empty&amp; operator=(const Empty&amp; rhs){...} // copy assignment operator
+};
+</code></pre>
+<p>只有这些函数被需要（被调用）时，才会被编译器创建出来。</p>
+<p>C++不允许“让引用改指向不同对象”，本质上引用还是取地址，左值不可以被修改。C++的默认copy assignment会被拒绝编译的情况：</p>
+<ul>
+<li>在“内含reference成员”的class内支持赋值操作（assignment）。</li>
+<li>更改const成员。</li>
+<li>如果某个base classes将copy assignment操作符声明为private，编译器将拒绝为其derived classes生成一个copy assignment操作符。</li>
+</ul>
+<p>总结：如果打算在一个“内含reference成员”的 class 内支持赋值操作，必须自己定义copy assignment操作符；面对“内含const成员”的classes，编译器的反应也一样（拒绝编译该行动作），因为更改const成员是不合法的；如果某个 base classes 将copy assignment操作符声明为 private，编译器将拒绝为其 derived classes 生成 copy assignment 操作符。</p>
+<h2 id="item-6-若不想使用编译器自动生成的函数就改明确拒绝">Item 6 若不想使用编译器自动生成的函数，就改明确拒绝</h2>
+<p>需求：阻止某些对象拷贝操作，但是编译器会自动生成拷贝构造函数和copy assignment。</p>
+<p>将拷贝构造函数和拷贝赋值运算符声明为私有的。通过显式声明一个成员函数，可以防止编译器生成它自己的版本，而且将这个函数声明为私有的，可以防止别人调用它。</p>
+<p>通常，这个方案并不十分保险，因为成员和友元函数还是能够调用你的 private 函数。换句话说，除非你十分聪明地不定义它们。那么，当有人不小心地调用了它们，在 link-time（链接时）会出现错误。这个窍门——声明成员函数为 private 却故意不去实现它确实很好。</p>
+<pre><code class="language-c++">class HomeForSale {
+public:
+  ...
+private:
+  ...
+  //@ declarations only 只声明不实现
+  HomeForSale(const HomeForSale&amp;);           
+  HomeForSale&amp; operator=(const HomeForSale&amp;);
+};
+</code></pre>
+<p>对于上面的类定义，编译器将阻止客户拷贝对象的企图，如果你不小心在成员或友元函数中这样做了，连接程序会提出抗议。</p>
+<p>通常的方式故意设计一个基类：</p>
+<pre><code class="language-c++">class Uncopyable {
+protected:                                  
+  Uncopyable() {}                           
+  ~Uncopyable() {}                          
+
+private:
+ //@but prevent copying
+  Uncopyable(const Uncopyable&amp;);             
+  Uncopyable&amp; operator=(const Uncopyable&amp;);
+};
+</code></pre>
+<p>此时 HomeForSale 可以从该基类继承：</p>
+<pre><code class="language-c++">class HomeForSale: private Uncopyable {      
+  ...                                        
+};  
+</code></pre>
+<p>这样做是因为，如果有人—— 成员友元函数试图拷贝一个 HomeForSale 对象，编译器将试图生成一个拷贝构造函数和一个拷贝赋值运算符。这些函数的编译器生成版会试图调用基类的相应函数，而这些调用将被拒绝，因为在 基类中，拷贝操作是私有的。</p>
+<p>Uncopyable 的实现和使用包含一些微妙之处，比如，从 Uncopyable 继承不必是 public的，而且 Uncopyable 的 析构函数不必是 virtual 的。因为 Uncopyable 不包含数据。</p>
+<p>总结：为了拒绝编译器自动提供的机能，将相应的成员函数声明为 private，而且不要给出实现。使用一个类似 Uncopyable 的基类是方法之一。</p>
+<h2 id="item-7-为多态基类声明virtual析构函数-declare-destructors-virtual-in-polymorphic-base-classes">Item 7 为多态基类声明virtual析构函数 Declare destructors virtual in polymorphic base classes</h2>
+<p>有很多方法取得时间，所以有必要建立一个基类，并为不同的计时方法建立派生类：</p>
+<pre><code class="language-c++">class TimeKeeper {
+public:
+  TimeKeeper();
+  ~TimeKeeper();
+  ...
+};
+
+class AtomicClock: public TimeKeeper { ... };
+class WaterClock: public TimeKeeper { ... };
+class WristWatch: public TimeKeeper { ... };
+
+//@ 使用时
+TimeKeeper *ptk = getTimeKeeper();  
+...                         
+delete ptk;                        
+</code></pre>
+<p><code>getTimeKeeper</code> 返回一个指向派生类对象的指针（比如 <code>AtomicClock</code>)，那个对象经由一个基类指针也就是一个<code>TimeKeeper* pointer</code> 被删除，而且这个基类非虚拟析构函数。祸端就在这里，因为 C++ 规定：<strong>当一个派生类对象通过使用一个指向带有非虚拟析构函数的基类的指针被删除，则结果是未定义的。</strong> 运行时比较典型的后果是这个对象的派生部分不会被析构。如果 <code>getTimeKeeper</code> 返回一个指向 <code>AtomicClock</code> 对象的指针，则对象的 <code>AtomicClock</code> 部分也就是在 <code>AtomicClock class</code> 中声明的数据成员很可能不会被析构，<code>AtomicClock</code> 的析构函数也不会运行。然而，基类部分（也就是 <code>TimeKeeper</code> 部分）很可能已被析构，这就导致了一个古怪的“部分被析构”对象。这是一个导致泄漏资源。</p>
+<p>参考：https://www.zhihu.com/question/25572937/answer/34439248</p>
+<p>消除这个问题很简单：给基类一个虚拟析构函数。于是，删除一个派生类对象的时候就有了你所期望的行为。将析构整个对象，包括全部的派生类构件：</p>
+<pre><code class="language-c++">class TimeKeeper {
+public:
+  TimeKeeper();
+  virtual ~TimeKeeper(); //
+  ...
+};
+
+TimeKeeper *ptk = getTimeKeeper();
+...
+delete ptk;  
+</code></pre>
+<p>类似 TimeKeeper 的基类一般都包含除了析构函数以外的其它虚拟函数，因为虚拟函数的目的就是允许派生类实现的<strong>定制化</strong>。例如，TimeKeeper 可以有一个虚拟函数 getCurrentTime，它在各种不同的派生类中有不同的实现。几乎所有拥有虚拟函数的类差不多都应该有一个虚拟析构函数。</p>
+<p>**如果一个类不包含虚拟函数，这经常预示不打算将它作为基类使用。当一个类不打算作为基类时，将析构函数虚拟通常是个坏主意。**会造成空间占用的增加。</p>
+<p>要注意所有不带virtual析构函数的类，比如所有的STL容器（vector、list、set等等），不能将其作为base class，然后经由基类指针删除派生类对象。例如：</p>
+<pre><code class="language-c++">class SpecialString: public std::string {   // bad idea! std::string has a non-virtual destructor
+  ...                                       
+};
+</code></pre>
+<p>一眼看上去，这可能无伤大雅，但是，如果在程序的某个地方因为某种原因，你将一个指向 SpecialString 的指针转型为一个指向 string 的指针，然后你将 delete 施加于这个指针，你就立刻被放逐到未定义行为的领地：</p>
+<pre><code class="language-c++">SpecialString *pss =   new SpecialString(&quot;Impending Doom&quot;);
+std::string *ps;
+...
+ps = pss;   
+...
+delete ps;    //@ undefined! In practice, *ps's SpecialString resources will be leaked, because the SpecialString destructor won't be called.
+</code></pre>
+<p>有时候，给一个类提供一个pure virtual 纯虚拟析构函数能提供一些便利，会导致 abstract class （抽象类）——也就是不能实体化的类，往往被当做base class来用，注意给纯虚析构函数提供一份定义，否则连接器会报错。（因为C++的析构顺序）</p>
+<pre><code class="language-c++">class AWOV  {  
+public:  
+    virtual ~AWOV() = 0;  //声明纯虚析构函数
+}; 
+
+AWOV::~AWOV()  {  } //定义纯虚析构函数
+</code></pre>
+<p>总结：多态基类应该声明虚拟析构函数。如果一个类有任何虚拟函数，它就应该有一个虚拟析构函数；不是设计用来作为基类或不是设计用于多态的类就不应该声明虚拟析构函数。</p>
+<h2 id="item-8-析构函数中发生异常是件棘手的事-prevent-exceptions-from-leaving-destructors">Item 8 析构函数中发生异常是件棘手的事 Prevent exceptions from leaving destructors</h2>
+<p>由于析构函数常常被自动调用，在析构函数中抛出的异常往往会难以捕获，引发程序非正常退出或未定义行为。</p>
+<pre><code class="language-c++">class Widget {
+public:
+  ...
+  ~Widget() { ... } // 假设这个可能吐出一个异常
+};
+
+void doSomething()
+{
+  std::vector&lt;Widget&gt; v;
+  ...
+} // v 在这里被自动销毁
+</code></pre>
+<p>当 v 被析构时，它有责任析构它包含的所有 Widgets。假设 v 中有十个 Widgets，在第一个的析构过程中，抛出一个异常。其它 9 个 Widgets 仍然必须被析构，否则它们持有的所有资源将被泄漏，因此C++调用他们各个析构函数。但假设在那些调用期间，第二个Widgets析构函数又抛出异常，现在有两个同时作用的异常，这对于C++来说太多了。在两个</p>
+<pre><code class="language-c++">
+</code></pre>
+<!-- more -->
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[OpenCV基础内容笔记]]></title>
         <id>https://ray-sang.github.io/post/opencv-ji-chu-nei-rong-bi-ji/</id>
@@ -9437,24 +9660,6 @@ void QuickDemo::tracking_bar_demo(Mat&amp; image){
 <p>指代：就近原则和一致性原则。语法和意思的一致。</p>
 <p>例子2： As families move away from their stable community, their friends of many years***, and***（说明前面是并列，被切断的只是信息流） their extended family relationships, the informal flow of information（主） is cut off, <em><strong>and</strong></em> （省略，回想：连词后有的成分连词前不一定有，根据后面的成分找前一句对应的成分）with it（就近原则和一致性原则找指代的内容：the informal flow of information） the confidence that information will be available when needed <em><strong>and</strong></em> （省略主语 information）will be trustworthy and reliable（省略 is cut off）.</p>
 <p>翻译：随着家庭搬离他们稳定的社区，搬离他们多年的朋友，搬离他们延伸的大家庭关系（亲戚关系），这类非正式的信息流就被切断了。并且，和非正式的信息流一起，当需要的时候我们就会得到这些可靠的信息  的自信  也消失了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[LaTeX各种操作汇总（不定时更新）]]></title>
-        <id>https://ray-sang.github.io/post/latex-ge-chong-cao-zuo-hui-zong-bu-ding-shi-geng-xin/</id>
-        <link href="https://ray-sang.github.io/post/latex-ge-chong-cao-zuo-hui-zong-bu-ding-shi-geng-xin/">
-        </link>
-        <updated>2020-12-13T01:39:13.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<h1 id="正文间距段行列间距调整与表格调整宽度-合并-表注">正文间距(段行列间距)调整与表格调整(宽度, 合并, 表注)</h1>
-<p>https://blog.csdn.net/wbl90/article/details/79821532</p>
-<h1 id="大于小于">大于小于</h1>
-<ul>
-<li>大于 \textgreater</li>
-<li>小于 \textless</li>
-<li>大于等于 \ge 或者 \geq</li>
-<li>小于等于 \le 或者 \leq</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
