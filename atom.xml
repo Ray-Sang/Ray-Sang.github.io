@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ray-sang.github.io</id>
     <title>Ray&apos;s Space</title>
-    <updated>2021-09-05T01:15:56.554Z</updated>
+    <updated>2021-11-03T13:52:38.299Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ray-sang.github.io"/>
     <link rel="self" href="https://ray-sang.github.io/atom.xml"/>
@@ -10,6 +10,515 @@
     <logo>https://ray-sang.github.io/images/avatar.png</logo>
     <icon>https://ray-sang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Ray&apos;s Space</rights>
+    <entry>
+        <title type="html"><![CDATA[STL基本数据结构]]></title>
+        <id>https://ray-sang.github.io/post/stl-ji-ben-shu-ju-jie-gou/</id>
+        <link href="https://ray-sang.github.io/post/stl-ji-ben-shu-ju-jie-gou/">
+        </link>
+        <updated>2021-11-03T13:52:00.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="vector">vector</h1>
+<h2 id="容器特性">容器特性</h2>
+<ol>
+<li>顺序序列</li>
+<li>动态数组，末尾快速删除、添加</li>
+<li>使用内存分配器对象来动态处理存储需求</li>
+</ol>
+<h2 id="基本函数实现">基本函数实现</h2>
+<ol>
+<li>构造函数</li>
+</ol>
+<pre><code class="language-c++">vector();
+vector(int nSize);
+vector(int nSize, const&amp; t); // 元素个数为nSize,且值均为t
+vector(const vector&amp;); // 复制构造函数
+vector(begin, end); // 复制[begin,end)区间内另一个数组的元素到vector中
+</code></pre>
+<p>特别的，二维定义：</p>
+<pre><code class="language-c++">// method 1
+int N=5, M=6; 
+vector&lt;vector&lt;int&gt; &gt; obj(N); //定义二维动态数组大小5行 
+for(int i =0; i&lt; obj.size(); i++)//动态二维数组为5行6列，值全为0 
+{ 
+  obj[i].resize(M); 
+} 
+
+// method 2
+vector&lt;vector&lt;int&gt;&gt; obj(N, vector&lt;int&gt;(M));
+</code></pre>
+<ol start="2">
+<li>增加函数</li>
+</ol>
+<pre><code class="language-c++">void push_back(const T&amp; x);
+
+// 向量中迭代器指向元素前增加一个元素x
+iterator insert(iterator it, const T&amp; x); 
+
+// 向量中迭代器指向元素前增加n个相同的元素x
+iterator insert(iterator it, int n, const T&amp; x);
+</code></pre>
+<ol start="3">
+<li>删除函数</li>
+</ol>
+<pre><code class="language-c++">iterator erase(iterator it); // 删除迭代器指向元素
+iterator erase(iterator first, iterator last); // 删除[first, last)
+void pop_back();
+void clear();
+</code></pre>
+<ol start="4">
+<li>遍历函数</li>
+</ol>
+<pre><code class="language-c++">reference at(int pos); // 返回pos位置的引用
+reference front(); // 返回首元素的引用
+reference back(); // 返回尾元素的引用
+iterator begin(); // 返回头指针，指向第一个元素
+iterator end(); // 返回向量尾指针，指向最后一个元素的下一个位置
+reverse_iterator rbegin(); // 反向迭代器，指向最后一个元素
+reverse_iterator rend(); // 反向迭代器，指向第一个元素之前的位置
+</code></pre>
+<ol start="5">
+<li>判空</li>
+</ol>
+<pre><code class="language-c++">bool empty() const;
+</code></pre>
+<ol start="6">
+<li>大小</li>
+</ol>
+<pre><code class="language-c++">int size() const;
+int capacity() const;
+int max_size() const;
+</code></pre>
+<ol start="7">
+<li>其他</li>
+</ol>
+<pre><code class="language-c++">void swap(vector&amp; ); // 交换两个同类型vector的数据
+void assign(int n, const T&amp; x); // 将vector前n个元素值设为x
+void assign(const iterator first, const iterator last); //[first,last)中元素设置成当前向量元素
+</code></pre>
+<h2 id="常用">常用</h2>
+<ol>
+<li>push_back 在数组的最后添加一个数据</li>
+<li>pop_back 去掉数组的最后一个数据</li>
+<li>at 得到编号位置的数据</li>
+<li>begin 得到数组头的指针</li>
+<li>end 得到数组的最后一个单元+1的指针</li>
+<li>front 得到数组头的引用</li>
+<li>back 得到数组的最后一个单元的引用</li>
+<li>max_size 得到vector最大可以是多大</li>
+<li>capacity 当前vector分配的大小</li>
+<li>size 当前使用数据的大小</li>
+<li>resize 改变当前使用数据的大小，如果它比当前使用的大，者填充默认值</li>
+<li>reserve 改变当前vecotr所分配空间的大小</li>
+<li>erase 删除指针指向的数据项</li>
+<li>clear 清空当前的vector</li>
+<li>rbegin 将vector反转后的开始指针返回(其实就是原来的end-1)</li>
+<li>rend 将vector反转构的结束指针返回(其实就是原来的begin-1)</li>
+<li>empty 判断vector是否为空</li>
+<li>swap 与另一个vector交换数据</li>
+</ol>
+<h2 id="关于iterator">关于iterator</h2>
+<pre><code class="language-c++">#include&lt;vector&gt;
+#include&lt;iostream&gt;
+#include&lt;string.h&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	vector&lt;int&gt; obj;
+	obj.push_back(1);
+	obj.push_back(3);
+	obj.push_back(0);
+	
+	sort(obj.begin(), obj.end()); // 从小到大排序，需要algorithm
+	
+	reverse(obj.begin(), obj.end()); // 从大到小
+}
+</code></pre>
+<p>sort可以重写：</p>
+<pre><code class="language-c++">bool compare(int a,int b) 
+{ 
+    return a&lt; b; //升序排列，如果改为return a&gt;b，则为降序 
+} 
+int a[20]={2,4,1,23,5,76,0,43,24,65},i; 
+for(i=0;i&lt;20;i++) 
+    cout&lt;&lt; a[i]&lt;&lt; endl; 
+sort(a,a+20,compare);
+</code></pre>
+<p>输出利用迭代器：</p>
+<pre><code class="language-c++">vector&lt;int&gt;::iterator it;//声明一个迭代器，来访问vector容器，作用：遍历或者指向vector容器的元素 
+for(it=obj.begin();it!=obj.end();it++) {
+    cout&lt;&lt;*it&lt;&lt;&quot; &quot;;
+}
+</code></pre>
+<h1 id="queue">queue</h1>
+<h2 id="queue特性">queue特性</h2>
+<img src="http://c.biancheng.net/uploads/allimg/180913/2-1P913113140553.jpg" alt="queue" style="zoom:50%;" />
+注意，queue没有迭代器。
+<h2 id="基本函数实现-2">基本函数实现</h2>
+<pre><code class="language-c++">front(); // 返回第一个元素的引用
+back();
+push(const T&amp; obj);
+pop(); // delete and void
+size();
+empty();
+emplace(); // 用传给 emplace() 的参数调用 T 的构造函数，在 queue 的尾部生成对象。
+swap(queue&lt;T&gt; &amp;other_q); 
+</code></pre>
+<h2 id="初始化">初始化</h2>
+<p>https://zh.cppreference.com/w/cpp/container/queue/queue</p>
+<h1 id="deque">deque</h1>
+<p>参考：https://blog.csdn.net/weixin_42462202/article/details/87537503</p>
+<h2 id="double-ended-queue">double-ended queue</h2>
+<p><img src="https://img-blog.csdnimg.cn/20190217155048935.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjQ2MjIwMg==,size_16,color_FFFFFF,t_70" alt="" loading="lazy"><br>
+Vector 容器是单向开口的连续内存空间，deque 则是一种双向开口的连续线性空间。所谓的双向开口，意思是可以在头尾两端分别做元素的插入和删除操作，当然，vector 容器也可以在头尾两端插入元素，但是在其头部操作效率奇差，无法被接受。</p>
+<p>一在于 deque 允许使用常数项时间对头端进行元素的插入和删除操作。二在于 deque 没有容量的概念，因为它是动态的以分段连续空间组合而成，随时可以增加一段新的空间并链接起来。</p>
+<p>它支持[]操作符，也就是支持随即存取，并且和vector的效率相差无几，它支持在两端的操作：push_back,push_front,pop_back,pop_front等，并且在两端操作上与list的效率也差不多。</p>
+<h2 id="操作函数">操作函数</h2>
+<p><code>#include&lt;deque&gt;</code></p>
+<h3 id="构造函数">构造函数</h3>
+<pre><code class="language-c++">deque&lt;T&gt; deqT;//默认构造形式
+deque(beg, end);//构造函数将[beg, end)区间中的元素拷贝给本身。
+deque(n, elem);//构造函数将n个elem拷贝给本身。
+deque(const deque &amp;deq);//拷贝构造函数。
+</code></pre>
+<p>eg.</p>
+<pre><code class="language-c++">#include &lt;deque&gt;
+ 
+void test()
+{
+    deque&lt;int&gt;d;
+ 
+    d.push_back(10);
+    d.push_back(40);
+    d.push_back(30);
+    d.push_back(20);
+    
+    deque&lt;int&gt; d2(d.begin(), d.end()); /* 初始化 */
+    d2.push_back(10000);
+ 
+    /* 交换 */
+    d.swap(d2);
+}
+</code></pre>
+<h3 id="赋值操作">赋值操作</h3>
+<pre><code class="language-c++">deque.assign(beg, end);//将[beg, end)区间中的数据拷贝赋值给本身。
+deque.assign(n, elem);//将n个elem拷贝赋值给本身。
+deque&amp; operator=(const deque &amp;deq); //重载等号操作符
+deque.swap(deq);// 将deq与本身的元素互换
+</code></pre>
+<h3 id="大小操作">大小操作</h3>
+<pre><code class="language-c++">deque.size();//返回容器中元素的个数
+deque.empty();//判断容器是否为空
+deque.resize(num);//重新指定容器的长度为num,若容器变长，则以默认值填充新位置。如果容器变短，则末尾超出容器长度的元素被删除。
+deque.resize(num, elem); //重新指定容器的长度为num,若容器变长，则以elem值填充新位置,如果容器变短，则末尾超出容器长度的元素被删除。
+</code></pre>
+<h3 id="遍历">遍历</h3>
+<pre><code class="language-c++">void printDeque(const deque&lt;int&gt; &amp;d)
+{
+    for(deque&lt;int&gt;::const_iterator it = d.begin(); it != d.end(); it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;&quot; &quot;;
+    }
+    cout&lt;&lt;endl;
+}
+</code></pre>
+<h3 id="插入">插入</h3>
+<pre><code class="language-c++">push_back(elem);//在容器尾部添加一个数据
+push_front(elem);//在容器头部插入一个数据
+pop_back();//删除容器最后一个数据
+pop_front();//删除容器第一个数据
+
+insert(pos,elem);//在pos位置插入一个elem元素的拷贝，返回新数据的位置。
+insert(pos,n,elem);//在pos位置插入n个elem数据，无返回值。
+insert(pos,beg,end);//在pos位置插入[beg,end)区间的数据，无返回值。
+</code></pre>
+<h3 id="indexing">indexing</h3>
+<pre><code class="language-c++">at(idx);//返回索引idx所指的数据，如果idx越界，抛出out_of_range。
+operator[];//返回索引idx所指的数据，如果idx越界，不抛出异常，直接出错。
+front();//返回第一个数据。
+back();//返回最后一个数据
+</code></pre>
+<h3 id="删除">删除</h3>
+<pre><code class="language-c++">clear();//移除容器的所有数据
+erase(beg,end);//删除[beg,end)区间的数据，返回下一个数据的位置。
+erase(pos);//删除pos位置的数据，返回下一个数据的位置。
+</code></pre>
+<h1 id="priority_queue">priority_queue</h1>
+<h2 id="优先队列定义">优先队列定义</h2>
+<p>普通的队列是一种先进先出的数据结构，元素在队列尾追加，而从队列头删除。在优先队列中，元素被赋予优先级（可以自定义优先级）。当访问元素时，具有最高优先级的元素最先删除。优先队列具有最高级先出的行为特征。</p>
+<h2 id="模版参数">模版参数</h2>
+<p>优先队列有三个参数，其声明形式为：</p>
+<pre><code class="language-c++">#include&lt;queue&gt;
+
+priority_queue&lt;type, container, function&gt;;
+</code></pre>
+<p>后面两个参数可以省略，第一个不可以省略。其中，<code>type</code>表示数据类型，<code>container</code>表示实现优先队列的底层容器，必须是数组形式实现的容器，如vector、deque，而不能是list，<code>function</code>表示元素之间的比较方式。</p>
+<h2 id="大顶堆与小顶堆的实现">大顶堆与小顶堆的实现</h2>
+<pre><code class="language-c++">#include&lt;queue&gt;
+#include&lt;functional&gt; // 使用less&lt;int&gt;, greater&lt;int&gt;
+
+//构造一个空的优先队列（此优先队列默认为大顶堆）
+priority_queue&lt;int&gt; big_heap;   
+
+//另一种构建大顶堆的方法
+priority_queue&lt;int, vector&lt;int&gt;, less&lt;int&gt;&gt; big_heap2;   
+
+// 小顶堆
+prioroty_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; small_heap;
+</code></pre>
+<p>参考：https://blog.csdn.net/weixin_36888577/article/details/79937886?utm_medium=distribute.pc_relevant.none-task-blog-2<sub>default</sub>baidujs_title~default-0.no_search_link&amp;spm=1001.2101.3001.4242.1</p>
+<h1 id="list">list</h1>
+<p>参考：https://blog.csdn.net/u011630575/article/details/79734358<br>
+https://www.jb51.net/article/115201.htm</p>
+<h2 id="双向链表">双向链表</h2>
+<p>通过链表指针串联成逻辑意义上的线性表，允许快速插入和删除，但是随机访问慢，头文件<code>#include&lt;list&gt;</code>。每个节点有三个域：前驱元素指针域、数据域和后继元素指针域。</p>
+<p>由于list元素节点并不要求在一段连续的内存中，显然在list中是不支持快速随机存取的，因此对于迭代器，只能通过“++”或“--”操作将迭代器移动到后继/前驱节点元素处。而不能对迭代器进行+n或-n的操作，这点是与vector等不同的地方。</p>
+<p>和vector，deque的区分：</p>
+<ol>
+<li>如果你需要高效的随即存取，而不在乎插入和删除的效率，使用vector</li>
+<li>如果你需要大量的插入和删除，而不关心随即存取，则应使用list</li>
+<li>如果你需要随即存取，而且关心两端数据的插入和删除，则应使用deque。</li>
+</ol>
+<h2 id="初始化-2">初始化</h2>
+<pre><code class="language-c++">list&lt;int&gt; lst1;     //创建空list
+list&lt;int&gt; lst2(5);   //创建含有5个元素的list
+list&lt;int&gt; lst3(3,2);  //创建含有3个2 int元素的list
+list&lt;int&gt; lst4(lst2);   //使用lst2初始化lst4
+list&lt;int&gt; lst5(lst2.begin(),lst2.end());  //同lst4
+</code></pre>
+<h2 id="常用函数">常用函数</h2>
+<pre><code class="language-c++">Lst1.assign() 给list赋值 
+Lst1.back() 返回最后一个元素 
+Lst1.begin() 返回指向第一个元素的迭代器 
+Lst1.clear() 删除所有元素 
+Lst1.empty() 如果list是空的则返回true 
+Lst1.end() 返回末尾的迭代器 
+Lst1.erase() 删除一个元素 
+Lst1.front() 返回第一个元素 
+Lst1.get_allocator() 返回list的配置器 
+Lst1.insert() 插入一个元素到list中 
+Lst1.max_size() 返回list能容纳的最大元素数量 
+Lst1.merge() 合并两个list 
+Lst1.pop_back() 删除最后一个元素 
+Lst1.pop_front() 删除第一个元素 
+Lst1.push_back() 在list的末尾添加一个元素 
+Lst1.push_front() 在list的头部添加一个元素 
+Lst1.rbegin() 返回指向第一个元素的逆向迭代器 
+Lst1.remove() 从list删除元素 
+Lst1.remove_if() 按指定条件删除元素 
+Lst1.rend() 指向list末尾的逆向迭代器 
+Lst1.resize() 改变list的大小 
+Lst1.reverse() 把list的元素倒转 
+Lst1.size() 返回list中的元素个数 
+Lst1.sort() 给list排序 
+Lst1.splice() 合并两个list 
+Lst1.swap() 交换两个list 
+Lst1.unique() 删除list中重复的元素
+</code></pre>
+<h1 id="stack">stack</h1>
+<h2 id="栈">栈</h2>
+<p><code>#include&lt;stack&gt;</code><br>
+<img src="http://c.biancheng.net/uploads/allimg/180913/2-1P913101Q4T2.jpg" alt="" loading="lazy"><br>
+last in first out. 只能访问栈顶元素。stack的底层容器默认是deque。</p>
+<h2 id="函数操作">函数操作</h2>
+<pre><code class="language-c++">empty();
+top();
+pop();
+push();
+size();
+emplace();
+swap(stack&lt;T&gt; &amp;other_stack);
+</code></pre>
+<h1 id="set">set</h1>
+<p>ref: https://www.cnblogs.com/caiyishuai/p/8646345.html</p>
+<h2 id="集合">集合</h2>
+<p>关联式容器。set作为一个容器也是用来存储同一数据类型的数据类型，并且能从一个数据集合中取出数据，在set中每个元素的值都唯一，而且系统能根据元素的值自动进行排序。应该注意的是set中数元素的值不能直接被改变。STL的set的内部结构为红黑树。</p>
+<p>有iterator。</p>
+<h2 id="函数操作-2">函数操作</h2>
+<p>begin(), end(), clear(), empty(), max_size(), size(), rbegin(), rend(), count(), erase(iterator), erase(first, second), erase(key_value), find(key_value)</p>
+<pre><code class="language-c++">#include&lt;set&gt;
+#include&lt;iostream&gt;
+using namespace std;
+int main() {
+	set&lt;int&gt; s;
+	s.insert(1);
+	s.insert(2);
+	s.insert(1);
+	int maxSize = s.max_size();
+	int sz = s.size(); // sz == 2
+	int firstElem = *s.begin();
+	int lastElem = *s.end();
+	int count = s.count(1); // return 1, 判断是否出现过，只返回0或1;
+	
+	set&lt;int&gt;::iterator it;
+	if((it = s.find(2)) != s.end()) {
+		cout &lt;&lt; *it &lt;&lt;endl; // cout 2;
+	}
+}
+</code></pre>
+<h1 id="unordered_set">unordered_set</h1>
+<p>ref：http://c.biancheng.net/view/7250.html<br>
+https://blog.csdn.net/zhang14916/article/details/100859487</p>
+<h2 id="无序set容器">无序set容器</h2>
+<p>和set的区别：set容器会自动对存储的数据进行排序，而unorder_set容器不会。桶的概念。</p>
+<p>有如下特性：</p>
+<ul>
+<li>不再以键值对的形式存储数据，而是直接存储数据的值；</li>
+<li>容器内部存储的各个元素的值都互不相等，且不能被修改。</li>
+<li>不会对内部存储的数据进行排序。</li>
+</ul>
+<p><code>#include&lt;onordered_set&gt;</code></p>
+<h2 id="函数操作-3">函数操作</h2>
+<h3 id="构造函数-2">构造函数</h3>
+<ul>
+<li>std::unordered_set<a href="std::string">std::string</a> c：初始化容器</li>
+<li>std::unordered_set<a href="std::string">std::string</a> c{ &quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot; }：初始化容器，并将&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;加入到容器中</li>
+<li>std::unordered_set<a href="std::string">std::string</a> c{ 16 }：初始化容器，并设置16个桶</li>
+</ul>
+<h3 id="插入元素无法插入相同元素">插入元素（无法插入相同元素）</h3>
+<ul>
+<li>c.insert(&quot;dddd&quot;)：向容器添加元素”dddd&quot;</li>
+<li>a.insert({ &quot;aaa&quot;,&quot;bbbb&quot;,&quot;cccc&quot; })：向容器添加元素&quot;aaa&quot;,&quot;bbbb&quot;,&quot;cccc&quot;</li>
+<li>a.insert(b.begin(), b.end())：b是一个存储着和a相同类型元素的向量，可将b中所有元素添加到a中</li>
+</ul>
+<h3 id="查找元素">查找元素</h3>
+<ul>
+<li>a.find(&quot;eeee&quot;)：查找元素&quot;eeee&quot;，返回结果为a.end()则表明没有找到，否则返回所对应元素</li>
+<li>a.count(&quot;eeee&quot;)：查找元素&quot;eeee&quot;在a中是否存在（由于unordered_set中没有相同的元素，所以结果只有0或1）</li>
+</ul>
+<h3 id="查找桶接口">查找桶接口</h3>
+<ul>
+<li>a.bucket_count()：返回数据结构中桶的数量</li>
+<li>a.bucket_size(i)：返回桶i中的大小</li>
+<li>a.bucket(“eeee&quot;)：返回元素&quot;eeee&quot;在哪个桶里</li>
+</ul>
+<h3 id="清除元素">清除元素</h3>
+<ul>
+<li>a.clear()</li>
+<li>a.erase(&quot;aaa&quot;);</li>
+</ul>
+<h3 id="size-empty">size &amp; empty</h3>
+<ul>
+<li>a.size();</li>
+<li>a.max_size();</li>
+<li>a.empty();</li>
+</ul>
+<h1 id="map">map</h1>
+<h2 id="简介和功能">简介和功能</h2>
+<p>关联式容器。增加和删除节点对于迭代器的影响很小。迭代器可以修改实值，而不能修改key。自动建立key-value的对应。根据key值快速查找记录，查找的复杂度基本是log(N)。</p>
+<h2 id="函数操作-4">函数操作</h2>
+<h3 id="构造函数-3">构造函数</h3>
+<pre><code class="language-c++">#include&lt;map&gt;
+
+map&lt;int, string&gt; mapStudent;
+
+/* 用insert函数插入数据，若map中存在关键字则不能插入，
+   而使用数组方式插入可以覆盖前值 */
+// 用insert函数插入pair
+mapStudent.insert(pair&lt;int, string&gt;(000, &quot;student_zero&quot;));
+
+// 用insert函数插入value_type数据
+mapStudent.insert(map&lt;int, string&gt;::value_type(001, &quot;student_one&quot;));
+
+// 用array方式插入
+mapStudent[123] = &quot;student_first&quot;;
+mapStudent[456] = &quot;student_second&quot;;
+</code></pre>
+<h3 id="查找">查找</h3>
+<pre><code class="language-c++">map&lt;int, string&gt;::iterator iter;
+iter = mapStudent.find(&quot;123&quot;);
+
+if(iter != mapStudent.end()) {
+	cout &lt;&lt; &quot;Find, the value is&quot; &lt;&lt; iter-&gt;second &lt;&lt;endl;
+}
+else {
+	cout &lt;&lt; &quot;Do not find&quot; &lt;&lt; endl;
+}
+</code></pre>
+<h3 id="删除-2">删除</h3>
+<pre><code class="language-c++">// 迭代器删除
+iter = mapStudent.find(&quot;123&quot;);
+mapStudent.erase(iter);
+
+// 用关键字删除
+int n = mapStudent.erase(&quot;123&quot;); // if deleted return 1, else return 0
+
+// 用迭代器范围删除：把整个map清空
+mapStudent.erase(mapStudent.begin(), mapStudent.end());
+// equals to mapStudent.clear();
+</code></pre>
+<h3 id="常用操作">常用操作</h3>
+<p>begin()         返回指向map头部的迭代器<br>
+clear()        删除所有元素<br>
+count()         返回指定元素出现的次数<br>
+empty()         如果map为空则返回true<br>
+end()           返回指向map末尾的迭代器<br>
+equal_range()   返回特殊条目的迭代器对<br>
+erase()         删除一个元素<br>
+find()          查找一个元素<br>
+get_allocator() 返回map的配置器<br>
+insert()        插入元素<br>
+key_comp()      返回比较元素key的函数<br>
+lower_bound()   返回键值&gt;=给定元素的第一个位置<br>
+max_size()      返回可以容纳的最大元素个数<br>
+rbegin()        返回一个指向map尾部的逆向迭代器<br>
+rend()          返回一个指向map头部的逆向迭代器<br>
+size()          返回map中元素的个数<br>
+swap()           交换两个map<br>
+upper_bound()    返回键值&gt;给定元素的第一个位置<br>
+value_comp()     返回比较元素value的函数</p>
+<h1 id="unordered_map">unordered_map</h1>
+<h2 id="哈希表">哈希表</h2>
+<p>c++11没有加入hash_map，所以使用unordered_map。unordered_map记录元素的hash值，根据hash值判断元素是否相同。map相当于java中的TreeMap，unordered_map相当于HashMap。无论从查找、插入上来说，unordered_map的效率都优于hash_map，更优于map；而空间复杂度方面，hash_map最低，unordered_map次之，map最大。</p>
+<p>和map对比：<br>
+存储时是根据key的hash值判断元素是否相同，即unordered_map内部元素是无序的，而map中的元素是按照二叉搜索树存储（用红黑树实现），进行中序遍历会得到有序遍历。</p>
+<h2 id="函数操作-5">函数操作</h2>
+<h3 id="迭代器">迭代器</h3>
+<ul>
+<li>begin()</li>
+<li>end()</li>
+<li>cbegin() // const_iterator</li>
+<li>cend()</li>
+</ul>
+<h3 id="容量">容量</h3>
+<ul>
+<li>size()</li>
+<li>max_size()</li>
+<li>empty()</li>
+</ul>
+<h3 id="元素访问">元素访问</h3>
+<ul>
+<li>operator[]</li>
+<li>at</li>
+</ul>
+<h3 id="元素修改">元素修改</h3>
+<ul>
+<li>insert()</li>
+<li>erase()</li>
+<li>swap()</li>
+<li>clear()</li>
+<li>emplace()</li>
+</ul>
+<h3 id="操作">操作</h3>
+<ul>
+<li>find()</li>
+<li>count()</li>
+<li>equal_range()</li>
+</ul>
+<h3 id="buckets">Buckets</h3>
+<ul>
+<li>bucket_count()</li>
+<li>max_bucket_count()</li>
+<li>bucket_size()</li>
+<li>bucket()</li>
+<li>load_factor()</li>
+<li>max_load_factor()</li>
+<li>rehash()</li>
+<li>reserve()</li>
+</ul>
+<h3 id="插入元素示例">插入元素示例</h3>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Effective C++ 笔记（待续）]]></title>
         <id>https://ray-sang.github.io/post/effective-c-bi-ji-dai-xu/</id>
@@ -9444,222 +9953,6 @@ void QuickDemo::tracking_bar_demo(Mat&amp; image){
 <p>。<br>
 <code>&lt;span id=&quot;lable&quot;&gt;标题二&lt;/span&gt;</code><br>
 <span id="lable">标题二</span></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[英语语法-刘晓艳]]></title>
-        <id>https://ray-sang.github.io/post/ying-yu-yu-fa-liu-xiao-yan/</id>
-        <link href="https://ray-sang.github.io/post/ying-yu-yu-fa-liu-xiao-yan/">
-        </link>
-        <updated>2021-04-26T11:35:43.000Z</updated>
-        <summary type="html"><![CDATA[<p>从头开始整理英语语法和长难句。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>从头开始整理英语语法和长难句。</p>
-<!-- more -->
-<h1 id="1-句子的成分简单句">1 句子的成分——简单句</h1>
-<h2 id="11-谓语">1.1 谓语</h2>
-<h3 id="111-句子组成结构">1.1.1 句子组成结构</h3>
-<ul>
-<li>主谓宾</li>
-<li>主系表</li>
-<li>主谓宾宾</li>
-<li>主谓宾补</li>
-</ul>
-<h3 id="112-系动词">1.1.2 系动词</h3>
-<p>系动词都有：</p>
-<ul>
-<li>be 动词以及各种形式</li>
-<li>翻译为“变化”的词汇：become，turn，get，go</li>
-<li>翻译为“保持”的词汇：hold，keep，stay，remain</li>
-<li>感官：look，smell，feel，sound</li>
-</ul>
-<p>动词就是谓语，谓语就是动词。**一句话中有且只有一个有时态的实义动词或系动词的存在充当谓语。**动词能不能少？不能。当一句话需要动词但是没有动词时，使用 be 动词，例如：</p>
-<ul>
-<li>I <strong>am</strong> against you.</li>
-<li>Your mother must <strong>be</strong> very beautiful.</li>
-</ul>
-<h3 id="113-动词的分类">1.1.3 动词的分类</h3>
-<ol>
-<li>
-<p>实义动词</p>
-<ul>
-<li>vi，不及物动词，加介词再加宾语，后面可以不加宾语，look at me</li>
-<li>vt，及物动词，后面必须直接跟宾语，watch TV</li>
-</ul>
-</li>
-<li>
-<p>系动词</p>
-</li>
-<li>
-<p>助动词——帮助谓语构成时态、被动、否定、疑问的词</p>
-<ul>
-<li>I am having class.</li>
-<li>It is cut off.</li>
-<li>I do not love you.</li>
-</ul>
-</li>
-<li>
-<p>情态动词——can，may，must</p>
-<p>​	特殊用法：可以表示对过去的推测。</p>
-<ul>
-<li>He must have fallen in love with me.  一定做过某事，must have done</li>
-<li>You need not have shown your love in this way. 你本<strong>没必要用</strong>这种方式对我表达爱。（本没必要，但是做了）</li>
-<li>I could have become a prominent poet.（could have done，本能做但是没做，<strong>表示遗憾</strong>）</li>
-<li>We should have stayed together.（should have done，本<strong>应该</strong>做某事但是没做）</li>
-</ul>
-</li>
-</ol>
-<h3 id="114-独立主格">1.1.4 独立主格</h3>
-<p>独立主格结构本身不是句子，在句子中作<strong>状语</strong>，表示时间，原因，条件，伴随，目的等。独立主格结构有两部分组成：前一部分是名词或者代词，后一部分是非谓语动词( 不定式，动名词和分词 )或名词，形容词，副词，介词短语。例如：</p>
-<ul>
-<li>为了见你，我来了。 To see you, I came here.</li>
-<li>我的朋友为了见你，我来了。My friend to see you, I came here.</li>
-</ul>
-<p>主要分为以下几类：</p>
-<ol>
-<li>非谓语动词的情况，加不定式 ( 表示目的或者原因 )
-<ul>
-<li>他的朋友要来了，他正忙着准备晚饭。 ( His friends to come, he is busy preparing the dinner. His friends to come 是独立主格)</li>
-<li>很多东西要做， 我没时间跟你聊。 ( A lot of work to do, I don't have time to talk to you.)</li>
-<li>如果明天没人叫醒我的话，我就会迟到。 ( No one to wake me up tomorrow, I will be late.)</li>
-</ul>
-</li>
-<li>非谓语动词的情况，加 doing ( 表正在，将来，主动 )
-<ul>
-<li>假期就要到了，他们正忙着做旅行的计划。( The holiday coming, they are busy making plans for trip.)</li>
-<li>时间允许的话， 我会跟你一起去。 ( Time permitting, I will go with you. )</li>
-<li>我考虑问题的时候， 他进来了。 ( I considering questions, he comes in. )</li>
-</ul>
-</li>
-<li>非谓语动词的情况，加 done ( 表被动 )
-<ul>
-<li>他的钱包被偷了，他很着急。 ( His wallet stolen, he is anxious.)</li>
-</ul>
-</li>
-<li>名词，形容词，副词，介词短语 + 形容词
-<ul>
-<li>天气很热，我们去游泳了。( It (being) hot, we went for swimming.)</li>
-</ul>
-</li>
-<li>名词，形容词，副词，介词短语 + 名词
-<ul>
-<li>我收到了很多礼物，很多是书。( I receive a lot of gifts, many of them books.)</li>
-</ul>
-</li>
-<li>名词，形容词，副词，介词短语 + 副词
-<ul>
-<li>灯开着， 他一夜没睡。 ( The light on, he was up all night.)</li>
-</ul>
-</li>
-<li>名词，形容词，副词，介词短语 + 介词短语
-<ul>
-<li>警察破门而入，手里拿着枪。( The police broke in, gun in hands.)</li>
-</ul>
-</li>
-</ol>
-<h2 id="12-主语">1.2 主语</h2>
-<h3 id="121-主语的成分">1.2.1 主语的成分</h3>
-<p>名词充当主语、代词充当主语、非谓语动词充当主语、从句（def：引导词加句子）充当主语。</p>
-<p>形容词不能作为主语。非谓语动词充当主语时，谓语用单数形式，例如：</p>
-<ul>
-<li>Being handsome and strong is his nature.</li>
-<li>Handsomeness and strength are his nature.</li>
-</ul>
-<h3 id="122-主语能不能少">1.2.2 主语能不能少</h3>
-<p>不能少。如果没有主语：</p>
-<ol>
-<li>
-<p>加 it 作为主语，必须与天气、温度、时间有关。</p>
-<ul>
-<li>It keeps(系动词替换be动词) cold in south pole. 南极很冷。</li>
-</ul>
-</li>
-<li>
-<p>There be 句型，当一句话没有主语并听到“有”的时候使用。</p>
-<ul>
-<li>There exist/seem/remain 其他表达</li>
-<li>There exist(与主语相同 individuals) a sea of private individuals having passion for me.</li>
-</ul>
-</li>
-<li>
-<p>被动。当一句话没有主语，或听到人称代词做主语的句子，都可以考虑写成被动。</p>
-<ul>
-<li>English must be pointed out exceedingly indispensable.</li>
-<li>Authorities should be proposed to adopt action.</li>
-</ul>
-<p>三种情况无被动：</p>
-<ul>
-<li>不及物动词没有被动（动词后面有介词时）</li>
-<li>系动词没有被动（<s>is looked</s>）</li>
-<li>have 表达有的意思时无被动</li>
-</ul>
-</li>
-<li>
-<p>人称代词：最好不要使用。（I you we，不够高级）</p>
-</li>
-</ol>
-<p>练习：If there exists a dream, glories are supposed to be achieved.</p>
-<h2 id="13-宾语-表语">1.3 宾语 表语</h2>
-<h3 id="131-宾语">1.3.1 宾语</h3>
-<p>宾语成分：名词、代词、非谓语动词、从句。和主语一样，可通过被动相互转换。</p>
-<h3 id="132-表语">1.3.2 表语</h3>
-<p>表语成分：名词（I am a teacher)、代词、非谓语动词、从句（表语从句）、介词短语（I am in Chongqing)、形容词（I am beautiful）。</p>
-<p>例子：I smiled in the room. 主谓表（或状语）结构，反正不是主谓宾结构。<strong>介词短语不能做宾语。</strong></p>
-<h2 id="14-写作中的使用">1.4 写作中的使用</h2>
-<h3 id="141-小tips">1.4.1 小tips</h3>
-<ul>
-<li>把难词写成自己会的词汇，反正老师不知道自己表达的意思。<s>哈哈</s></li>
-<li>长难句表达，使用简单句。正确第一位。</li>
-<li>分析长难句，第一步找谓语（动词），进而寻找主谓宾。若有多个动词出现，就找主句的谓语动词，其前方没有引导词。</li>
-</ul>
-<h1 id="2-并列句">2 并列句</h1>
-<h2 id="21-并列句的定义">2.1 并列句的定义</h2>
-<p>回顾独立主格：I loving you, you love that dog.</p>
-<h3 id="211-什么是并列句">2.1.1 什么是并列句？</h3>
-<p>在两句话中间加连词。I love you, but you love that dog.</p>
-<h3 id="212-并列连词">2.1.2 并列连词：</h3>
-<ol>
-<li>平行：and, not only...but also...</li>
-<li>转折：but, yet, while, whereas</li>
-<li>选择：or, whether...or...</li>
-<li>因果：for, so, since</li>
-<li>递进：then(是个副词，其实不是连词)</li>
-</ol>
-<h3 id="213-逻辑关系词">2.1.3 逻辑关系词</h3>
-<p>包括连词，副词，介词，介词短语。</p>
-<ol>
-<li>平行：similarly, equally, likewise, at the same time</li>
-<li>转折：however, nevertheless, on the contrary</li>
-<li>选择：alternatively</li>
-<li>因果：therefore, thus, consequently（注意副词不能连接两个句子）, as a result</li>
-<li>递进：besides, furthermore, moreover, additionally</li>
-</ol>
-<p>例子：There seems a friend coming from afar. Consequently I feel exceedingly delighted.(There seems a friend coming from afar, <strong>and consequently,</strong> I feel exceedingly delighted. )</p>
-<p><strong>连词和其他逻辑关系词的区别在于：连词前面有无逗号均可，而其他的逻辑关系词的前面要么用句号要么加连词 and。</strong></p>
-<p>例子：I am said to be changeable like water, and on the contrary, my clarity keeps the same.</p>
-<h2 id="22-并列句的长难句分析">2.2 并列句的长难句分析</h2>
-<h3 id="221-省略">2.2.1 省略</h3>
-<ul>
-<li>一句话只要有省略，就一定在连词后。</li>
-<li>连词后有的成分，连词前面通常都要有。</li>
-<li>连词前面有，而连词后面没有的成分，便是连词后省略的内容。</li>
-</ul>
-<p>并列句的对称原则：</p>
-<ul>
-<li>词性对称：并列连词前后的词性，单复数，时态和语法要一致。</li>
-<li>结构对称：连词所连接的句子结构要保持一致。On fourteenth February, a BFF(best friend forever) of mine from high school got married, then I realized the fleeting time.（例子有点牵强）</li>
-</ul>
-<p>具体看省略，例子1： Under modern conditions, this <em><strong>requires</strong></em> varying measures of centralized control <em><strong>and</strong></em> hence （<em><strong>requires</strong></em>） the help of specialized scientists such as economists and operational research experts.</p>
-<p>步骤：1.找动词 2.找连词 3.连词在连接两个名词则无视。翻译：在现代条件下，这需要不同方法的集中控制，因此<strong>也</strong>需要专业科学家的帮助，如经济学家和业务研究专家。</p>
-<p>例子2： The data suggest（主句的谓语）, for example（插入语忽视）, that <strong>physically attractive individuals</strong>（主） are more likely to be treated well by their parents, （省略more likely to be）sought out as friends <em><strong>and</strong></em> （省略more likely to be）pursued romantically（表语）.</p>
-<p>句子为主谓宾结构。that 引导从句充当宾语。</p>
-<p>例子3： There is（谓语） no agreement （定语从句）<strong>whether</strong> methodology <em>refers to</em>（介词） the concepts （定语开始）peculiar to his historical work in general <strong>or</strong> （省略 <em>methodology refers</em>）to the research technique （定从）appropriate to the various branches historical inquiry.</p>
-<h3 id="222-一些例子">2.2.2 一些例子</h3>
-<p>例子1： Until these issues are resolved, a technology of behavior（主） will continue（谓） to be rejected（不定式做宾语）,  and with it**（指代行为艺术）** possibly the only way to solve our problems（省略will continue  to be rejected）.</p>
-<p>翻译： 直到这些问题被解决，行为技术将继续被拒绝，并且和行为技术一起、很可能解决我们问题的唯一的方法也将继续被拒绝。</p>
-<p>指代：就近原则和一致性原则。语法和意思的一致。</p>
-<p>例子2： As families move away from their stable community, their friends of many years***, and***（说明前面是并列，被切断的只是信息流） their extended family relationships, the informal flow of information（主） is cut off, <em><strong>and</strong></em> （省略，回想：连词后有的成分连词前不一定有，根据后面的成分找前一句对应的成分）with it（就近原则和一致性原则找指代的内容：the informal flow of information） the confidence that information will be available when needed <em><strong>and</strong></em> （省略主语 information）will be trustworthy and reliable（省略 is cut off）.</p>
-<p>翻译：随着家庭搬离他们稳定的社区，搬离他们多年的朋友，搬离他们延伸的大家庭关系（亲戚关系），这类非正式的信息流就被切断了。并且，和非正式的信息流一起，当需要的时候我们就会得到这些可靠的信息  的自信  也消失了。</p>
 ]]></content>
     </entry>
 </feed>
